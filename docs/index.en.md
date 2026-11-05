@@ -36,9 +36,25 @@ The official docs scatter these flags across several pages in the form of terse 
 
     ---
 
-    Full quick-reference table: keys / defaults / status / version support
+    51 vLLM-Ascend proprietary flags: keys / defaults / status / version support
 
     [:octicons-arrow-right-24: Open](flags/index.md)
+
+-   :material-tune:{ .lg .middle } **Engine args**
+
+    ---
+
+    78 `vllm serve` args with Ascend context, evidenced from official tutorials
+
+    [:octicons-arrow-right-24: Open](engine-args/index.md)
+
+-   :material-chef-hat:{ .lg .middle } **Deployment recipes**
+
+    ---
+
+    26 sets of official recommended commands: DeepSeek / Kimi / GLM / Qwen / PD
+
+    [:octicons-arrow-right-24: Open](recipes/index.md)
 
 -   :material-table:{ .lg .middle } **Version support matrix**
 

@@ -13,6 +13,16 @@ nav:
   - 首页: index.md
   - 快速上手: quick-start.md
   - 特性开关总览: flags/index.md
+  - 引擎参数: engine-args/index.md
+  - 部署配方:
+      - recipes/index.md
+      - DeepSeek: recipes/deepseek.md
+      - Kimi: recipes/kimi.md
+      - GLM: recipes/glm.md
+      - Qwen: recipes/qwen.md
+      - MiniMax: recipes/minimax.md
+      - 其他模型: recipes/others.md
+      - 特性场景: recipes/features.md
   - 版本支持矩阵: version-matrix.md
   - 环境变量: env-vars.md
   - 迁移对照表: migration.md
@@ -21,6 +31,7 @@ nav:
 
 not_in_nav: |
   flags/*.md
+  engine-args/*.md
 
 theme:
   name: material

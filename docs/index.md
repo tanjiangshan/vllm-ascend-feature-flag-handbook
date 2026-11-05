@@ -36,9 +36,25 @@ vLLM-Ascend 通过**特性开关**控制大量实验性、场景化的优化能�
 
     ---
 
-    全量速查表：配置键 / 默认值 / 状态 / 版本支持
+    51 个 vLLM-Ascend 专有开关：配置键 / 默认值 / 状态 / 版本支持
 
     [:octicons-arrow-right-24: 进入](flags/index.md)
+
+-   :material-tune:{ .lg .middle } **引擎参数**
+
+    ---
+
+    78 个 `vllm serve` 参数的 Ascend 语境用法（官方教程实证）
+
+    [:octicons-arrow-right-24: 进入](engine-args/index.md)
+
+-   :material-chef-hat:{ .lg .middle } **部署配方**
+
+    ---
+
+    26 组官方推荐命令：DeepSeek / Kimi / GLM / Qwen / PD 分离
+
+    [:octicons-arrow-right-24: 进入](recipes/index.md)
 
 -   :material-table:{ .lg .middle } **版本支持矩阵**
 

@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-"""Generate flag overview tables and JSON export from data/flags/*.yaml.
+"""Generate overview tables and JSON exports from data files.
 
-This script is the single source of truth for flag metadata. It:
+Flags (data/flags/*.yaml):
   1. Validates every YAML entry against a small schema.
-  2. Renders the Chinese/English overview tables in docs/flags/index.md
-     between the <!-- TABLES --> markers.
+  2. Renders the Chinese/English overview tables in docs/flags/index.md.
   3. Generates docs/flags/{key}.md stubs for flags that don't have a
      handwritten page yet.
   4. Emits docs/flags.json (machine-readable export for the community).
+
+Engine args (data/engine-args.yaml):
+  5. Validates entries (arg/category/type/desc/sources).
+  6. Renders category-grouped tables in docs/engine-args/index.md(+en).
+  7. Emits docs/engine-args.json.
 
 Run locally:  python scripts/generate_tables.py
 CI runs it and fails if generated files are not committed.
@@ -23,6 +27,13 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "flags"
+ENGINE_ARGS_YAML = ROOT / "data" / "engine-args.yaml"
+RECIPES_JSON = ROOT / "data" / "recipes.json"
+RECIPES_DIR = ROOT / "docs" / "recipes"
+ENGINE_ARGS_DIR = ROOT / "docs" / "engine-args"
+ENGINE_ARGS_INDEX_MD = ENGINE_ARGS_DIR / "index.md"
+ENGINE_ARGS_INDEX_EN_MD = ENGINE_ARGS_DIR / "index.en.md"
+ENGINE_ARGS_JSON = ROOT / "docs" / "engine-args.json"
 FLAGS_DIR = ROOT / "docs" / "flags"
 INDEX_MD = FLAGS_DIR / "index.md"
 JSON_OUT = ROOT / "docs" / "flags.json"
@@ -30,6 +41,23 @@ JSON_OUT = ROOT / "docs" / "flags.json"
 TYPES = {"bool", "int", "float", "str", "dict", "list"}
 STATUSES = {"active", "deprecated", "removed", "planned"}
 HARDWARE = {"A1", "A2", "A3", "A4", "A5"}
+
+CATEGORY_ORDER = [
+    "parallel", "scheduling", "compilation", "model", "speculative",
+    "kvtransfer", "multimodal", "serving", "rl",
+]
+CATEGORY_LABELS = {
+    "zh": {
+        "parallel": "并行策略", "scheduling": "调度与内存", "compilation": "编译与图",
+        "model": "模型与加载", "speculative": "投机解码", "kvtransfer": "KV 传输与 PD 分离",
+        "multimodal": "多模态", "serving": "服务端", "rl": "RL 训练",
+    },
+    "en": {
+        "parallel": "Parallelism", "scheduling": "Scheduling & Memory", "compilation": "Compilation & Graphs",
+        "model": "Model & Loading", "speculative": "Speculative Decoding", "kvtransfer": "KV Transfer & PD",
+        "multimodal": "Multimodal", "serving": "Server", "rl": "RL Training",
+    },
+}
 
 S = {
     "zh": {
@@ -269,13 +297,222 @@ def export_json(flags: list[dict]) -> None:
     print(f"Exported {JSON_OUT.relative_to(ROOT)}")
 
 
+# ---------------- engine args (data/engine-args.yaml) ----------------
+
+EA_REQUIRED = ("arg", "category", "type", "default", "desc", "sources")
+EA_CATEGORIES = set(CATEGORY_ORDER)
+
+
+def validate_engine_args(name: str, entry: dict) -> list[str]:
+    errors = []
+    for field in EA_REQUIRED:
+        if field not in entry:
+            errors.append(f"{name}: missing required field '{field}'")
+    if entry.get("category") not in EA_CATEGORIES:
+        errors.append(f"{name}: category must be one of {sorted(EA_CATEGORIES)}, got {entry.get('category')!r}")
+    if not isinstance(entry.get("type"), str) or "|" in entry.get("type", ""):
+        errors.append(f"{name}: 'type' must be a simple type string")
+    desc = entry.get("desc", {})
+    if not isinstance(desc, dict) or "zh" not in desc or "en" not in desc:
+        errors.append(f"{name}: 'desc' must be a dict with both 'zh' and 'en' keys")
+    if not isinstance(entry.get("sources"), list) or not entry["sources"]:
+        errors.append(f"{name}: 'sources' must be a non-empty list")
+    arg = entry.get("arg", "")
+    if arg and not all(c.isalnum() or c == "-" for c in arg):
+        errors.append(f"{name}: 'arg' has invalid characters: {arg!r}")
+    return errors
+
+
+def load_engine_args() -> list[dict]:
+    if not ENGINE_ARGS_YAML.exists():
+        fail(f"engine args data not found: {ENGINE_ARGS_YAML}")
+    data = yaml.safe_load(ENGINE_ARGS_YAML.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or not isinstance(data.get("args"), list):
+        fail(f"{ENGINE_ARGS_YAML.name}: top level must be a mapping with an 'args' list")
+    args = data["args"]
+    all_errors = []
+    for i, entry in enumerate(args):
+        if not isinstance(entry, dict):
+            fail(f"{ENGINE_ARGS_YAML.name}: args[{i}] must be a mapping")
+        all_errors.extend(validate_engine_args(f"args[{i}]", entry))
+    if all_errors:
+        for e in all_errors:
+            print(f"[ERROR] {e}", file=sys.stderr)
+        sys.exit(1)
+    names = [a["arg"] for a in args]
+    if len(names) != len(set(names)):
+        dup = {n for n in names if names.count(n) > 1}
+        fail(f"duplicate engine args: {sorted(dup)}")
+    return args
+
+
+def render_engine_arg_row(entry: dict, lang: str) -> str:
+    slug = entry["arg"]
+    label = f"`--{entry['arg']}`"
+    if entry.get("detail_page"):
+        label = f"[`--{entry['arg']}`]({slug}.md)"
+    default = render_default(entry["default"])
+    desc = entry["desc"][lang].replace("|", "\\|")
+    src = f"[docs×{entry.get('doc_count', len(entry['sources']))}]({entry['sources'][0]})"
+    return f"| {label} | `{entry['type']}` | {default} | {desc} | {src} |"
+
+
+def render_engine_tables(entries: list[dict], lang: str) -> str:
+    h = {"zh": {"arg": "参数", "type": "类型", "default": "默认值", "desc": "说明", "src": "官方文档出处"},
+         "en": {"arg": "Argument", "type": "Type", "default": "Default", "desc": "Description", "src": "Official docs"}}[lang]
+    by_cat: dict[str, list[dict]] = {c: [] for c in CATEGORY_ORDER}
+    for e in entries:
+        by_cat[e["category"]].append(e)
+    out = []
+    for cat in CATEGORY_ORDER:
+        items = by_cat[cat]
+        if not items:
+            continue
+        out.append(f"### {CATEGORY_LABELS[lang][cat]}\n")
+        out.append(f"| {h['arg']} | {h['type']} | {h['default']} | {h['desc']} | {h['src']} |")
+        out.append("|---|---|---|---|---|")
+        for e in items:
+            out.append(render_engine_arg_row(e, lang))
+        out.append("")
+    return "\n".join(out).rstrip()
+
+
+def update_engine_args_index(entries: list[dict]) -> None:
+    for lang, path in (("zh", ENGINE_ARGS_INDEX_MD), ("en", ENGINE_ARGS_INDEX_EN_MD)):
+        if not path.exists():
+            fail(f"engine args index not found: {path}")
+        text = path.read_text(encoding="utf-8")
+        start, end = "<!-- EA_TABLE_START -->", "<!-- EA_TABLE_END -->"
+        if start not in text or end not in text:
+            fail(f"markers not found in {path.name}")
+        pre, rest = text.split(start, 1)
+        _, post = rest.split(end, 1)
+        table = render_engine_tables(entries, lang)
+        path.write_text(f"{pre}{start}\n{table}\n{end}{post}", encoding="utf-8")
+        print(f"Updated {path.relative_to(ROOT)} ({len(entries)} args)")
+
+
+def ensure_engine_arg_stubs(entries: list[dict]) -> None:
+    """Stub only for args marked detail_page that lack a handwritten page."""
+    created = 0
+    for e in entries:
+        if not e.get("detail_page"):
+            continue
+        path = ENGINE_ARGS_DIR / f"{e['arg']}.md"
+        if path.exists():
+            continue
+        path.write_text(f"""---
+title: {e['arg']}
+---
+
+# `--{e['arg']}`
+
+> **类型 / Type**: `{e['type']}` ｜ **默认值 / Default**: `{json.dumps(e['default'], ensure_ascii=False)}`
+
+{e['desc']['zh']}
+
+{e['desc']['en']}
+
+---
+
+*本页为自动生成的占位页，欢迎补充。见 [贡献指南](../contributing.md)。 / Auto-generated stub — contributions welcome.*
+""", encoding="utf-8")
+        created += 1
+    if created:
+        print(f"Created {created} engine-arg stub page(s) under docs/engine-args/")
+
+
+def export_engine_args_json(entries: list[dict]) -> None:
+    ENGINE_ARGS_JSON.write_text(
+        json.dumps(entries, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Exported {ENGINE_ARGS_JSON.relative_to(ROOT)}")
+
+
+# ---------------- deployment recipes (data/recipes.json) ----------------
+
+RECIPE_GROUPS = {
+    "deepseek": {"zh": "DeepSeek 系列", "en": "DeepSeek family"},
+    "kimi": {"zh": "Kimi 系列", "en": "Kimi family"},
+    "glm": {"zh": "GLM 系列", "en": "GLM family"},
+    "qwen": {"zh": "Qwen 系列", "en": "Qwen family"},
+    "minimax": {"zh": "MiniMax 系列", "en": "MiniMax family"},
+    "others": {"zh": "其他模型", "en": "Other models"},
+    "features": {"zh": "特性场景", "en": "Feature scenarios"},
+}
+
+
+def load_recipes() -> dict:
+    if not RECIPES_JSON.exists():
+        fail(f"recipes data not found: {RECIPES_JSON}")
+    data = json.loads(RECIPES_JSON.read_text(encoding="utf-8"))
+    for key in ("recipes", "features"):
+        if not isinstance(data.get(key), list):
+            fail(f"{RECIPES_JSON.name}: '{key}' must be a list")
+        for i, r in enumerate(data[key]):
+            for field in ("title", "url", "cmd"):
+                if field not in r:
+                    fail(f"{RECIPES_JSON.name}: {key}[{i}] missing '{field}'")
+    return data
+
+
+def render_recipe_block(item: dict, lang: str) -> str:
+    name = item.get("model") or item.get("feature")
+    title = item["title"]
+    url = item["url"]
+    src = "官方原文 / Source" if lang == "zh" else "Source"
+    lines = [
+        '??? quote "%s (`%s`)"' % (title, name),
+        "    %s: <%s>" % (src, url),
+        "",
+        "    ```bash",
+    ]
+    lines += ["    " + l for l in item["cmd"].splitlines()]
+    lines.append("    ```")
+    return "\n".join(lines)
+
+
+def render_recipes_page(items: list[dict], lang: str) -> str:
+    return "\n\n".join(render_recipe_block(r, lang) for r in items)
+
+
+def update_recipe_pages(data: dict) -> None:
+    groups: dict[str, list[dict]] = {g: [] for g in RECIPE_GROUPS}
+    for r in data["recipes"]:
+        groups.setdefault(r.get("group", "others"), []).append(r)
+    groups["features"] = data["features"]
+    for group, items in groups.items():
+        for lang, suffix in (("zh", ".md"), ("en", ".en.md")):
+            path = RECIPES_DIR / f"{group}{suffix}"
+            if not path.exists():
+                continue  # page not created yet — skip silently
+            text = path.read_text(encoding="utf-8")
+            start, end = "<!-- RECIPES_START -->", "<!-- RECIPES_END -->"
+            if start not in text or end not in text:
+                fail(f"markers not found in {path.name}")
+            pre, rest = text.split(start, 1)
+            _, post = rest.split(end, 1)
+            body = render_recipes_page(items, lang)
+            path.write_text(f"{pre}{start}\n{body}\n{end}{post}", encoding="utf-8")
+        if items:
+            print(f"Updated recipes/{group} ({len(items)} recipes)")
+
+
 def main() -> None:
     flags = load_flags()
     update_index(flags)
     update_version_matrix(flags)
     ensure_stubs(flags)
     export_json(flags)
-    print(f"OK: {len(flags)} flag(s) processed.")
+    engine_args = load_engine_args()
+    update_engine_args_index(engine_args)
+    ensure_engine_arg_stubs(engine_args)
+    export_engine_args_json(engine_args)
+    recipes = load_recipes()
+    update_recipe_pages(recipes)
+    print(f"OK: {len(flags)} flag(s), {len(engine_args)} engine arg(s), "
+          f"{len(recipes['recipes'])} recipe(s) processed.")
 
 
 if __name__ == "__main__":

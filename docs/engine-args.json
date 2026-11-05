@@ -1,0 +1,2127 @@
+[
+  {
+    "arg": "ec-transfer-config",
+    "category": "kvtransfer",
+    "type": "ECTransferConfig",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "EC 传输配置。编码器缓存（Encoder Cache）场景用。",
+      "en": "EC transfer config. For encoder cache scenarios."
+    },
+    "doc_count": 1,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/encoder_cache_cpu_offload.html"
+    ]
+  },
+  {
+    "arg": "kv-transfer-config",
+    "category": "kvtransfer",
+    "type": "KVTransferConfig",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "KV 传输配置（JSON）。PD 分离部署的核心：NixlConnector/Mooncake 等后端。",
+      "en": "KV transfer config (JSON). Core of PD disaggregation: NixlConnector/Mooncake etc."
+    },
+    "doc_count": 17,
+    "examples": [
+      {
+        "value": "{\"kv_connector\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+        "note": "from tutorials/features/pd_disaggregation_mooncake_single_node.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html"
+    ]
+  },
+  {
+    "arg": "ec-manager-config",
+    "category": "rl",
+    "type": "EcManagerConfig",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "编码器缓存管理器配置。多模态编码器缓存的容量/淘汰策略。",
+      "en": "Encoder cache manager config. Capacity/eviction policy for multimodal encoder cache."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/encoder_cache_manager.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/configuration/encoder_cache_manager.html"
+    ]
+  },
+  {
+    "arg": "enable-sleep-mode",
+    "category": "rl",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "休眠模式。RL 训练中释放 GPU 显存给训练器，代价是唤醒延迟。",
+      "en": "Sleep mode. Frees HBM for the trainer during RL training, at the cost of wakeup latency."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/rl.html"
+    ]
+  },
+  {
+    "arg": "engram-config",
+    "category": "rl",
+    "type": "EngramConfig",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "Engram 配置。Ascend 侧特定图优化模式。",
+      "en": "Engram config. Ascend-specific graph optimization mode."
+    },
+    "doc_count": 1,
+    "examples": [
+      {
+        "value": "{\"cpu_offload\":true,\"dp_shared_memory\":true}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4.1-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4.1-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "weight-transfer-config",
+    "category": "rl",
+    "type": "WeightTransferConfig",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "权重传输配置（JSON）。RL 训练中 rollout→train 权重同步用。",
+      "en": "Weight transfer config (JSON). For rollout→train weight sync in RL."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "{\"backend\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+        "note": "from user_guide/feature_guide/rl.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/rl.html"
+    ]
+  },
+  {
+    "arg": "allowed-local-media-path",
+    "category": "multimodal",
+    "type": "str",
+    "default": "",
+    "detail_page": false,
+    "desc": {
+      "zh": "允许的本地媒体路径前缀。本地图片/视频推理服务时配置。",
+      "en": "Allowed local media path prefix. For local image/video inference."
+    },
+    "doc_count": 7,
+    "examples": [
+      {
+        "value": "/",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "/data/media",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+        "note": "from tutorials/models/Kimi-K2.6.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "limit-mm-per-prompt",
+    "category": "multimodal",
+    "type": "dict[str, int]",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "单 prompt 多模态数量限制（JSON）。如 {\"image\":1,\"video\":0}。",
+      "en": "Per-prompt multimodal limit (JSON). E.g. {\"image\":1,\"video\":0}."
+    },
+    "doc_count": 14,
+    "examples": [
+      {
+        "value": "{\"image\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html",
+        "note": "from tutorials/models/SigLIP2.md"
+      },
+      {
+        "value": "{\"image\":1,\"video\":0}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+        "note": "from tutorials/models/GLM5.3-Flash.md"
+      },
+      {
+        "value": "{\"image\":7,\"video\":0,\"audio\":0}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "mm-encoder-tp-mode",
+    "category": "multimodal",
+    "type": "MMEncoderTPMode",
+    "default": "weights",
+    "detail_page": false,
+    "desc": {
+      "zh": "多模态编码器 TP 模式（weights/data）。视觉模型调优。",
+      "en": "MM encoder TP mode (weights/data). Tuning for vision models."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "data",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "mm-processor-cache-gb",
+    "category": "multimodal",
+    "type": "float",
+    "default": 4,
+    "detail_page": false,
+    "desc": {
+      "zh": "多模态处理器缓存大小（GB）。默认 4；视频模型可能需要调大。",
+      "en": "MM processor cache size (GB). Default 4; may need increase for video models."
+    },
+    "doc_count": 13,
+    "examples": [
+      {
+        "value": "0",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      },
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "mm-processor-cache-type",
+    "category": "multimodal",
+    "type": "MMCacheType",
+    "default": "(",
+    "detail_page": false,
+    "desc": {
+      "zh": "多模态处理器缓存类型（lru等）。",
+      "en": "MM processor cache type (lru etc.)."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "shm",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+        "note": "from tutorials/models/Qwen3.5-27B-Qwen3.6-27B.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html"
+    ]
+  },
+  {
+    "arg": "skip-mm-profiling",
+    "category": "multimodal",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "跳过多模态 profiling。已知模型可加速启动。",
+      "en": "Skip MM profiling. Speeds up startup for known models."
+    },
+    "doc_count": 5,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Dots3-Note.html"
+    ]
+  },
+  {
+    "arg": "api-server-count",
+    "category": "parallel",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "API 服务器进程数。高并发时提升请求接入吞吐。",
+      "en": "Number of API server processes. Improves request ingress throughput under high concurrency."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html",
+        "note": "from tutorials/models/Qwen3.5-397B-A17B.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html"
+    ]
+  },
+  {
+    "arg": "cp-kv-cache-interleave-size",
+    "category": "parallel",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "CP 模式下 KV cache 的交错粒度。调优参数，默认 1 通常够用。",
+      "en": "KV cache interleave size in CP mode. Tuning knob; default 1 usually suffices."
+    },
+    "doc_count": 5,
+    "examples": [
+      {
+        "value": "128",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/context_parallel.html",
+        "note": "from user_guide/feature_guide/context_parallel.md"
+      },
+      {
+        "value": "1536",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "384",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+        "note": "from tutorials/models/Kimi-K3.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/context_parallel.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-address",
+    "category": "parallel",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "DP 集群头节点地址。多节点 DP 时指向 head 节点。",
+      "en": "Address of the data parallel cluster head node."
+    },
+    "doc_count": 20,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-backend",
+    "category": "parallel",
+    "type": "DataParallelBackend",
+    "default": "mp",
+    "detail_page": false,
+    "desc": {
+      "zh": "DP 后端实现。默认 'mp'（多进程）；Ray 多节点部署可换 'ray'。",
+      "en": "DP backend implementation. Default 'mp'; use 'ray' for Ray clusters."
+    },
+    "doc_count": 1,
+    "examples": [
+      {
+        "value": "mp",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-rank",
+    "category": "parallel",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "当前实例的 DP rank（headless / Ray 场景用）。",
+      "en": "Data parallel rank of this instance (headless / Ray mode)."
+    },
+    "doc_count": 7,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-rpc-port",
+    "category": "parallel",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "DP RPC 通信固定端口。多节点 DP 必配。",
+      "en": "Fixed port for DP RPC communication. Required for multi-node DP."
+    },
+    "doc_count": 18,
+    "examples": [
+      {
+        "value": "12321",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+        "note": "from tutorials/models/GLM5.3-Flash.md"
+      },
+      {
+        "value": "12980",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "13389",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+        "note": "from tutorials/models/GLM5.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-size",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": true,
+    "desc": {
+      "zh": "数据并行组数。MoE 专家按 TP×PCP×DP 的乘积分片。多节点 EP 部署的必备参数。",
+      "en": "Number of data parallel groups. MoE experts are sharded by TP×PCP×DP. Required for multi-node EP."
+    },
+    "doc_count": 39,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-size-local",
+    "category": "parallel",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "本节点上的 DP 副本数。多节点 DP 时与 data-parallel-size 配合。",
+      "en": "Number of DP replicas on this node. Used with data-parallel-size for multi-node DP."
+    },
+    "doc_count": 20,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+        "note": "from tutorials/models/MiniMax-M3.md"
+      },
+      {
+        "value": "4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "data-parallel-start-rank",
+    "category": "parallel",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "该节点上 DP 副本的起始 rank。多节点 DP 的节点寻址参数。",
+      "en": "Starting DP rank for this node. Multi-node DP node addressing."
+    },
+    "doc_count": 16,
+    "examples": [
+      {
+        "value": "0",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+        "note": "from tutorials/models/Kimi-K3.md"
+      },
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+        "note": "from tutorials/models/MiniMax-M3.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "decode-context-parallel-size",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": false,
+    "desc": {
+      "zh": "Decode 上下文并行。与 PCP 配合的 decode 阶段并行。",
+      "en": "Decode context parallel size. Complements PCP for decode phase."
+    },
+    "doc_count": 7,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/context_parallel.html",
+        "note": "from user_guide/feature_guide/context_parallel.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/context_parallel.html"
+    ]
+  },
+  {
+    "arg": "distributed-executor-backend",
+    "category": "parallel",
+    "type": "(",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "分布式执行后端：'mp'（多进程，单机）或 'ray'（多机）。Ascend 官方多机教程用 ray。",
+      "en": "Distributed executor backend: 'mp' (single node) or 'ray' (multi-node). Official multi-node tutorials use ray."
+    },
+    "doc_count": 20,
+    "examples": [
+      {
+        "value": "mp",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "ray",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+        "note": "from tutorials/features/ray.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "enable-expert-parallel",
+    "category": "parallel",
+    "type": "bool",
+    "default": false,
+    "detail_page": true,
+    "desc": {
+      "zh": "MoE 专家用专家并行（而非 TP）切分。vLLM-Ascend 官方 MoE 教程的标配。",
+      "en": "Use expert parallelism instead of TP for MoE layers. Standard in official MoE tutorials."
+    },
+    "doc_count": 45,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "eplb-config",
+    "category": "parallel",
+    "type": "EPLBConfig",
+    "default": "EPLBConfig()",
+    "detail_page": false,
+    "desc": {
+      "zh": "专家并行负载均衡配置（vLLM 核心侧）。Ascend 侧动态 EPLB 走 additional-config 的 eplb_config。",
+      "en": "Expert parallelism load balancer config (vLLM core). Ascend dynamic EPLB is via additional-config eplb_config."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/expert_parallelism_load_balancer.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/expert_parallelism_load_balancer.html"
+    ]
+  },
+  {
+    "arg": "headless",
+    "category": "parallel",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "无头模式：节点不启动 API 服务，仅作为 DP 推理节点。多机 DP 集群的非头节点使用。",
+      "en": "Headless mode: no API server on this node, DP inference only. Used for multi-node DP clusters."
+    },
+    "doc_count": 19,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "master-addr",
+    "category": "parallel",
+    "type": "str",
+    "default": "127.0.0.1",
+    "detail_page": false,
+    "desc": {
+      "zh": "主节点地址（torchrun 启动器用）。",
+      "en": "Master node address (torchrun launcher)."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "<HEAD_NODE_IP>",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/pipeline_parallel.html",
+        "note": "from user_guide/feature_guide/pipeline_parallel.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "master-port",
+    "category": "parallel",
+    "type": "int",
+    "default": 29501,
+    "detail_page": false,
+    "desc": {
+      "zh": "主节点端口（torchrun 启动器用）。",
+      "en": "Master node port (torchrun launcher)."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "12321",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "7060",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "<MASTER_PORT>",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/pipeline_parallel.html",
+        "note": "from user_guide/feature_guide/pipeline_parallel.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "nnodes",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": false,
+    "desc": {
+      "zh": "集群节点数（torchrun 启动器用）。Ascend 官方多机教程中由脚本传入。",
+      "en": "Number of cluster nodes (torchrun launcher). Passed via torchrun in official multi-node tutorials."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "node-rank",
+    "category": "parallel",
+    "type": "int",
+    "default": 0,
+    "detail_page": false,
+    "desc": {
+      "zh": "当前节点的 rank（torchrun 启动器用）。",
+      "en": "Rank of this node (torchrun launcher)."
+    },
+    "doc_count": 9,
+    "examples": [
+      {
+        "value": "0",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "pipeline-parallel-size",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": true,
+    "desc": {
+      "zh": "流水线并行组数。多机部署大模型时启用，常与 DP 组合。",
+      "en": "Number of pipeline parallel groups. Used for multi-node large models, often combined with DP."
+    },
+    "doc_count": 11,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+        "note": "from tutorials/features/ray.md"
+      },
+      {
+        "value": "4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "prefill-context-parallel-size",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": true,
+    "desc": {
+      "zh": "Prefill 上下文并行（PCP）。长上下文场景的 prefill 加速。A2/A3 官方教程常用。",
+      "en": "Prefill context parallel (PCP) size. Speeds up long-context prefill on A2/A3."
+    },
+    "doc_count": 8,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/context_parallel.html",
+        "note": "from user_guide/feature_guide/context_parallel.md"
+      },
+      {
+        "value": "4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html"
+    ]
+  },
+  {
+    "arg": "tensor-parallel-size",
+    "category": "parallel",
+    "type": "int",
+    "default": 1,
+    "detail_page": true,
+    "desc": {
+      "zh": "张量并行组数。官方教程中 A2 单卡/多卡用 1–8，A3 大模型常配 8–16。",
+      "en": "Number of tensor parallel groups. A2 tutorials use 1–8; large A3 models often 8–16."
+    },
+    "doc_count": 64,
+    "examples": [
+      {
+        "value": "1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+        "note": "from tutorials/features/ray.md"
+      },
+      {
+        "value": "2",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    ]
+  },
+  {
+    "arg": "speculative-config",
+    "category": "speculative",
+    "type": "dict[str, Any]",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "投机解码配置（JSON）。Ascend 教程中为 DeepSeek/Kimi 配置 MTP/EAGLE3。",
+      "en": "Speculative decoding config (JSON). MTP/EAGLE3 for DeepSeek/Kimi in Ascend tutorials."
+    },
+    "doc_count": 40,
+    "examples": [
+      {
+        "value": "{\"method\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+        "note": "from tutorials/features/suffix_speculative_decoding.md"
+      },
+      {
+        "value": "{\"method\":\"dspark\",\"num_speculative_tokens\":5,\"enforce_eager",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      },
+      {
+        "value": "{\"method\":\"dspark\",\"num_speculative_tokens\":5}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "additional-config",
+    "category": "serving",
+    "type": "dict",
+    "default": "{}",
+    "detail_page": true,
+    "desc": {
+      "zh": "平台扩展配置（JSON）。vLLM-Ascend 51 个特性开关的唯一入口，详见本站特性开关总览。",
+      "en": "Platform extension config (JSON). Sole entry for vLLM-Ascend's 51 feature flags — see the flags overview."
+    },
+    "doc_count": 66,
+    "examples": [
+      {
+        "value": "{\"ascend_compilation_config\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen-VL-Dense.html",
+        "note": "from tutorials/models/Qwen-VL-Dense.md"
+      },
+      {
+        "value": "{\"ascend_compilation_config\":{\"enable_npugraph_ex\":false}}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+        "note": "from getting_started/quick_start/online/qwen3-0.6b-310p.inc.md"
+      },
+      {
+        "value": "{\"ascend_compilation_config\":{\"enable_npugraph_ex\":true,\"ena",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    ]
+  },
+  {
+    "arg": "chat-template",
+    "category": "serving",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "对话模板路径。自定义 chat 格式时指定。",
+      "en": "Chat template path. For custom chat formats."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "template_basic.jinja",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html",
+        "note": "from tutorials/models/SigLIP2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/SigLIP2.html"
+    ]
+  },
+  {
+    "arg": "default-chat-template-kwargs",
+    "category": "serving",
+    "type": "dict[str, Any]",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "对话模板默认参数（JSON）。如 enable_thinking。",
+      "en": "Default chat template kwargs (JSON). E.g. enable_thinking."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "{\"enable_thinking\":false}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Dots3-Note.html"
+    ]
+  },
+  {
+    "arg": "enable-auto-tool-choice",
+    "category": "serving",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "自动工具选择。配合 tool-call-parser 使用。",
+      "en": "Auto tool choice. Use with tool-call-parser."
+    },
+    "doc_count": 18,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "enable-return-routed-experts",
+    "category": "serving",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "返回路由专家信息。MoE 调试/分析用。",
+      "en": "Return routed expert info. For MoE debugging/analysis."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/rl.html"
+    ]
+  },
+  {
+    "arg": "host",
+    "category": "serving",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "API 服务监听地址。默认 127.0.0.1；集群部署用 0.0.0.0。",
+      "en": "API listen address. Default 127.0.0.1; use 0.0.0.0 for cluster."
+    },
+    "doc_count": 47,
+    "examples": [
+      {
+        "value": "0.0.0.0",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+        "note": "from tutorials/features/pd_disaggregation_mooncake_single_node.md"
+      },
+      {
+        "value": "127.0.0.1",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Hy4-preview.html",
+        "note": "from tutorials/models/Hy4-preview.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "port",
+    "category": "serving",
+    "type": "int",
+    "default": 8000,
+    "detail_page": false,
+    "desc": {
+      "zh": "API 服务端口。默认 8000。",
+      "en": "API service port. Default 8000."
+    },
+    "doc_count": 57,
+    "examples": [
+      {
+        "value": "10086",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Step-5-Preview.html",
+        "note": "from tutorials/models/Step-5-Preview.md"
+      },
+      {
+        "value": "11223",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html",
+        "note": "from tutorials/models/MiniMax-M3.1-Flash.md"
+      },
+      {
+        "value": "13700",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+        "note": "from tutorials/features/pd_disaggregation_mooncake_single_node.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
+    ]
+  },
+  {
+    "arg": "profiler-config",
+    "category": "serving",
+    "type": "ProfilerConfig",
+    "default": "ProfilerConfig()",
+    "detail_page": false,
+    "desc": {
+      "zh": "性能分析器配置（JSON）。Ascend msprof 等 profiling 工具链入口。",
+      "en": "Profiler config (JSON). Entry for Ascend msprof profiling toolchain."
+    },
+    "doc_count": 3,
+    "examples": [
+      {
+        "value": "{\"profiler\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+        "note": "from tutorials/models/Kimi-K2.6.md"
+      },
+      {
+        "value": "{\"profiler\":\"torch\",\"torch_profiler_dir\":\"<PROFILER_OUTPUT_D",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Kimi-K2.6.html"
+    ]
+  },
+  {
+    "arg": "reasoning-parser",
+    "category": "serving",
+    "type": "str",
+    "default": "",
+    "detail_page": false,
+    "desc": {
+      "zh": "推理输出解析器（如 deepseek_v41、glm45）。用于分离思维链内容。",
+      "en": "Reasoning parser (deepseek_v41, glm45). Separates chain-of-thought content."
+    },
+    "doc_count": 15,
+    "examples": [
+      {
+        "value": "deepseek_v41",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4.1-Flash.md"
+      },
+      {
+        "value": "glm45",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+        "note": "from tutorials/models/GLM5.md"
+      },
+      {
+        "value": "glm47",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
+    ]
+  },
+  {
+    "arg": "runner",
+    "category": "serving",
+    "type": "RunnerOption",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "执行器类型（generate/pooling等）。默认 auto。",
+      "en": "Runner type (generate/pooling). Default auto."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "pooling",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html",
+        "note": "from tutorials/models/SigLIP2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/SigLIP2.html"
+    ]
+  },
+  {
+    "arg": "served-model-name",
+    "category": "serving",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "API 中暴露的模型名。可与实际路径不同，支持多别名。",
+      "en": "Model name(s) exposed in API. Can differ from path; supports aliases."
+    },
+    "doc_count": 63,
+    "examples": [
+      {
+        "value": "<model_name>",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/netloader.html",
+        "note": "from user_guide/feature_guide/netloader.md"
+      },
+      {
+        "value": "<served_model_name>",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rfork.html",
+        "note": "from user_guide/feature_guide/rfork.md"
+      },
+      {
+        "value": "Eco-Tech/Kimi-K2.6-w4a8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+        "note": "from tutorials/models/Kimi-K2.6.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html"
+    ]
+  },
+  {
+    "arg": "tokens-only",
+    "category": "serving",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "只返回 token 不返回文本。压测/开发场景用。",
+      "en": "Return tokens only, no text. For benchmarking/dev."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/rl.html"
+    ]
+  },
+  {
+    "arg": "tool-call-parser",
+    "category": "serving",
+    "type": "str",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "工具调用解析器（如 deepseek_v4、glm47）。与 enable-auto-tool-choice 配合。",
+      "en": "Tool call parser (deepseek_v4, glm47). Use with enable-auto-tool-choice."
+    },
+    "doc_count": 15,
+    "examples": [
+      {
+        "value": "deepseek_v4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "deepseek_v41",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4.1-Flash.md"
+      },
+      {
+        "value": "glm47",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "dtype",
+    "category": "model",
+    "type": "ModelDType",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "权重计算 dtype（auto/bfloat16/float16）。Ascend 量化模型常用 bfloat16。",
+      "en": "Weight dtype (auto/bfloat16/float16). Ascend quantized models often use bfloat16."
+    },
+    "doc_count": 18,
+    "examples": [
+      {
+        "value": "bfloat16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
+        "note": "from tutorials/models/Cohere-Transcribe.md"
+      },
+      {
+        "value": "float16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+        "note": "from getting_started/quick_start/online/qwen3-0.6b-310p.inc.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen-VL-Dense.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3-30B-A3B.html"
+    ]
+  },
+  {
+    "arg": "enable-lora",
+    "category": "model",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "启用 LoRA。Ascend 侧支持，配合 lora-modules 使用。",
+      "en": "Enable LoRA. Supported on Ascend; use with lora-modules."
+    },
+    "doc_count": 2,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/lora.html"
+    ]
+  },
+  {
+    "arg": "generation-config",
+    "category": "model",
+    "type": "str",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "生成配置（从模型 config 自动加载或覆盖）。",
+      "en": "Generation config (auto-loaded from model or overridden)."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "vllm",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Dots3-Note.html"
+    ]
+  },
+  {
+    "arg": "hf-overrides",
+    "category": "model",
+    "type": "HfOverrides",
+    "default": "{}",
+    "detail_page": false,
+    "desc": {
+      "zh": "HF config 覆盖（JSON）。用于修改模型架构参数（如 rope scaling）。",
+      "en": "HF config overrides (JSON). For architecture tweaks like rope scaling."
+    },
+    "doc_count": 4,
+    "examples": [
+      {
+        "value": "{\"rope_theta\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html",
+        "note": "from user_guide/feature_guide/dynamic_chunk_pipeline_parallel.md"
+      },
+      {
+        "value": "{\"use_index_cache\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+        "note": "from tutorials/models/GLM5.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
+    ]
+  },
+  {
+    "arg": "load-format",
+    "category": "model",
+    "type": "str",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "权重加载格式（auto/pt/safetensors等）。safetensors 为默认推荐。",
+      "en": "Weight load format (auto/pt/safetensors). safetensors is the default recommendation."
+    },
+    "doc_count": 4,
+    "examples": [
+      {
+        "value": "netloader",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/netloader.html",
+        "note": "from user_guide/feature_guide/netloader.md"
+      },
+      {
+        "value": "rfork",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rfork.html",
+        "note": "from user_guide/feature_guide/rfork.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/netloader.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rfork.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/netloader.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/rfork.html"
+    ]
+  },
+  {
+    "arg": "logprobs-mode",
+    "category": "model",
+    "type": "LogprobsMode",
+    "default": "raw_logprobs",
+    "detail_page": false,
+    "desc": {
+      "zh": "logprobs 输出模式（raw_logprobs/processed_logprobs）。",
+      "en": "Logprobs output mode (raw_logprobs/processed_logprobs)."
+    },
+    "doc_count": 1,
+    "examples": [
+      {
+        "value": "processed_logprobs",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html",
+        "note": "from user_guide/feature_guide/rl.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html"
+    ]
+  },
+  {
+    "arg": "lora-modules",
+    "category": "model",
+    "type": "list[LoRAModulePath]",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "LoRA 模块列表（JSON）。与 enable-lora 配合。",
+      "en": "LoRA modules list (JSON). Use with enable-lora."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "{\"name\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html",
+        "note": "from user_guide/feature_guide/lora.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/lora.html"
+    ]
+  },
+  {
+    "arg": "max-lora-rank",
+    "category": "model",
+    "type": "MaxLoRARanks",
+    "default": 16,
+    "detail_page": false,
+    "desc": {
+      "zh": "LoRA 最大 rank。限制可加载的 LoRA 适配器规模。",
+      "en": "Max LoRA rank. Caps the size of loadable LoRA adapters."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html",
+        "note": "from user_guide/feature_guide/lora.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/lora.html"
+    ]
+  },
+  {
+    "arg": "model",
+    "category": "model",
+    "type": "str",
+    "default": "Qwen/Qwen3-0.6B",
+    "detail_page": false,
+    "desc": {
+      "zh": "模型路径或 HF 模型 ID。positional 参数，但官方教程中有时也显式写 --model。",
+      "en": "Model path or HF model ID. Positional, but tutorials sometimes pass it explicitly."
+    },
+    "doc_count": 4,
+    "examples": [
+      {
+        "value": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3-VL-30B-A3B-Instruct.html",
+        "note": "from tutorials/models/Qwen3-VL-30B-A3B-Instruct.md"
+      },
+      {
+        "value": "Qwen/Qwen3-VL-8B-Instruct",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen-VL-Dense.html",
+        "note": "from tutorials/models/Qwen-VL-Dense.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen-VL-Dense.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3-VL-30B-A3B-Instruct.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Qwen-VL-Dense.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Qwen3-VL-30B-A3B-Instruct.html"
+    ]
+  },
+  {
+    "arg": "model-loader-extra-config",
+    "category": "model",
+    "type": "dict",
+    "default": "dict()",
+    "detail_page": false,
+    "desc": {
+      "zh": "模型加载器额外配置。Ascend 网络加载器（NetLoader）等高级场景用。",
+      "en": "Model loader extra config. For advanced scenarios like Ascend NetLoader."
+    },
+    "doc_count": 8,
+    "examples": [
+      {
+        "value": "{\"enable_multithread_load\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "{\"enable_multithread_load\":true,\"num_threads\":128}",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/netloader.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rfork.html"
+    ]
+  },
+  {
+    "arg": "quantization",
+    "category": "model",
+    "type": "QuantizationMethods",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "权重量化方法。Ascend 教程用 'ascend'、'deepseek_v4_fp8'、'mxfp8' 等；None 则从模型 config 推断。",
+      "en": "Weight quantization method. Ascend tutorials use 'ascend', 'deepseek_v4_fp8', 'mxfp8'; None infers from model config."
+    },
+    "doc_count": 38,
+    "examples": [
+      {
+        "value": "ascend",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "deepseek_v4_fp8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4.1-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4.1-Flash.md"
+      },
+      {
+        "value": "mxfp8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+        "note": "from tutorials/models/MiniMax-M3.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "safetensors-load-strategy",
+    "category": "model",
+    "type": "SafetensorsLoadStrategy",
+    "default": "(",
+    "detail_page": false,
+    "desc": {
+      "zh": "safetensors 加载策略（lazy/prefetch）。lazy 按需加载节省启动内存。",
+      "en": "safetensors load strategy (lazy/prefetch). lazy saves startup memory."
+    },
+    "doc_count": 14,
+    "examples": [
+      {
+        "value": "lazy",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      },
+      {
+        "value": "prefetch",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html"
+    ]
+  },
+  {
+    "arg": "seed",
+    "category": "model",
+    "type": "int",
+    "default": 0,
+    "detail_page": false,
+    "desc": {
+      "zh": "随机种子。可复现性测试和 RL rollout 场景常显式设置。",
+      "en": "Random seed. Set explicitly for reproducibility tests and RL rollouts."
+    },
+    "doc_count": 10,
+    "examples": [
+      {
+        "value": "1024",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+        "note": "from tutorials/features/pd_disaggregation_mooncake_single_node.md"
+      },
+      {
+        "value": "42",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+        "note": "from tutorials/models/Kimi-K2.6.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Hy4-preview.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
+    ]
+  },
+  {
+    "arg": "tokenizer-mode",
+    "category": "model",
+    "type": "TokenizerMode",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "分词器模式。Ascend 官方教程中为 DeepSeek-V4/Kimi-K3 设特定 tokenizer。",
+      "en": "Tokenizer mode. Set to a specific tokenizer for DeepSeek-V4/Kimi-K3 in official tutorials."
+    },
+    "doc_count": 8,
+    "examples": [
+      {
+        "value": "deepseek_v4",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "deepseek_v41",
+        "source": "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4.1-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4.1-Flash.md"
+      },
+      {
+        "value": "kimi_k3",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html"
+    ]
+  },
+  {
+    "arg": "trust-remote-code",
+    "category": "model",
+    "type": "bool",
+    "default": false,
+    "detail_page": false,
+    "desc": {
+      "zh": "信任模型仓库中的自定义代码。部分模型（如 InternVL、某些新架构）必须开启。",
+      "en": "Trust custom code in model repo. Required for some models (InternVL, newer architectures)."
+    },
+    "doc_count": 53,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html"
+    ]
+  },
+  {
+    "arg": "attention-config",
+    "category": "compilation",
+    "type": "AttentionConfig",
+    "default": "AttentionConfig()",
+    "detail_page": false,
+    "desc": {
+      "zh": "注意力后端及配置。Ascend 侧 FA3 一致性等通过此配置。",
+      "en": "Attention backend and config. Ascend FA3 consistency etc. via this."
+    },
+    "doc_count": 9,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    ]
+  },
+  {
+    "arg": "compilation-config",
+    "category": "compilation",
+    "type": "CompilationConfig",
+    "default": "CompilationConfig()",
+    "detail_page": true,
+    "desc": {
+      "zh": "torch.compile 与 CUDA Graph 捕获配置。Ascend 官方教程中常配 cudagraph_capture_sizes 提升首 token 延迟。",
+      "en": "torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_capture_sizes for TTFT."
+    },
+    "doc_count": 53,
+    "examples": [
+      {
+        "value": "{\"cudagraph_capture_sizes\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3-Dense.html",
+        "note": "from tutorials/models/Qwen3-Dense.md"
+      },
+      {
+        "value": "{\"cudagraph_capture_sizes\":[4,8,12,16,20,24,28,32],\"cudagrap",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html",
+        "note": "from tutorials/models/Qwen3.8-Flash-Next.md"
+      },
+      {
+        "value": "{\"cudagraph_mode\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "enforce-eager",
+    "category": "compilation",
+    "type": "bool",
+    "default": false,
+    "detail_page": true,
+    "desc": {
+      "zh": "强制 eager 模式（跳过 CUDA Graph）。首次部署或调试时用；生产关闭以获取图捕获性能。",
+      "en": "Force eager mode (skip CUDA Graph). For first deploy/debug; disable in production for graph-capture speed."
+    },
+    "doc_count": 21,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Gemma4.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
+    ]
+  },
+  {
+    "arg": "async-scheduling",
+    "category": "scheduling",
+    "type": "bool",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "异步调度。默认 None（自动）；部分官方教程显式开启以提升吞吐。",
+      "en": "Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput."
+    },
+    "doc_count": 16,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "block-size",
+    "category": "scheduling",
+    "type": "int",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "KV cache block 大小。默认 None（自动，通常 16）；DeepSeek-V4-Pro 教程显式设 32，KVPP 等特性另有取值。",
+      "en": "KV cache block size. Default None (auto, typically 16); DeepSeek-V4-Pro tutorial sets 32; KVPP etc. use other values."
+    },
+    "doc_count": 13,
+    "examples": [
+      {
+        "value": "128",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "1536",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "32",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html"
+    ]
+  },
+  {
+    "arg": "disable-hybrid-kv-cache-manager",
+    "category": "scheduling",
+    "type": "bool",
+    "default": "(",
+    "detail_page": false,
+    "desc": {
+      "zh": "禁用混合 KV cache 管理器。vLLM 默认按模型自动判断，一般不手动设。",
+      "en": "Disable hybrid KV cache manager. Auto-detected by default; rarely set manually."
+    },
+    "doc_count": 5,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4-Flash.html"
+    ]
+  },
+  {
+    "arg": "enable-chunked-prefill",
+    "category": "scheduling",
+    "type": "bool",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "分块 prefill。vLLM main 默认开启（SchedulerConfig 默认 True），按 max_num_batched_tokens 剩余额度切分；encoder-decoder 模型自动禁用。",
+      "en": "Chunked prefill. Enabled by default on vLLM main (SchedulerConfig default True), chunked by remaining max_num_batched_tokens; auto-disabled for encoder-decoder models."
+    },
+    "doc_count": 13,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "enable-prefix-caching",
+    "category": "scheduling",
+    "type": "bool",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "前缀缓存。默认 None（按模型自动判断）；PD 分离教程中 decode 节点显式用 --no-enable-prefix-caching。",
+      "en": "Prefix caching. Default None (auto per model); PD disaggregation tutorials pass --no-enable-prefix-caching on decode nodes."
+    },
+    "doc_count": 34,
+    "examples": [],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    ]
+  },
+  {
+    "arg": "gpu-memory-utilization",
+    "category": "scheduling",
+    "type": "float",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "模型执行器显存占比（0–1）。默认 None → 可扩展 KV cache 时解析为 1.0，否则 0.92（vLLM main 源码）；官方教程多显式设 0.80–0.90。",
+      "en": "Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly."
+    },
+    "doc_count": 46,
+    "examples": [
+      {
+        "value": "0.80",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.html",
+        "note": "from tutorials/models/Kimi-K3.md"
+      },
+      {
+        "value": "0.85",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+        "note": "from tutorials/models/GLM5.3-Flash.md"
+      },
+      {
+        "value": "0.87",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html",
+        "note": "from tutorials/models/Kimi-K2.6.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
+    ]
+  },
+  {
+    "arg": "kv-cache-dtype",
+    "category": "scheduling",
+    "type": "CacheDType",
+    "default": "auto",
+    "detail_page": true,
+    "desc": {
+      "zh": "KV cache 量化类型（如 fp8、int8）。Ascend 量化模型教程常用以节省显存。",
+      "en": "KV cache dtype (fp8, int8). Used in Ascend quantized-model tutorials to save HBM."
+    },
+    "doc_count": 15,
+    "examples": [
+      {
+        "value": "fp8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "int8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "mxfp8",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+        "note": "from tutorials/models/Qwen3.5-27B-Qwen3.6-27B.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html"
+    ]
+  },
+  {
+    "arg": "kv-cache-memory-bytes",
+    "category": "scheduling",
+    "type": "int",
+    "default": null,
+    "detail_page": false,
+    "desc": {
+      "zh": "KV cache 显存上限（字节）。比 gpu-memory-utilization 更精细的替代。",
+      "en": "KV cache memory limit in bytes. Finer-grained alternative to gpu-memory-utilization."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "2816M",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      },
+      {
+        "value": "4G",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+        "note": "from tutorials/models/Dots3-Note.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Dots3-Note.html"
+    ]
+  },
+  {
+    "arg": "long-prefill-token-threshold",
+    "category": "scheduling",
+    "type": "int",
+    "default": 0,
+    "detail_page": false,
+    "desc": {
+      "zh": "长 prefill token 阈值。超过该值的请求走分块路径。",
+      "en": "Long prefill token threshold. Requests above this use the chunked path."
+    },
+    "doc_count": 2,
+    "examples": [
+      {
+        "value": "4096",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+        "note": "from tutorials/models/MiniMax-M3.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/MiniMax-M3.html"
+    ]
+  },
+  {
+    "arg": "mamba-ssm-cache-dtype",
+    "category": "scheduling",
+    "type": "MambaDType",
+    "default": "auto",
+    "detail_page": false,
+    "desc": {
+      "zh": "Mamba/SSM 模型的 cache dtype。默认为 auto。",
+      "en": "Cache dtype for Mamba/SSM models. Default auto."
+    },
+    "doc_count": 4,
+    "examples": [
+      {
+        "value": "float16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+        "note": "from tutorials/models/Qwen3.5-27B-Qwen3.6-27B.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-Dense.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html",
+      "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/Qwen3.5-Dense.html"
+    ]
+  },
+  {
+    "arg": "max-model-len",
+    "category": "scheduling",
+    "type": "int",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "模型最大上下文长度。不设则从模型 config 自动推断。长文本场景必须显式设置。",
+      "en": "Model context length. Auto-derived from model config if unset; must be set for long-context."
+    },
+    "doc_count": 52,
+    "examples": [
+      {
+        "value": "1048576",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "131072",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
+        "note": "from tutorials/models/GLM5.md"
+      },
+      {
+        "value": "132096",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html",
+        "note": "from tutorials/models/GLM5.3-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
+    ]
+  },
+  {
+    "arg": "max-num-batched-tokens",
+    "category": "scheduling",
+    "type": "int",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "单次迭代最大 token 数。默认 None（自动）；动态分块流水线并行（CPP）指南的调优搜索空间为 [8192, 16384, 24576, 32768]。",
+      "en": "Max tokens per iteration. Default None (auto); the CPP dynamic-chunk guide suggests search space [8192, 16384, 24576, 32768]."
+    },
+    "doc_count": 50,
+    "examples": [
+      {
+        "value": "1024",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Hy4-preview.html",
+        "note": "from tutorials/models/Hy4-preview.md"
+      },
+      {
+        "value": "10240",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      },
+      {
+        "value": "16384",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+        "note": "from tutorials/models/DeepSeek-V4-Flash.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    ]
+  },
+  {
+    "arg": "max-num-seqs",
+    "category": "scheduling",
+    "type": "int",
+    "default": null,
+    "detail_page": true,
+    "desc": {
+      "zh": "单次迭代最大处理序列数（并发上限）。默认 None（自动）；官方教程实测取值 12–128，按显存与延迟权衡。",
+      "en": "Max sequences per iteration (concurrency cap). Default None (auto); official tutorials use 12–128, trade off memory vs latency."
+    },
+    "doc_count": 47,
+    "examples": [
+      {
+        "value": "12",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html",
+        "note": "from tutorials/models/Kimi-K3.1-Pro.md"
+      },
+      {
+        "value": "128",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html",
+        "note": "from tutorials/models/GLM5.2.md"
+      },
+      {
+        "value": "16",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
+        "note": "from tutorials/models/DeepSeek-V4-Pro.md"
+      }
+    ],
+    "sources": [
+      "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    ]
+  }
+]
