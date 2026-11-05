@@ -36,6 +36,7 @@ ENGINE_ARGS_INDEX_EN_MD = ENGINE_ARGS_DIR / "index.en.md"
 ENGINE_ARGS_JSON = ROOT / "docs" / "engine-args.json"
 FLAGS_DIR = ROOT / "docs" / "flags"
 INDEX_MD = FLAGS_DIR / "index.md"
+INDEX_EN_MD = FLAGS_DIR / "index.en.md"
 JSON_OUT = ROOT / "docs" / "flags.json"
 
 TYPES = {"bool", "int", "float", "str", "dict", "list"}
@@ -236,24 +237,28 @@ def update_version_matrix(flags: list[dict]) -> None:
 
 
 def update_index(flags: list[dict]) -> None:
-    if not INDEX_MD.exists():
-        fail(f"index not found: {INDEX_MD}")
-    text = INDEX_MD.read_text(encoding="utf-8")
-
     zh_table = render_table(flags, "zh")
     en_table = render_table(flags, "en")
 
-    def replace_block(text: str, start_marker: str, end_marker: str, body: str) -> str:
+    def replace_block(text: str, start_marker: str, end_marker: str, body: str, path: Path) -> str:
         if start_marker not in text or end_marker not in text:
-            fail(f"markers not found in {INDEX_MD}: {start_marker} ... {end_marker}")
+            fail(f"markers not found in {path}: {start_marker} ... {end_marker}")
         pre, rest = text.split(start_marker, 1)
         _, post = rest.split(end_marker, 1)
         return f"{pre}{start_marker}\n{body}\n{end_marker}{post}"
 
-    text = replace_block(text, "<!-- TABLE_ZH_START -->", "<!-- TABLE_ZH_END -->", zh_table)
-    text = replace_block(text, "<!-- TABLE_EN_START -->", "<!-- TABLE_EN_END -->", en_table)
+    if not INDEX_MD.exists():
+        fail(f"index not found: {INDEX_MD}")
+    text = INDEX_MD.read_text(encoding="utf-8")
+    text = replace_block(text, "<!-- TABLE_ZH_START -->", "<!-- TABLE_ZH_END -->", zh_table, INDEX_MD)
     INDEX_MD.write_text(text, encoding="utf-8")
     print(f"Updated {INDEX_MD.relative_to(ROOT)} ({len(flags)} flags)")
+
+    if INDEX_EN_MD.exists():
+        etext = INDEX_EN_MD.read_text(encoding="utf-8")
+        etext = replace_block(etext, "<!-- TABLE_EN_START -->", "<!-- TABLE_EN_END -->", en_table, INDEX_EN_MD)
+        INDEX_EN_MD.write_text(etext, encoding="utf-8")
+        print(f"Updated {INDEX_EN_MD.relative_to(ROOT)} ({len(flags)} flags)")
 
 
 def ensure_stubs(flags: list[dict]) -> None:
