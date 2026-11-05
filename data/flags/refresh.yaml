@@ -1,0 +1,16 @@
+key: refresh
+type: bool
+default: false
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 是否刷新全局 Ascend 配置内容。通常用于 RLHF 或 ut/e2e 测试用例。
+  en: Whether to refresh the global Ascend configuration. Usually used by RLHF or ut/e2e tests.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

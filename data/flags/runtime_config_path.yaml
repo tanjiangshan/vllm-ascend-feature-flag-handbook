@@ -1,0 +1,19 @@
+key: runtime_config_path
+type: str
+default: null
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: Runtime Guard JSON 配置路径，默认 /runtime/config/runtime_config.json。
+  en: 'Path to the Runtime Guard JSON config. Default: /runtime/config/runtime_config.json.'
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: false
+  main: true
+version_note:
+  zh: main 分支新增，下一版本发布
+  en: New on main; ships in the next release

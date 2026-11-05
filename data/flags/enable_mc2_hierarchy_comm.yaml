@@ -1,0 +1,20 @@
+key: enable_mc2_hierarchy_comm
+type: bool
+default: false
+status: deprecated
+hardware:
+- A2
+- A3
+models:
+- MoE
+requires: []
+conflicts:
+- mc2_comm_alg
+desc:
+  zh: 通过 ROCE 启用 dispatch/combine 算子的节点间通信。已弃用，将由 mc2_comm_alg="hierarchy" 取代。
+  en: Enable inter-node RoCE communication for dispatch/combine ops. Deprecated, replaced by mc2_comm_alg="hierarchy".
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

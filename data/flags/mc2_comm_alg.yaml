@@ -1,0 +1,28 @@
+key: mc2_comm_alg
+type: str
+default: ''
+status: active
+hardware:
+- A2
+- A3
+models:
+- MoE
+requires: []
+conflicts:
+- enable_mc2_hierarchy_comm
+values:
+  '""': 默认算法
+  '"fullmesh"': 全互联算法
+  '"hierarchy"': 层次化算法（仅 A2/A3 支持）
+  '"fullmesh_v2"': 全互联 v2（目前仅 A3 支持）
+desc:
+  zh: dispatch/combine 算子的通信算法选择，将取代 enable_mc2_hierarchy_comm。
+  en: Communication algorithm for dispatch/combine ops; supersedes enable_mc2_hierarchy_comm.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

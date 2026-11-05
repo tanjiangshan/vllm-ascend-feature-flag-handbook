@@ -1,0 +1,16 @@
+key: profiling_chunk_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 动态分块流水线并行（profiling chunk）配置。
+  en: Configuration for dynamic chunked pipeline parallel (profiling chunk).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

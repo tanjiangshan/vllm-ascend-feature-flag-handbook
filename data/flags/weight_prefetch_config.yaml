@@ -1,0 +1,19 @@
+key: weight_prefetch_config
+type: dict
+default: {}
+status: removed
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 权重预取配置。
+  en: Weight prefetch configuration.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.30.0 起已移除
+  en: Removed since v0.30.0

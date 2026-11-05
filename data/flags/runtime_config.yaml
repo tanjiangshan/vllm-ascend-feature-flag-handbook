@@ -1,0 +1,19 @@
+key: runtime_config
+type: dict
+default: null
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启动时叠加层，与运行时配置默认值合并（检测器、dump 配额、报告标志）。
+  en: Startup overlay merged into runtime config defaults (detectors, dump quota, report flags).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: false
+  main: true
+version_note:
+  zh: main 分支新增，下一版本发布
+  en: New on main; ships in the next release

@@ -1,0 +1,20 @@
+key: multistream_overlap_gate
+type: bool
+default: false
+status: removed
+hardware: []
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: 启用多流重叠门控，仅对含共享专家的 MoE 模型生效。
+  en: Enable multi-stream overlap gating; only effective on MoE models with shared experts.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.30.0 起已移除
+  en: Removed since v0.30.0

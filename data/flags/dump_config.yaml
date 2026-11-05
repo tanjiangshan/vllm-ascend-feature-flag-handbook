@@ -1,0 +1,16 @@
+key: dump_config
+type: dict
+default: null
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 内联 msprobe dump 配置，vLLM-Ascend 会物化为临时 JSON 文件传给调试器。
+  en: Inline msprobe dump configuration; vLLM-Ascend materializes it to a temporary JSON file passed to the debugger.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

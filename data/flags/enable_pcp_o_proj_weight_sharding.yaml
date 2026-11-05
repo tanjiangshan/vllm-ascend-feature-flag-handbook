@@ -1,0 +1,20 @@
+key: enable_pcp_o_proj_weight_sharding
+type: bool
+default: true
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: PCP 是否在组内对 O 投影权重分片（SFA-PCP 的 o_proj 与 DSA-PCP 两阶段 wo_a/wo_b）。不支持的权重方法/PCP 分区会警告并自动禁用；其他注意力后端不使用此选项。
+  en: Whether PCP shards O-projection weights inside the group (SFA-PCP o_proj and DSA-PCP two-stage wo_a/wo_b). Auto-disabled
+    with a warning when unsupported; unused by other attention backends.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

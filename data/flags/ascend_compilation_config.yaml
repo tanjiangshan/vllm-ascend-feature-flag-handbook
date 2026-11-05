@@ -1,0 +1,16 @@
+key: ascend_compilation_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: Ascend 编译配置。
+  en: Configuration for Ascend compilation.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

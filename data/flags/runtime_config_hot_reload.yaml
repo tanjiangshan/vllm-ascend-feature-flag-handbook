@@ -1,0 +1,19 @@
+key: runtime_config_hot_reload
+type: bool
+default: false
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启用 runtime_config.json 热重载（仅启动时生效；不是 JSON 字段）。
+  en: Enable hot-reload of runtime_config.json (startup-only; not a JSON field).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: false
+  main: true
+version_note:
+  zh: main 分支新增，下一版本发布
+  en: New on main; ships in the next release

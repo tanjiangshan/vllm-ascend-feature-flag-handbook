@@ -1,0 +1,20 @@
+key: scheduler_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 调度器扩展配置的规范层级，包含均衡调度、重计算调度、DyntraLB、ShortRequestFirst、动态分块流水线并行等。过渡期旧顶层键仍兼容但已弃用。
+  en: 'Canonical nesting for scheduler extensions: balance scheduling, recompute scheduling, DyntraLB, ShortRequestFirst,
+    dynamic chunked pipeline parallel, etc. Legacy top-level keys still parse but are deprecated.'
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

@@ -1,0 +1,16 @@
+key: finegrained_tp_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 细粒度张量并行配置。
+  en: Configuration for fine-grained tensor parallelism.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

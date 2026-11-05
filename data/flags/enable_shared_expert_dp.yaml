@@ -1,0 +1,18 @@
+key: enable_shared_expert_dp
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: 在 TP rank 间复制共享专家权重并以数据并行运行。提升性能但消耗更多内存，与上游 MoE 序列并行相互独立。
+  en: Replicate shared-expert weights across TP ranks and run them data-parallel. Improves performance at higher memory cost;
+    independent of upstream MoE sequence parallelism.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

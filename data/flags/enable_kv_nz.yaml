@@ -1,0 +1,18 @@
+key: enable_kv_nz
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- DeepSeek
+- MLA
+requires: []
+conflicts: []
+desc:
+  zh: 启用 KV cache 的 NZ 布局，仅对使用 MLA 的模型（如 DeepSeek）生效。
+  en: Enable NZ layout for KV cache; only effective for MLA models such as DeepSeek.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

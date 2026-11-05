@@ -1,0 +1,34 @@
+---
+title: enable_shared_expert_dp
+---
+
+# `enable_shared_expert_dp`
+
+> 共享专家权重在 TP rank 间复制、以数据并行方式运行。
+
+| 属性 | 值 |
+|---|---|
+| 类型 | `bool` |
+| 默认值 | `false` |
+| 状态 | ✅ active |
+| 适用 | 含共享专家的 MoE 模型 |
+
+## 作用
+
+启用后，共享专家（shared expert）权重会在各 TP rank 上复制一份，并以数据并行（DP）方式执行，避免共享专家计算成为 TP 通信的串行瓶颈。
+
+- **收益**：共享专家计算吞吐提升；
+- **代价**：每 rank 多存一份共享专家权重，**显存消耗增加**；
+- 与上游 vLLM 的 MoE 序列并行**相互独立**：两者可单独启用，也可同时启用。
+
+## 用法
+
+```bash
+vllm serve Qwen/Qwen3-8B --additional-config='{"enable_shared_expert_dp": true}'
+```
+
+## 相关开关
+
+- [multistream_overlap_shared_expert](multistream-overlap-shared-expert.md) — 共享专家多流重叠
+- [multistream_overlap_gate](multistream-overlap-gate.md) — 门控多流重叠
+- [dynamic_eplb](dynamic-eplb.md) — 专家负载均衡

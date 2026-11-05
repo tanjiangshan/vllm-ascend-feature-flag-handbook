@@ -1,0 +1,20 @@
+key: enable_context_parallel
+type: bool
+default: false
+status: removed
+legacy_env: VLLM_ASCEND_ENABLE_CONTEXT_PARALLEL
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启用上下文并行（Context Parallel）。
+  en: Enable Context Parallelism.
+source: vllm_ascend/envs.py @ v0.18.0（VLLM_ASCEND_ENABLE_CONTEXT_PARALLEL）
+version_support:
+  v0.23.0: false
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.18 及更早通过环境变量支持；后被 enable_dsa_cp 取代
+  en: Env var only up to v0.18; superseded by enable_dsa_cp

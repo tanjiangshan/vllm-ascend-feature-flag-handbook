@@ -1,0 +1,16 @@
+key: pa_shape_list
+type: list
+default: []
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: page attention 算子的自定义 shape 列表。
+  en: Custom shape list for page-attention ops.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

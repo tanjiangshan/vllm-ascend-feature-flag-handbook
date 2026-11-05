@@ -1,0 +1,20 @@
+key: rl_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: '一键 RL 模式总开关（enabled: true 时强制 weight_nz_mode=0、设置 VLLM_SERVER_DEV_MODE=1 等固定行为）。子键含 sleep_mode_extra_cleanup、enable_training_consistency、enable_batch_invariant。'
+  en: 'One-click RL mode (enabled: true forces weight_nz_mode=0, VLLM_SERVER_DEV_MODE=1, etc.). Sub-keys include sleep_mode_extra_cleanup,
+    enable_training_consistency, enable_batch_invariant.'
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

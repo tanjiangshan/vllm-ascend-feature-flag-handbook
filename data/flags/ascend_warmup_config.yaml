@@ -1,0 +1,19 @@
+key: ascend_warmup_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 与权重加载重叠的启动预热配置。
+  en: Startup warmup configuration that overlaps with weight loading.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

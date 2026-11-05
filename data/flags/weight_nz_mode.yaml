@@ -1,0 +1,21 @@
+key: weight_nz_mode
+type: int
+default: 1
+status: active
+legacy_env: VLLM_ASCEND_ENABLE_NZ
+hardware: []
+models: []
+requires: []
+conflicts: []
+values:
+  '0': 禁用 NZ
+  '1': 仅对量化权重启用 NZ
+  '2': 在支持的情况下也对 BF16/FP16 权重启用 NZ
+desc:
+  zh: 权重 NZ 格式模式。0 禁用，1 仅量化权重，2 扩展至 BF16/FP16。
+  en: Weight NZ layout mode. 0 disables NZ, 1 enables for quantized weights only, 2 extends to BF16/FP16 when supported.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

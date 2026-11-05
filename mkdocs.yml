@@ -1,0 +1,74 @@
+site_name: vLLM-Ascend 特性开关手册
+site_description: vLLM-Ascend 特性开关深度手册：additional-config 全量配置、环境变量、迁移对照与版本历史
+site_author: vllm-ascend-feature-flag-handbook contributors
+site_url: https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/
+
+repo_name: vllm-ascend-feature-flag-handbook
+repo_url: https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+
+nav:
+  - 首页: index.md
+  - 快速上手: quick-start.md
+  - 特性开关总览: flags/index.md
+  - 版本支持矩阵: version-matrix.md
+  - 环境变量: env-vars.md
+  - 迁移对照表: migration.md
+  - 版本历史: version-history.md
+  - 贡献指南: contributing.md
+
+not_in_nav: |
+  flags/*.md
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.share
+    - content.action.view
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: zh
+          default: true
+          name: 简体中文
+          build: true
+        - locale: en
+          name: English
+          build: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook

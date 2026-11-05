@@ -1,0 +1,19 @@
+key: mega_moe_max_tokens
+type: int
+default: 65536
+status: active
+hardware: []
+models:
+- MoE
+requires:
+- enable_fused_mc2
+conflicts: []
+desc:
+  zh: 融合 MC2/MegaMoe 路径中 dispatch 后每个 rank 的 token 容量参考值。超出可能出现精度下降，需按实际 expert 负载调整。
+  en: Per-rank token capacity after dispatch in the fused MC2/MegaMoe path. Exceeding it may degrade accuracy; tune to actual
+    expert load.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

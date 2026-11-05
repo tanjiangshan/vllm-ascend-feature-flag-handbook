@@ -1,0 +1,22 @@
+key: enable_force_eplb
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- MoE
+requires: []
+conflicts:
+- eplb_config.dynamic_eplb
+desc:
+  zh: 强制使用确定性轮询专家路由，仅用于性能分析。会替换真实 MoE 路由，导致模型结果与精度无效，切勿用于生产。
+  en: Force deterministic round-robin expert routing, for profiling only. Replaces real MoE routing so model output/accuracy
+    is invalid — never use in production.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

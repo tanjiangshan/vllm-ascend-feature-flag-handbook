@@ -1,0 +1,16 @@
+key: enable_cpu_binding
+type: bool
+default: true
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 在 ARM 服务器上启用昇腾原生 CPU 绑定。设为 false 可禁用。
+  en: Enable Ascend-native CPU binding on ARM servers. Set to false to disable.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

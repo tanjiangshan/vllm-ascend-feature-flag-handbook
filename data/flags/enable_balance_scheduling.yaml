@@ -1,0 +1,21 @@
+key: enable_balance_scheduling
+type: bool
+default: false
+status: deprecated
+legacy_env: VLLM_ASCEND_BALANCE_SCHEDULING
+deprecated_in:
+- 'PR #9064 起迁移至 scheduler_config.enable_balance_scheduling'
+removed_in:
+- '下一版本（见 issue #10381）'
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启用均衡调度。已弃用，请改用 scheduler_config.enable_balance_scheduling。
+  en: Enable balance scheduling. Deprecated, use scheduler_config.enable_balance_scheduling instead.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

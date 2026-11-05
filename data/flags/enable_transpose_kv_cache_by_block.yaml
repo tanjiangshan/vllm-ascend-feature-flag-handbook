@@ -1,0 +1,17 @@
+key: enable_transpose_kv_cache_by_block
+type: bool
+default: true
+status: active
+legacy_env: VLLM_ASCEND_FUSION_OP_TRANSPOSE_KV_CACHE_BY_BLOCK
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 是否启用按块转置 KV cache（融合算子路径）。
+  en: Whether to enable block-wise transposed KV cache (fused-op path).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

@@ -1,0 +1,22 @@
+key: combine_quant_mode
+type: int
+default: 0
+status: active
+hardware: []
+models:
+- MoE
+requires:
+- enable_fused_mc2
+conflicts: []
+desc:
+  zh: 融合 combine 算子的通信量化模式，作为 comm_quant_mode 传给 npu_moe_distribute_combine_v2。有效范围见算子文档。
+  en: Communication quantization mode for the fused combine op, passed as comm_quant_mode to npu_moe_distribute_combine_v2.
+    See operator docs for valid values.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

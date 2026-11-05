@@ -1,0 +1,19 @@
+key: short_request_first_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。
+  en: ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

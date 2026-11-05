@@ -1,0 +1,19 @@
+key: batch_job_sched_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 面向 batch-job-aware 调度器的配置。
+  en: Configuration for the batch-job-aware scheduler.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

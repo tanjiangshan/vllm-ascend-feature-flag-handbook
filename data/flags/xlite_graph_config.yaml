@@ -1,0 +1,16 @@
+key: xlite_graph_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: Xlite 图模式配置。
+  en: Configuration for Xlite graph mode.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

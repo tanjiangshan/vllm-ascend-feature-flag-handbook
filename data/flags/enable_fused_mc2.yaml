@@ -1,0 +1,25 @@
+key: enable_fused_mc2
+type: int
+default: 0
+status: active
+legacy_env: VLLM_ASCEND_ENABLE_FUSED_MC2
+hardware:
+- A2
+- A3
+- A5
+models:
+- MoE
+requires: []
+conflicts: []
+values:
+  '0': 禁用融合路径
+  '1': dispatch-FFN-combine 融合
+  '2': CANN MegaMoe（需模型暴露 activation/activation_params）
+desc:
+  zh: 融合 MC2（MoE dispatch/combine）配置。A5 上 MegaMoe 需 SiTU 模型暴露 CANN MegaMoe 包装器。
+  en: Fused MC2 (MoE dispatch/combine) configuration. On A5, MegaMoe requires SiTU models to expose the CANN MegaMoe wrapper.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

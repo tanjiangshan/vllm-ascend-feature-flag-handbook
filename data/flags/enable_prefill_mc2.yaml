@@ -1,0 +1,18 @@
+key: enable_prefill_mc2
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: 为 prefill 批次预留 mc2_token_capacity（用 max_num_batched_tokens 计算）。临时开关，未来 MC2 完备后默认启用并移除。
+  en: Reserve mc2_token_capacity for prefill batches using max_num_batched_tokens. Temporary switch; will be removed once
+    MC2 is complete.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

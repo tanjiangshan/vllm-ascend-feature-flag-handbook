@@ -1,0 +1,19 @@
+key: dyntra_lb_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: PD 分离解码节点 DyntraLB 负载均衡配置。
+  en: DyntraLB load-balancing configuration for PD-disaggregated decode nodes.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

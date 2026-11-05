@@ -1,0 +1,16 @@
+key: dump_config_path
+type: str
+default: null
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: msprobe dump 的配置文件路径（兼容旧版选项）。
+  en: Path to the msprobe dump configuration file (legacy-compatible option).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

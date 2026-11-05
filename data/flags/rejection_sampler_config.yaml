@@ -1,0 +1,16 @@
+key: rejection_sampler_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 拒绝采样器配置（block verify 与 entropy verify）。
+  en: Rejection sampler configuration (block verify and entropy verify).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

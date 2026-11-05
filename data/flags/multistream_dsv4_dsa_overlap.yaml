@@ -1,0 +1,17 @@
+key: multistream_dsv4_dsa_overlap
+type: bool
+default: true
+status: active
+hardware: []
+models:
+- DeepSeek-V4
+requires: []
+conflicts: []
+desc:
+  zh: 为 DeepSeek V4 启用 DSA 多流重叠。
+  en: Enable DSA multi-stream overlap for DeepSeek V4.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

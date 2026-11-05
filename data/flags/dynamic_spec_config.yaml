@@ -1,0 +1,19 @@
+key: dynamic_spec_config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 动态投机解码（Dynamic Speculative Decoding）配置。
+  en: Configuration for Dynamic Speculative Decoding.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

@@ -1,0 +1,20 @@
+key: enable_flashcomm2_parallel_size
+type: int
+default: 0
+status: removed
+legacy_env: VLLM_ASCEND_FLASHCOMM2_PARALLEL_SIZE
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: FlashComm2 并行规模，0 表示禁用。
+  en: FlashComm2 parallel size; 0 disables it.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.23.0 为配置键 + 环境变量回退；v0.30.0 已移除
+  en: Config key + env fallback in v0.23.0; removed in v0.30.0

@@ -1,0 +1,21 @@
+key: kv_pool_range_debug
+type: bool
+default: false
+status: active
+legacy_env: VLLM_ASCEND_KVPOOL_RANGE_DEBUG
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 为 KV pool 的整键操作、逐层范围和提交操作输出 JSON 审计日志。仅在调试时开启，正常运行保持禁用以避免日志开销。
+  en: Emit per-layer KVPool ranged-transfer audit events as JSON. Debug only; keep disabled in production to avoid logging
+    overhead.
+source: vllm_ascend/envs.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

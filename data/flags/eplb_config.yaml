@@ -1,0 +1,20 @@
+key: eplb_config
+type: dict
+default: {}
+status: active
+hardware:
+- A2
+- A3
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: EPLB（专家并行负载均衡）配置。dynamic_eplb 启用动态均衡；expert_map_record_path 录制映射；expert_map_path 加载静态映射。
+  en: EPLB (Expert Parallelism Load Balancer) config. dynamic_eplb enables dynamic balancing; expert_map_record_path records
+    maps; expert_map_path loads static maps.
+source: vllm_ascend/eplb/
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

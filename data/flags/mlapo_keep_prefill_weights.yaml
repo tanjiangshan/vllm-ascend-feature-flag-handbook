@@ -1,0 +1,21 @@
+key: mlapo_keep_prefill_weights
+type: bool
+default: false
+status: active
+hardware: []
+models: []
+requires:
+- enable_mlapo
+conflicts: []
+desc:
+  zh: MLAPO 下在 kv_consumer（仅 decode 的 D 节点）保留 prefill 权重而非释放。用 NPU 内存换取稳定性，规避权重释放后本地 prefill 路径崩溃（issue
+  en: Keep MLAPO prefill weights on kv_consumer (decode-only D nodes) instead of freeing them. Trades NPU memory for stability
+    against local-prefill crashes after weight freeing (issue
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

@@ -1,0 +1,18 @@
+key: enable_flashcomm1
+type: bool
+default: false
+status: active
+legacy_env: VLLM_ASCEND_ENABLE_FLASHCOMM1
+hardware: []
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: 启用 SP MoE 的 FlashComm1 通信优化。仅 Model Runner V1 支持且需序列并行；MRv2 下启用会报配置错误，请改用 PCP。
+  en: Enable FlashComm1 for SP MoE. Model Runner V1 only and requires sequence parallelism; errors on MRv2 — use PCP instead.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

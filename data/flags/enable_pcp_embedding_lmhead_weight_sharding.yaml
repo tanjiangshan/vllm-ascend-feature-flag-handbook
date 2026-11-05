@@ -1,0 +1,20 @@
+key: enable_pcp_embedding_lmhead_weight_sharding
+type: bool
+default: true
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: PCP size > 1 时，在每个 TP 分片内对 embedding 与 LM Head 权重跨 PCP rank 分片。与 batch-sharded sampling 及这两个模块的细粒度 TP 不兼容。
+  en: When PCP size > 1, shard embedding and LM Head weights across PCP ranks within each TP shard. Incompatible with batch-sharded
+    sampling and fine-grained TP for these modules.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true
+version_note:
+  zh: v0.30.0 新增
+  en: New in v0.30.0

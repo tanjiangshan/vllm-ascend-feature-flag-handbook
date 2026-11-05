@@ -1,0 +1,17 @@
+key: multistream_overlap_shared_expert
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- MoE
+requires: []
+conflicts: []
+desc:
+  zh: 启用多流共享专家重叠，仅对含共享专家的 MoE 模型生效。
+  en: Enable multi-stream overlap for the shared expert; only effective on MoE models with shared experts.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

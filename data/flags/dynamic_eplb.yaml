@@ -1,0 +1,23 @@
+key: dynamic_eplb
+type: bool
+default: false
+status: active
+legacy_env: DYNAMIC_EPLB
+hardware:
+- A2
+- A3
+models:
+- MoE
+requires:
+- 'eplb_config 中需设置 dynamic_eplb: true 且需环境变量 DYNAMIC_EPLB=true 作为安全防护'
+conflicts:
+- enable_force_eplb
+desc:
+  zh: 启用动态专家并行负载均衡（Dynamic EPLB）。属于 eplb_config 子配置；旧版需配合环境变量 DYNAMIC_EPLB=true。
+  en: Enable dynamic Expert Parallelism Load Balancer. Part of eplb_config; legacy mode also requires the DYNAMIC_EPLB=true
+    env var as a safety guard.
+source: vllm_ascend/eplb/
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

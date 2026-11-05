@@ -1,0 +1,17 @@
+key: msmonitor_use_daemon
+type: bool
+default: false
+status: active
+legacy_env: MSMONITOR_USE_DAEMON
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: msmonitor 是否使用守护进程模式。
+  en: Whether msmonitor uses daemon mode.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

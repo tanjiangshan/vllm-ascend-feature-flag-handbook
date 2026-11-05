@@ -1,0 +1,17 @@
+key: enable_mlapo
+type: bool
+default: true
+status: active
+legacy_env: VLLM_ASCEND_ENABLE_MLAPO
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启用 MLAPO（模型逐层自适应并行优化）。
+  en: Enable MLAPO (Model Layer-wise Adaptive Parallel Optimization).
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

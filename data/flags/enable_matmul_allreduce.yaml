@@ -1,0 +1,20 @@
+key: enable_matmul_allreduce
+type: bool
+default: false
+status: removed
+legacy_env: VLLM_ASCEND_ENABLE_MATMUL_ALLREDUCE
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 启用 Matmul 与 AllReduce 融合优化。
+  en: Enable fused Matmul+AllReduce optimization.
+source: vllm_ascend/config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.23.0 仅环境变量；v0.30.0 已移除
+  en: Env var only in v0.23.0; removed in v0.30.0
