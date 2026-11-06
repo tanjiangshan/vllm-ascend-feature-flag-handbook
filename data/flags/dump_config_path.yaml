@@ -1,4 +1,7 @@
 key: dump_config_path
+name:
+  zh: msprobe dump 路径
+  en: msprobe dump path
 type: str
 default: null
 status: active

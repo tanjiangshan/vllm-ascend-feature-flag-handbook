@@ -1,4 +1,7 @@
 key: pa_shape_list
+name:
+  zh: PA 算子 shape 列表
+  en: PA operator shape list
 type: list
 default: []
 status: active

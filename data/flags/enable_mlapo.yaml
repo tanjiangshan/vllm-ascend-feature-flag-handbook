@@ -1,4 +1,7 @@
 key: enable_mlapo
+name:
+  zh: MLAPO 逐层并行优化
+  en: MLAPO per-layer optimization
 type: bool
 default: true
 status: active

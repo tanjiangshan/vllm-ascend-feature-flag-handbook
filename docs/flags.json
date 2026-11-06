@@ -1,6 +1,10 @@
 [
   {
     "key": "ascend_compilation_config",
+    "name": {
+      "zh": "Ascend 编译配置",
+      "en": "Ascend compilation config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -21,6 +25,10 @@
   },
   {
     "key": "ascend_warmup_config",
+    "name": {
+      "zh": "启动预热配置",
+      "en": "Startup warmup config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -45,6 +53,10 @@
   },
   {
     "key": "batch_job_sched_config",
+    "name": {
+      "zh": "批作业调度配置",
+      "en": "Batch-job scheduler config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -69,6 +81,10 @@
   },
   {
     "key": "combine_quant_mode",
+    "name": {
+      "zh": "Combine 通信量化",
+      "en": "Combine comm quantization"
+    },
     "type": "int",
     "default": 0,
     "status": "active",
@@ -97,6 +113,10 @@
   },
   {
     "key": "dump_config",
+    "name": {
+      "zh": "msprobe 内联 dump",
+      "en": "msprobe inline dump"
+    },
     "type": "dict",
     "default": null,
     "status": "active",
@@ -117,6 +137,10 @@
   },
   {
     "key": "dump_config_path",
+    "name": {
+      "zh": "msprobe dump 路径",
+      "en": "msprobe dump path"
+    },
     "type": "str",
     "default": null,
     "status": "active",
@@ -137,6 +161,10 @@
   },
   {
     "key": "dynamic_eplb",
+    "name": {
+      "zh": "动态专家负载均衡",
+      "en": "Dynamic expert load balancing"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -167,6 +195,10 @@
   },
   {
     "key": "dynamic_spec_config",
+    "name": {
+      "zh": "动态投机解码配置",
+      "en": "Dynamic spec decoding config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -191,6 +223,10 @@
   },
   {
     "key": "dyntra_lb_config",
+    "name": {
+      "zh": "DyntraLB 负载均衡",
+      "en": "DyntraLB load balancing"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -215,6 +251,10 @@
   },
   {
     "key": "enable_balance_scheduling",
+    "name": {
+      "zh": "均衡调度",
+      "en": "Balanced scheduling"
+    },
     "type": "bool",
     "default": false,
     "status": "deprecated",
@@ -242,6 +282,10 @@
   },
   {
     "key": "enable_context_parallel",
+    "name": {
+      "zh": "上下文并行",
+      "en": "Context parallel"
+    },
     "type": "bool",
     "default": false,
     "status": "removed",
@@ -267,6 +311,10 @@
   },
   {
     "key": "enable_cpu_binding",
+    "name": {
+      "zh": "昇腾 CPU 绑定",
+      "en": "Ascend CPU binding"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -287,6 +335,10 @@
   },
   {
     "key": "enable_flashcomm1",
+    "name": {
+      "zh": "FlashComm1 通信优化",
+      "en": "FlashComm1 comm optimization"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -310,6 +362,10 @@
   },
   {
     "key": "enable_flashcomm2_parallel_size",
+    "name": {
+      "zh": "FlashComm2 并行规模",
+      "en": "FlashComm2 parallel size"
+    },
     "type": "int",
     "default": 0,
     "status": "removed",
@@ -335,6 +391,10 @@
   },
   {
     "key": "enable_force_eplb",
+    "name": {
+      "zh": "强制轮询专家路由",
+      "en": "Force round-robin expert routing"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -363,6 +423,10 @@
   },
   {
     "key": "enable_fused_mc2",
+    "name": {
+      "zh": "融合 MC2 算子",
+      "en": "Fused MC2 operator"
+    },
     "type": "int",
     "default": 0,
     "status": "active",
@@ -395,6 +459,10 @@
   },
   {
     "key": "enable_kv_nz",
+    "name": {
+      "zh": "KV NZ 布局",
+      "en": "KV NZ layout"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -418,6 +486,10 @@
   },
   {
     "key": "enable_matmul_allreduce",
+    "name": {
+      "zh": "Matmul-AllReduce 融合",
+      "en": "Matmul-AllReduce fusion"
+    },
     "type": "bool",
     "default": false,
     "status": "removed",
@@ -443,6 +515,10 @@
   },
   {
     "key": "enable_mc2_hierarchy_comm",
+    "name": {
+      "zh": "MC2 跨机分层通信",
+      "en": "MC2 cross-node comm"
+    },
     "type": "bool",
     "default": false,
     "status": "deprecated",
@@ -470,6 +546,10 @@
   },
   {
     "key": "enable_mlapo",
+    "name": {
+      "zh": "MLAPO 逐层并行优化",
+      "en": "MLAPO per-layer optimization"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -491,6 +571,10 @@
   },
   {
     "key": "enable_pcp_embedding_lmhead_weight_sharding",
+    "name": {
+      "zh": "PCP Embedding/LMHead 分片",
+      "en": "PCP embedding/LMHead sharding"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -515,6 +599,10 @@
   },
   {
     "key": "enable_pcp_o_proj_weight_sharding",
+    "name": {
+      "zh": "PCP O 投影分片",
+      "en": "PCP O-proj sharding"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -539,6 +627,10 @@
   },
   {
     "key": "enable_prefill_mc2",
+    "name": {
+      "zh": "Prefill MC2 预留",
+      "en": "Prefill MC2 reservation"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -561,6 +653,10 @@
   },
   {
     "key": "enable_shared_expert_dp",
+    "name": {
+      "zh": "共享专家数据并行",
+      "en": "Shared-expert data parallel"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -583,6 +679,10 @@
   },
   {
     "key": "enable_transpose_kv_cache_by_block",
+    "name": {
+      "zh": "KV 按块转置",
+      "en": "Per-block KV transpose"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -604,6 +704,10 @@
   },
   {
     "key": "eplb_config",
+    "name": {
+      "zh": "EPLB 配置",
+      "en": "EPLB config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -629,6 +733,10 @@
   },
   {
     "key": "finegrained_tp_config",
+    "name": {
+      "zh": "细粒度 TP 配置",
+      "en": "Fine-grained TP config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -649,6 +757,10 @@
   },
   {
     "key": "kv_pool_range_debug",
+    "name": {
+      "zh": "KV 池审计日志",
+      "en": "KV pool audit log"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -674,6 +786,10 @@
   },
   {
     "key": "mc2_comm_alg",
+    "name": {
+      "zh": "MC2 通信算法",
+      "en": "MC2 comm algorithm"
+    },
     "type": "str",
     "default": "",
     "status": "active",
@@ -711,6 +827,10 @@
   },
   {
     "key": "mega_moe_max_tokens",
+    "name": {
+      "zh": "MegaMoe token 容量",
+      "en": "MegaMoe token capacity"
+    },
     "type": "int",
     "default": 65536,
     "status": "active",
@@ -735,6 +855,10 @@
   },
   {
     "key": "mlapo_keep_prefill_weights",
+    "name": {
+      "zh": "保留 prefill 权重",
+      "en": "Keep prefill weights"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -761,6 +885,10 @@
   },
   {
     "key": "msmonitor_use_daemon",
+    "name": {
+      "zh": "msmonitor 守护模式",
+      "en": "msmonitor daemon mode"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -782,6 +910,10 @@
   },
   {
     "key": "multistream_dsv4_dsa_overlap",
+    "name": {
+      "zh": "DSV4 DSA 多流重叠",
+      "en": "DSV4 DSA multistream overlap"
+    },
     "type": "bool",
     "default": true,
     "status": "active",
@@ -804,6 +936,10 @@
   },
   {
     "key": "multistream_overlap_gate",
+    "name": {
+      "zh": "多流门控重叠",
+      "en": "Multistream gate overlap"
+    },
     "type": "bool",
     "default": false,
     "status": "removed",
@@ -830,6 +966,10 @@
   },
   {
     "key": "multistream_overlap_shared_expert",
+    "name": {
+      "zh": "共享专家多流重叠",
+      "en": "Shared-expert multistream overlap"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -852,6 +992,10 @@
   },
   {
     "key": "pa_shape_list",
+    "name": {
+      "zh": "PA 算子 shape 列表",
+      "en": "PA operator shape list"
+    },
     "type": "list",
     "default": [],
     "status": "active",
@@ -872,6 +1016,10 @@
   },
   {
     "key": "profiling_chunk_config",
+    "name": {
+      "zh": "分块流水线配置",
+      "en": "Profiling chunk config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -892,6 +1040,10 @@
   },
   {
     "key": "recompute_scheduler_enable",
+    "name": {
+      "zh": "重计算调度",
+      "en": "Recompute scheduler"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -912,6 +1064,10 @@
   },
   {
     "key": "refresh",
+    "name": {
+      "zh": "全局配置刷新",
+      "en": "Refresh global config"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -932,6 +1088,10 @@
   },
   {
     "key": "rejection_sampler_config",
+    "name": {
+      "zh": "拒绝采样器配置",
+      "en": "Rejection sampler config"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -952,6 +1112,10 @@
   },
   {
     "key": "rl_config",
+    "name": {
+      "zh": "RL 模式总开关",
+      "en": "RL mode master switch"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -976,6 +1140,10 @@
   },
   {
     "key": "runtime_config",
+    "name": {
+      "zh": "运行时配置叠加",
+      "en": "Runtime config overlay"
+    },
     "type": "dict",
     "default": null,
     "status": "active",
@@ -1000,6 +1168,10 @@
   },
   {
     "key": "runtime_config_hot_reload",
+    "name": {
+      "zh": "运行时配置热重载",
+      "en": "Runtime config hot reload"
+    },
     "type": "bool",
     "default": false,
     "status": "active",
@@ -1024,6 +1196,10 @@
   },
   {
     "key": "runtime_config_path",
+    "name": {
+      "zh": "Runtime Guard 路径",
+      "en": "Runtime Guard path"
+    },
     "type": "str",
     "default": null,
     "status": "active",
@@ -1048,6 +1224,10 @@
   },
   {
     "key": "runtime_dump_dir",
+    "name": {
+      "zh": "KV dump 目录",
+      "en": "KV dump directory"
+    },
     "type": "str",
     "default": null,
     "status": "active",
@@ -1072,6 +1252,10 @@
   },
   {
     "key": "runtime_report_dir",
+    "name": {
+      "zh": "报告根目录",
+      "en": "Report root directory"
+    },
     "type": "str",
     "default": null,
     "status": "active",
@@ -1096,6 +1280,10 @@
   },
   {
     "key": "scheduler_config",
+    "name": {
+      "zh": "调度器扩展配置",
+      "en": "Scheduler extensions"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -1120,6 +1308,10 @@
   },
   {
     "key": "short_request_first_config",
+    "name": {
+      "zh": "短请求优先调度",
+      "en": "Short-request-first scheduling"
+    },
     "type": "dict",
     "default": {},
     "status": "active",
@@ -1144,6 +1336,10 @@
   },
   {
     "key": "weight_nz_mode",
+    "name": {
+      "zh": "权重 NZ 格式",
+      "en": "Weight NZ mode"
+    },
     "type": "int",
     "default": 1,
     "status": "active",
@@ -1170,6 +1366,10 @@
   },
   {
     "key": "weight_prefetch_config",
+    "name": {
+      "zh": "权重预取配置",
+      "en": "Weight prefetch config"
+    },
     "type": "dict",
     "default": {},
     "status": "removed",
@@ -1194,6 +1394,10 @@
   },
   {
     "key": "xlite_graph_config",
+    "name": {
+      "zh": "Xlite 图模式",
+      "en": "Xlite graph mode"
+    },
     "type": "dict",
     "default": {},
     "status": "active",

@@ -1,4 +1,7 @@
 key: runtime_report_dir
+name:
+  zh: 报告根目录
+  en: Report root directory
 type: str
 default: null
 status: active

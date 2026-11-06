@@ -1,4 +1,7 @@
 key: enable_kv_nz
+name:
+  zh: KV NZ 布局
+  en: KV NZ layout
 type: bool
 default: false
 status: active

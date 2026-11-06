@@ -1,4 +1,7 @@
 key: enable_fused_mc2
+name:
+  zh: 融合 MC2 算子
+  en: Fused MC2 operator
 type: int
 default: 0
 status: active

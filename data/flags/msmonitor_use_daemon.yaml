@@ -1,4 +1,7 @@
 key: msmonitor_use_daemon
+name:
+  zh: msmonitor 守护模式
+  en: msmonitor daemon mode
 type: bool
 default: false
 status: active

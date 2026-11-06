@@ -1,4 +1,7 @@
 key: enable_shared_expert_dp
+name:
+  zh: 共享专家数据并行
+  en: Shared-expert data parallel
 type: bool
 default: false
 status: active

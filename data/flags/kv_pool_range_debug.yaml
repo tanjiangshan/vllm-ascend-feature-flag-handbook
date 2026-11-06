@@ -1,4 +1,7 @@
 key: kv_pool_range_debug
+name:
+  zh: KV 池审计日志
+  en: KV pool audit log
 type: bool
 default: false
 status: active

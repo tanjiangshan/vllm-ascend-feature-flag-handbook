@@ -1,4 +1,7 @@
 key: recompute_scheduler_enable
+name:
+  zh: 重计算调度
+  en: Recompute scheduler
 type: bool
 default: false
 status: active

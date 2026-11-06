@@ -1,4 +1,7 @@
 key: short_request_first_config
+name:
+  zh: 短请求优先调度
+  en: Short-request-first scheduling
 type: dict
 default: {}
 status: active

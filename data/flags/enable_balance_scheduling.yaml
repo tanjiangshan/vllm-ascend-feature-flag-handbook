@@ -1,4 +1,7 @@
 key: enable_balance_scheduling
+name:
+  zh: 均衡调度
+  en: Balanced scheduling
 type: bool
 default: false
 status: deprecated

@@ -1,4 +1,7 @@
 key: ascend_warmup_config
+name:
+  zh: 启动预热配置
+  en: Startup warmup config
 type: dict
 default: {}
 status: active

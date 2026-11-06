@@ -1,4 +1,7 @@
 key: weight_prefetch_config
+name:
+  zh: 权重预取配置
+  en: Weight prefetch config
 type: dict
 default: {}
 status: removed

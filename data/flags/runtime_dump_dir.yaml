@@ -1,4 +1,7 @@
 key: runtime_dump_dir
+name:
+  zh: KV dump 目录
+  en: KV dump directory
 type: str
 default: null
 status: active

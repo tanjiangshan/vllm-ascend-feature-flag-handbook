@@ -1,4 +1,7 @@
 key: runtime_config
+name:
+  zh: 运行时配置叠加
+  en: Runtime config overlay
 type: dict
 default: null
 status: active

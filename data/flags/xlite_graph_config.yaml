@@ -1,4 +1,7 @@
 key: xlite_graph_config
+name:
+  zh: Xlite 图模式
+  en: Xlite graph mode
 type: dict
 default: {}
 status: active

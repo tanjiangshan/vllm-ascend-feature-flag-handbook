@@ -1,4 +1,7 @@
 key: rejection_sampler_config
+name:
+  zh: 拒绝采样器配置
+  en: Rejection sampler config
 type: dict
 default: {}
 status: active

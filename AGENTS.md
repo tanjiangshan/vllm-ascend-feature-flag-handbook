@@ -37,7 +37,7 @@ CI 会依次跑：生成脚本 → 溯源审计 → `git diff --exit-code`（检
 
 ## YAML 数据约定（data/flags/*.yaml）
 
-必填字段：`key`、`type`（bool/int/float/str/dict/list）、`default`、`status`（active/deprecated/removed/planned）、`version_support`（恰好包含 `v0.23.0`/`v0.30.0`/`main` 三个布尔键）、`desc.zh` + `desc.en`。
+必填字段：`key`、`name`（简短中文名/英文短名，便于检索）、`type`（bool/int/float/str/dict/list）、`default`、`status`（active/deprecated/removed/planned）、`version_support`（恰好包含 `v0.23.0`/`v0.30.0`/`main` 三个布尔键）、`desc.zh` + `desc.en`。
 
 常用可选字段：`legacy_env`、`hardware`（A1–A5 列表）、`models`、`requires`、`conflicts`、`values`、`version_note`（中英双语）、`source`。
 

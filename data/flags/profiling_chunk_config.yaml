@@ -1,4 +1,7 @@
 key: profiling_chunk_config
+name:
+  zh: 分块流水线配置
+  en: Profiling chunk config
 type: dict
 default: {}
 status: active

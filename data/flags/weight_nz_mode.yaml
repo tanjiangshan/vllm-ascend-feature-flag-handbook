@@ -1,4 +1,7 @@
 key: weight_nz_mode
+name:
+  zh: 权重 NZ 格式
+  en: Weight NZ mode
 type: int
 default: 1
 status: active

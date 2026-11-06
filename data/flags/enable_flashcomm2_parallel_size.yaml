@@ -1,4 +1,7 @@
 key: enable_flashcomm2_parallel_size
+name:
+  zh: FlashComm2 并行规模
+  en: FlashComm2 parallel size
 type: int
 default: 0
 status: removed

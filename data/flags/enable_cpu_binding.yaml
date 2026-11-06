@@ -1,4 +1,7 @@
 key: enable_cpu_binding
+name:
+  zh: 昇腾 CPU 绑定
+  en: Ascend CPU binding
 type: bool
 default: true
 status: active

@@ -1,4 +1,7 @@
 key: multistream_overlap_shared_expert
+name:
+  zh: 共享专家多流重叠
+  en: Shared-expert multistream overlap
 type: bool
 default: false
 status: active

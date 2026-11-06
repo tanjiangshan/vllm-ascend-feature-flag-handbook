@@ -1,4 +1,7 @@
 key: dynamic_spec_config
+name:
+  zh: 动态投机解码配置
+  en: Dynamic spec decoding config
 type: dict
 default: {}
 status: active

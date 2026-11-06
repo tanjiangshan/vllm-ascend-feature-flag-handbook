@@ -1,4 +1,7 @@
 key: mega_moe_max_tokens
+name:
+  zh: MegaMoe token 容量
+  en: MegaMoe token capacity
 type: int
 default: 65536
 status: active

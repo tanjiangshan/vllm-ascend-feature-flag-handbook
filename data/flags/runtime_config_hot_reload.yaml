@@ -1,4 +1,7 @@
 key: runtime_config_hot_reload
+name:
+  zh: 运行时配置热重载
+  en: Runtime config hot reload
 type: bool
 default: false
 status: active

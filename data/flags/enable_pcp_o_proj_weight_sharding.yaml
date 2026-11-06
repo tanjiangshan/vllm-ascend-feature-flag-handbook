@@ -1,4 +1,7 @@
 key: enable_pcp_o_proj_weight_sharding
+name:
+  zh: PCP O 投影分片
+  en: PCP O-proj sharding
 type: bool
 default: true
 status: active

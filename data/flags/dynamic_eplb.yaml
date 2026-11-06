@@ -1,4 +1,7 @@
 key: dynamic_eplb
+name:
+  zh: 动态专家负载均衡
+  en: Dynamic expert load balancing
 type: bool
 default: false
 status: active

@@ -1,4 +1,7 @@
 key: enable_transpose_kv_cache_by_block
+name:
+  zh: KV 按块转置
+  en: Per-block KV transpose
 type: bool
 default: true
 status: active

@@ -1,4 +1,7 @@
 key: dyntra_lb_config
+name:
+  zh: DyntraLB 负载均衡
+  en: DyntraLB load balancing
 type: dict
 default: {}
 status: active

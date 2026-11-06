@@ -1,4 +1,7 @@
 key: multistream_dsv4_dsa_overlap
+name:
+  zh: DSV4 DSA 多流重叠
+  en: DSV4 DSA multistream overlap
 type: bool
 default: true
 status: active

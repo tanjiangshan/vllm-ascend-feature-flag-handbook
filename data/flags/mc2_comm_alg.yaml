@@ -1,4 +1,7 @@
 key: mc2_comm_alg
+name:
+  zh: MC2 通信算法
+  en: MC2 comm algorithm
 type: str
 default: ''
 status: active

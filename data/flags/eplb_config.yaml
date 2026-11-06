@@ -1,4 +1,7 @@
 key: eplb_config
+name:
+  zh: EPLB 配置
+  en: EPLB config
 type: dict
 default: {}
 status: active

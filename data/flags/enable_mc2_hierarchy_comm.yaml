@@ -1,4 +1,7 @@
 key: enable_mc2_hierarchy_comm
+name:
+  zh: MC2 跨机分层通信
+  en: MC2 cross-node comm
 type: bool
 default: false
 status: deprecated

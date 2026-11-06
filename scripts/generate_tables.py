@@ -61,6 +61,7 @@ CATEGORY_LABELS = {
 S = {
     "zh": {
         "key": "配置键",
+        "name": "中文名",
         "type": "类型",
         "default": "默认值",
         "status": "状态",
@@ -71,6 +72,7 @@ S = {
     },
     "en": {
         "key": "Config key",
+        "name": "Short name",
         "type": "Type",
         "default": "Default",
         "status": "Status",
@@ -97,7 +99,7 @@ def fail(msg: str) -> None:
 def validate(name: str, entry: dict) -> list[str]:
     """Return a list of validation errors (empty means ok)."""
     errors = []
-    required = ("key", "type", "default", "status", "desc", "version_support")
+    required = ("key", "name", "type", "default", "status", "desc", "version_support")
     for field in required:
         if field not in entry:
             errors.append(f"{name}: missing required field '{field}'")
@@ -126,6 +128,9 @@ def validate(name: str, entry: dict) -> list[str]:
     desc = entry.get("desc", {})
     if not isinstance(desc, dict) or "zh" not in desc or "en" not in desc:
         errors.append(f"{name}: 'desc' must be a dict with both 'zh' and 'en' keys")
+    short = entry.get("name", {})
+    if not isinstance(short, dict) or "zh" not in short or "en" not in short:
+        errors.append(f"{name}: 'name' must be a dict with both 'zh' and 'en' keys")
 
     return errors
 
@@ -179,17 +184,18 @@ def render_default(value) -> str:
 def render_table(flags: list[dict], lang: str) -> str:
     h = S[lang]
     lines = [
-        f"| {h['key']} | {h['type']} | {h['default']} | {h['status']} | {h['legacy_env']} | {h['versions']} | {h['hardware']} | {h['desc']} |",
-        "|---|---|---|---|---|---|---|---|",
+        f"| {h['key']} | {h['name']} | {h['type']} | {h['default']} | {h['status']} | {h['legacy_env']} | {h['versions']} | {h['hardware']} | {h['desc']} |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for f in flags:
         key = f"[`{f['key']}`]({f['key'].replace('_', '-')}.md)"
         legacy = f"`{f['legacy_env']}`" if f.get("legacy_env") else "—"
         hw = ", ".join(f.get("hardware", [])) or "All"
         status = f"{STATUS_BADGE[f['status']]} {f['status']}"
+        short = f["name"][lang].replace("|", "\\|")
         desc = f["desc"][lang].replace("|", "\\|")
         lines.append(
-            f"| {key} | `{f['type']}` | {render_default(f['default'])} | {status} | {legacy} | {render_versions_cell(f)} | {hw} | {desc} |"
+            f"| {key} | {short} | `{f['type']}` | {render_default(f['default'])} | {status} | {legacy} | {render_versions_cell(f)} | {hw} | {desc} |"
         )
     return "\n".join(lines)
 

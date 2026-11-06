@@ -1,4 +1,7 @@
 key: enable_matmul_allreduce
+name:
+  zh: Matmul-AllReduce 融合
+  en: Matmul-AllReduce fusion
 type: bool
 default: false
 status: removed

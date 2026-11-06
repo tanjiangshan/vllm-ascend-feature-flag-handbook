@@ -1,4 +1,7 @@
 key: finegrained_tp_config
+name:
+  zh: 细粒度 TP 配置
+  en: Fine-grained TP config
 type: dict
 default: {}
 status: active

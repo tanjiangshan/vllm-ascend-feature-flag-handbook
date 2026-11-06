@@ -1,4 +1,7 @@
 key: rl_config
+name:
+  zh: RL 模式总开关
+  en: RL mode master switch
 type: dict
 default: {}
 status: active

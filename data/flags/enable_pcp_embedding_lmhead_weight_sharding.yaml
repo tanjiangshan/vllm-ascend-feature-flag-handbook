@@ -1,4 +1,7 @@
 key: enable_pcp_embedding_lmhead_weight_sharding
+name:
+  zh: PCP Embedding/LMHead 分片
+  en: PCP embedding/LMHead sharding
 type: bool
 default: true
 status: active

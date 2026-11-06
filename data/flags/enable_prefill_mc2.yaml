@@ -1,4 +1,7 @@
 key: enable_prefill_mc2
+name:
+  zh: Prefill MC2 预留
+  en: Prefill MC2 reservation
 type: bool
 default: false
 status: active

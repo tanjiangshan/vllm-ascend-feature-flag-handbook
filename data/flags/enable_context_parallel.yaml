@@ -1,4 +1,7 @@
 key: enable_context_parallel
+name:
+  zh: 上下文并行
+  en: Context parallel
 type: bool
 default: false
 status: removed

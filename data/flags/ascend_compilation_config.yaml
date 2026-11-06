@@ -1,4 +1,7 @@
 key: ascend_compilation_config
+name:
+  zh: Ascend 编译配置
+  en: Ascend compilation config
 type: dict
 default: {}
 status: active

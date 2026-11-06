@@ -1,4 +1,7 @@
 key: runtime_config_path
+name:
+  zh: Runtime Guard 路径
+  en: Runtime Guard path
 type: str
 default: null
 status: active

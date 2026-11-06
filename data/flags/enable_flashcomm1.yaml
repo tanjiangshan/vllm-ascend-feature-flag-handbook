@@ -1,4 +1,7 @@
 key: enable_flashcomm1
+name:
+  zh: FlashComm1 通信优化
+  en: FlashComm1 comm optimization
 type: bool
 default: false
 status: active

@@ -1,4 +1,7 @@
 key: scheduler_config
+name:
+  zh: 调度器扩展配置
+  en: Scheduler extensions
 type: dict
 default: {}
 status: active

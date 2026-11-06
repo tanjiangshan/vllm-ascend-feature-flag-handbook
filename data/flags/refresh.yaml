@@ -1,4 +1,7 @@
 key: refresh
+name:
+  zh: 全局配置刷新
+  en: Refresh global config
 type: bool
 default: false
 status: active

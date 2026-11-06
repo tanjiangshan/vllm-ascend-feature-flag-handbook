@@ -1,4 +1,7 @@
 key: batch_job_sched_config
+name:
+  zh: 批作业调度配置
+  en: Batch-job scheduler config
 type: dict
 default: {}
 status: active

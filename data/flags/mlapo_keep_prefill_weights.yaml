@@ -1,4 +1,7 @@
 key: mlapo_keep_prefill_weights
+name:
+  zh: 保留 prefill 权重
+  en: Keep prefill weights
 type: bool
 default: false
 status: active

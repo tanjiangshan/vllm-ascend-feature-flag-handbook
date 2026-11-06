@@ -1,4 +1,7 @@
 key: dump_config
+name:
+  zh: msprobe 内联 dump
+  en: msprobe inline dump
 type: dict
 default: null
 status: active

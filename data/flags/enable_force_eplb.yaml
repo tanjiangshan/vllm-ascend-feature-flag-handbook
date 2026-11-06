@@ -1,4 +1,7 @@
 key: enable_force_eplb
+name:
+  zh: 强制轮询专家路由
+  en: Force round-robin expert routing
 type: bool
 default: false
 status: active

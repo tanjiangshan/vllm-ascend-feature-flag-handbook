@@ -1,4 +1,7 @@
 key: combine_quant_mode
+name:
+  zh: Combine 通信量化
+  en: Combine comm quantization
 type: int
 default: 0
 status: active
