@@ -3,7 +3,7 @@
 
 Flags (data/flags/*.yaml):
   1. Validates every YAML entry against a small schema.
-  2. Renders the Chinese/English overview tables in docs/flags/index.md.
+  2. Renders the Chinese/English overview tables in docs/flags/index.md(+en).
   3. Generates docs/flags/{key}.md stubs for flags that don't have a
      handwritten page yet.
   4. Emits docs/flags.json (machine-readable export for the community).
@@ -28,8 +28,6 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "flags"
 ENGINE_ARGS_YAML = ROOT / "data" / "engine-args.yaml"
-RECIPES_JSON = ROOT / "data" / "recipes.json"
-RECIPES_DIR = ROOT / "docs" / "recipes"
 ENGINE_ARGS_DIR = ROOT / "docs" / "engine-args"
 ENGINE_ARGS_INDEX_MD = ENGINE_ARGS_DIR / "index.md"
 ENGINE_ARGS_INDEX_EN_MD = ENGINE_ARGS_DIR / "index.en.md"
@@ -435,75 +433,6 @@ def export_engine_args_json(entries: list[dict]) -> None:
     print(f"Exported {ENGINE_ARGS_JSON.relative_to(ROOT)}")
 
 
-# ---------------- deployment recipes (data/recipes.json) ----------------
-
-RECIPE_GROUPS = {
-    "deepseek": {"zh": "DeepSeek 系列", "en": "DeepSeek family"},
-    "kimi": {"zh": "Kimi 系列", "en": "Kimi family"},
-    "glm": {"zh": "GLM 系列", "en": "GLM family"},
-    "qwen": {"zh": "Qwen 系列", "en": "Qwen family"},
-    "minimax": {"zh": "MiniMax 系列", "en": "MiniMax family"},
-    "others": {"zh": "其他模型", "en": "Other models"},
-    "features": {"zh": "特性场景", "en": "Feature scenarios"},
-}
-
-
-def load_recipes() -> dict:
-    if not RECIPES_JSON.exists():
-        fail(f"recipes data not found: {RECIPES_JSON}")
-    data = json.loads(RECIPES_JSON.read_text(encoding="utf-8"))
-    for key in ("recipes", "features"):
-        if not isinstance(data.get(key), list):
-            fail(f"{RECIPES_JSON.name}: '{key}' must be a list")
-        for i, r in enumerate(data[key]):
-            for field in ("title", "url", "cmd"):
-                if field not in r:
-                    fail(f"{RECIPES_JSON.name}: {key}[{i}] missing '{field}'")
-    return data
-
-
-def render_recipe_block(item: dict, lang: str) -> str:
-    name = item.get("model") or item.get("feature")
-    title = item["title"]
-    url = item["url"]
-    src = "官方原文 / Source" if lang == "zh" else "Source"
-    lines = [
-        '??? quote "%s (`%s`)"' % (title, name),
-        "    %s: <%s>" % (src, url),
-        "",
-        "    ```bash",
-    ]
-    lines += ["    " + l for l in item["cmd"].splitlines()]
-    lines.append("    ```")
-    return "\n".join(lines)
-
-
-def render_recipes_page(items: list[dict], lang: str) -> str:
-    return "\n\n".join(render_recipe_block(r, lang) for r in items)
-
-
-def update_recipe_pages(data: dict) -> None:
-    groups: dict[str, list[dict]] = {g: [] for g in RECIPE_GROUPS}
-    for r in data["recipes"]:
-        groups.setdefault(r.get("group", "others"), []).append(r)
-    groups["features"] = data["features"]
-    for group, items in groups.items():
-        for lang, suffix in (("zh", ".md"), ("en", ".en.md")):
-            path = RECIPES_DIR / f"{group}{suffix}"
-            if not path.exists():
-                continue  # page not created yet — skip silently
-            text = path.read_text(encoding="utf-8")
-            start, end = "<!-- RECIPES_START -->", "<!-- RECIPES_END -->"
-            if start not in text or end not in text:
-                fail(f"markers not found in {path.name}")
-            pre, rest = text.split(start, 1)
-            _, post = rest.split(end, 1)
-            body = render_recipes_page(items, lang)
-            path.write_text(f"{pre}{start}\n{body}\n{end}{post}", encoding="utf-8")
-        if items:
-            print(f"Updated recipes/{group} ({len(items)} recipes)")
-
-
 def main() -> None:
     flags = load_flags()
     update_index(flags)
@@ -514,10 +443,7 @@ def main() -> None:
     update_engine_args_index(engine_args)
     ensure_engine_arg_stubs(engine_args)
     export_engine_args_json(engine_args)
-    recipes = load_recipes()
-    update_recipe_pages(recipes)
-    print(f"OK: {len(flags)} flag(s), {len(engine_args)} engine arg(s), "
-          f"{len(recipes['recipes'])} recipe(s) processed.")
+    print(f"OK: {len(flags)} flag(s), {len(engine_args)} engine arg(s).")
 
 
 if __name__ == "__main__":

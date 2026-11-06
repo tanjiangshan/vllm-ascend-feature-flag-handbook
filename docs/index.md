@@ -48,14 +48,6 @@ vLLM-Ascend 通过**特性开关**控制大量实验性、场景化的优化能�
 
     [:octicons-arrow-right-24: 进入](engine-args/index.md)
 
--   :material-chef-hat:{ .lg .middle } **部署配方**
-
-    ---
-
-    26 组官方推荐命令：DeepSeek / Kimi / GLM / Qwen / PD 分离
-
-    [:octicons-arrow-right-24: 进入](recipes/index.md)
-
 -   :material-table:{ .lg .middle } **版本支持矩阵**
 
     ---

@@ -22,11 +22,11 @@ jobs:
       - name: Generate tables & validate databases
         run: python scripts/generate_tables.py
 
-      - name: Traceability audit (engine args & recipes)
+      - name: Traceability audit (engine args)
         run: python scripts/audit_engine_args.py
 
       - name: Ensure generated files are up to date
-        run: git diff --exit-code -- docs/includes docs/flags.json docs/engine-args.json docs/engine-args/index.md docs/engine-args/index.en.md docs/recipes/
+        run: git diff --exit-code -- docs/includes docs/flags.json docs/engine-args.json docs/engine-args/index.md docs/engine-args/index.en.md
 
       - name: Build site (strict)
         run: mkdocs build --strict

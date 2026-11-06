@@ -51,7 +51,7 @@ title: kv-transfer-config
 
 ## Ascend context & official usage
 
-- Official PD tutorials set companion env vars first (Mooncake address, local KV pool path), then pass this arg; the single-node and multi-node Mooncake commands can be read verbatim on the [recipes page](../recipes/features.md).
+- Official PD tutorials set companion env vars first (Mooncake address, local KV pool path), then pass this arg; verbatim commands and env-var setup are in the official docs ([Mooncake single-node deployment](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html)).
 - When combined with PCP, connector choice is constrained (table above); re-verify compatibility after each vllm-ascend upgrade.
 
 ## Usage

@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Traceability audit for data/engine-args.yaml and data/recipes.json.
+"""Traceability audit for data/engine-args.yaml.
 
 Zero-fabrication gate — verifies, against primary sources fetched live:
   1. Every engine arg exists in the vLLM source CLI definitions.
   2. Every example value appears next to its arg in the cited official
      vLLM-Ascend doc file.
-  3. Every recipe command appears verbatim in its cited official doc file.
 
 Usage:  python scripts/audit_engine_args.py
 Exits non-zero on any failure.
@@ -16,7 +15,6 @@ $AUDIT_CACHE_DIR (default: /tmp/va-audit-cache).
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 import urllib.request
@@ -24,7 +22,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EA_YAML = ROOT / "data" / "engine-args.yaml"
-RECIPES_JSON = ROOT / "data" / "recipes.json"
 
 CACHE = Path(__import__("os").environ.get("AUDIT_CACHE_DIR", "/tmp/va-audit-cache"))
 CACHE.mkdir(parents=True, exist_ok=True)
@@ -128,49 +125,18 @@ def audit_engine_args() -> tuple[int, int, list[str]]:
     return checked, len(entries), failures
 
 
-def audit_recipes() -> tuple[int, int, list[str]]:
-    data = json.loads(RECIPES_JSON.read_text(encoding="utf-8"))
-    failures: list[str] = []
-    checked = 0
-    doc_cache: dict[str, str] = {}
-
-    items = list(data["recipes"]) + list(data["features"])
-    for item in items:
-        checked += 1
-        name = item.get("model") or item.get("feature")
-        ref, rel = parse_docs_url(item["url"])
-        url = ASCEND_RAW.format(ref=ref, rel=rel)
-        if url not in doc_cache:
-            try:
-                doc_cache[url] = fetch(url)
-            except Exception as exc:  # noqa: BLE001
-                failures.append(f"recipe '{name}': cannot fetch {url}: {exc}")
-                doc_cache[url] = ""
-                continue
-        doc_norm = normalize_cmd(doc_cache[url])
-        cmd_norm = normalize_cmd(item["cmd"])
-        # 命令可能很长，取前 200 字符作为指纹核对
-        if cmd_norm[:200] not in doc_norm:
-            failures.append(f"recipe '{name}': command not found verbatim in {item['url']}")
-    return checked, len(items), failures
-
-
 def main() -> int:
     print("== Audit: engine args ==")
     ea_checked, ea_total, ea_fail = audit_engine_args()
     print(f"checked {ea_checked}/{ea_total} engine args, {len(ea_fail)} failure(s)")
 
-    print("== Audit: recipes ==")
-    r_checked, r_total, r_fail = audit_recipes()
-    print(f"checked {r_checked}/{r_total} recipes, {len(r_fail)} failure(s)")
-
-    all_fail = ea_fail + r_fail
+    all_fail = ea_fail
     if all_fail:
         print("\nFAILURES:")
         for f in all_fail:
             print(f"  ✗ {f}")
         return 1
-    print("\nAUDIT PASSED: all engine args and recipes traceable to official sources.")
+    print("\nAUDIT PASSED: all engine args traceable to official sources.")
     return 0
 
 

@@ -152,7 +152,7 @@ title: Engine args overview
 | PD disaggregation | `--kv-transfer-config '{...}' --enable-prefix-caching/--no-enable-prefix-caching` per node |
 | Production | Drop `--enforce-eager` (enable CUDA Graph); set `--compilation-config` capture policy |
 
-Full command examples: [Deployment recipes](../recipes/index.md).
+For full commands and per-model deployment guides, see the official tutorials: [Model Deployment Tutorials](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/index.html).
 
 ## How this data is verified
 

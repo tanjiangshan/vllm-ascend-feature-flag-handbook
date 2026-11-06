@@ -152,7 +152,7 @@ title: 引擎参数总览
 | PD 分离 | 每个节点 `--kv-transfer-config '{...}' --enable-prefix-caching/--no-enable-prefix-caching` |
 | 生产服务 | 关闭 `--enforce-eager`（启用 CUDA Graph），配 `--compilation-config` 捕获策略 |
 
-详细命令示例见[部署配方](../recipes/index.md)。
+完整命令示例与逐模型部署指南见官方教程：[Model Deployment Tutorials](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/index.html)。
 
 ## 数据核验方式
 

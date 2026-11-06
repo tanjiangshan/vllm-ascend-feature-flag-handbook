@@ -48,14 +48,6 @@ The official docs scatter these flags across several pages in the form of terse 
 
     [:octicons-arrow-right-24: Open](engine-args/index.md)
 
--   :material-chef-hat:{ .lg .middle } **Deployment recipes**
-
-    ---
-
-    26 sets of official recommended commands: DeepSeek / Kimi / GLM / Qwen / PD
-
-    [:octicons-arrow-right-24: Open](recipes/index.md)
-
 -   :material-table:{ .lg .middle } **Version support matrix**
 
     ---

@@ -51,7 +51,7 @@ title: kv-transfer-config
 
 ## Ascend 语境与官方用法
 
-- 官方 PD 教程普遍预置环境变量（如 Mooncake 地址、本地 KV 池路径）后传本参数；单节点 Mooncake 教程与多节点教程的命令均可在[部署配方](../recipes/features.md)页逐字查看。
+- 官方 PD 教程普遍预置环境变量（如 Mooncake 地址、本地 KV 池路径）后传本参数；逐字命令与环境变量说明见官方教程（[Mooncake 单节点部署](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html)）。
 - 与 PCP 组合时，connector 选型受限（上表），升级 vllm-ascend 版本后应重新核对兼容性。
 
 ## 用法
