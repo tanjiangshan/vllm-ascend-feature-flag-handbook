@@ -313,7 +313,7 @@
   },
   {
     "arg": "cp-kv-cache-interleave-size",
-    "category": "parallel",
+    "category": "cache",
     "type": "int",
     "default": null,
     "detail_page": false,
@@ -1783,7 +1783,7 @@
   },
   {
     "arg": "block-size",
-    "category": "scheduling",
+    "category": "cache",
     "type": "int",
     "default": null,
     "detail_page": true,
@@ -1856,7 +1856,7 @@
   },
   {
     "arg": "enable-prefix-caching",
-    "category": "scheduling",
+    "category": "cache",
     "type": "bool",
     "default": null,
     "detail_page": true,
@@ -1910,7 +1910,7 @@
   },
   {
     "arg": "kv-cache-dtype",
-    "category": "scheduling",
+    "category": "cache",
     "type": "CacheDType",
     "default": "auto",
     "detail_page": true,
@@ -1945,7 +1945,7 @@
   },
   {
     "arg": "kv-cache-memory-bytes",
-    "category": "scheduling",
+    "category": "cache",
     "type": "int",
     "default": null,
     "detail_page": false,

@@ -42,17 +42,19 @@ STATUSES = {"active", "deprecated", "removed", "planned"}
 HARDWARE = {"A1", "A2", "A3", "A4", "A5"}
 
 CATEGORY_ORDER = [
-    "parallel", "scheduling", "compilation", "model", "speculative",
+    "parallel", "cache", "scheduling", "compilation", "model", "speculative",
     "kvtransfer", "multimodal", "serving", "rl",
 ]
 CATEGORY_LABELS = {
     "zh": {
-        "parallel": "并行策略", "scheduling": "调度与内存", "compilation": "编译与图",
+        "parallel": "并行策略", "cache": "KV 缓存与内存", "scheduling": "调度与内存",
+        "compilation": "编译与图",
         "model": "模型与加载", "speculative": "投机解码", "kvtransfer": "KV 传输与 PD 分离",
         "multimodal": "多模态", "serving": "服务端", "rl": "RL 训练",
     },
     "en": {
-        "parallel": "Parallelism", "scheduling": "Scheduling & Memory", "compilation": "Compilation & Graphs",
+        "parallel": "Parallelism", "cache": "KV Cache & Memory", "scheduling": "Scheduling & Memory",
+        "compilation": "Compilation & Graphs",
         "model": "Model & Loading", "speculative": "Speculative Decoding", "kvtransfer": "KV Transfer & PD",
         "multimodal": "Multimodal", "serving": "Server", "rl": "RL Training",
     },

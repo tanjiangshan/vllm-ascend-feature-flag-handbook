@@ -237,7 +237,7 @@ args:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html
 - arg: cp-kv-cache-interleave-size
-  category: parallel
+  category: cache
   type: int
   default: null
   detail_page: false
@@ -1275,7 +1275,7 @@ args:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html
 - arg: block-size
-  category: scheduling
+  category: cache
   type: int
   default: null
   detail_page: true
@@ -1330,7 +1330,7 @@ args:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html
 - arg: enable-prefix-caching
-  category: scheduling
+  category: cache
   type: bool
   default: null
   detail_page: true
@@ -1370,7 +1370,7 @@ args:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html
 - arg: kv-cache-dtype
-  category: scheduling
+  category: cache
   type: CacheDType
   default: auto
   detail_page: true
@@ -1394,7 +1394,7 @@ args:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html
 - arg: kv-cache-memory-bytes
-  category: scheduling
+  category: cache
   type: int
   default: null
   detail_page: false

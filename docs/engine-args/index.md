@@ -23,7 +23,6 @@ title: 引擎参数总览
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
 | `--api-server-count` | `str` | `None` | API 服务器进程数。高并发时提升请求接入吞吐。 | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html) |
-| `--cp-kv-cache-interleave-size` | `int` | `None` | CP 模式下 KV cache 的交错粒度。调优参数，默认 1 通常够用。 | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
 | `--data-parallel-address` | `str` | `None` | DP 集群头节点地址。多节点 DP 时指向 head 节点。 | [docs×20](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--data-parallel-backend` | `DataParallelBackend` | `"mp"` | DP 后端实现。默认 'mp'（多进程）；Ray 多节点部署可换 'ray'。 | [docs×1](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
 | `--data-parallel-rank` | `int` | `None` | 当前实例的 DP rank（headless / Ray 场景用）。 | [docs×7](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
@@ -44,18 +43,24 @@ title: 引擎参数总览
 | [`--prefill-context-parallel-size`](prefill-context-parallel-size.md) | `int` | `1` | Prefill 上下文并行（PCP）。长上下文场景的 prefill 加速。A2/A3 官方教程常用。 | [docs×8](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--tensor-parallel-size`](tensor-parallel-size.md) | `int` | `1` | 张量并行组数。官方教程中 A2 单卡/多卡用 1–8，A3 大模型常配 8–16。 | [docs×64](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html) |
 
+### KV 缓存与内存
+
+| 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
+|---|---|---|---|---|
+| `--cp-kv-cache-interleave-size` | `int` | `None` | CP 模式下 KV cache 的交错粒度。调优参数，默认 1 通常够用。 | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
+| [`--block-size`](block-size.md) | `int` | `None` | KV cache block 大小。默认 None（自动，通常 16）；DeepSeek-V4-Pro 教程显式设 32，KVPP 等特性另有取值。 | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| [`--enable-prefix-caching`](enable-prefix-caching.md) | `bool` | `None` | 前缀缓存。默认 None（按模型自动判断）；PD 分离教程中 decode 节点显式用 --no-enable-prefix-caching。 | [docs×34](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
+| [`--kv-cache-dtype`](kv-cache-dtype.md) | `CacheDType` | `"auto"` | KV cache 量化类型（如 fp8、int8）。Ascend 量化模型教程常用以节省显存。 | [docs×15](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| `--kv-cache-memory-bytes` | `int` | `None` | KV cache 显存上限（字节）。比 gpu-memory-utilization 更精细的替代。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
+
 ### 调度与内存
 
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
 | `--async-scheduling` | `bool` | `None` | 异步调度。默认 None（自动）；部分官方教程显式开启以提升吞吐。 | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--block-size`](block-size.md) | `int` | `None` | KV cache block 大小。默认 None（自动，通常 16）；DeepSeek-V4-Pro 教程显式设 32，KVPP 等特性另有取值。 | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | 禁用混合 KV cache 管理器。vLLM 默认按模型自动判断，一般不手动设。 | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | 分块 prefill。vLLM main 默认开启（SchedulerConfig 默认 True），按 max_num_batched_tokens 剩余额度切分；encoder-decoder 模型自动禁用。 | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--enable-prefix-caching`](enable-prefix-caching.md) | `bool` | `None` | 前缀缓存。默认 None（按模型自动判断）；PD 分离教程中 decode 节点显式用 --no-enable-prefix-caching。 | [docs×34](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | 模型执行器显存占比（0–1）。默认 None → 可扩展 KV cache 时解析为 1.0，否则 0.92（vLLM main 源码）；官方教程多显式设 0.80–0.90。 | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
-| [`--kv-cache-dtype`](kv-cache-dtype.md) | `CacheDType` | `"auto"` | KV cache 量化类型（如 fp8、int8）。Ascend 量化模型教程常用以节省显存。 | [docs×15](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
-| `--kv-cache-memory-bytes` | `int` | `None` | KV cache 显存上限（字节）。比 gpu-memory-utilization 更精细的替代。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
 | `--long-prefill-token-threshold` | `int` | `0` | 长 prefill token 阈值。超过该值的请求走分块路径。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html) |
 | `--mamba-ssm-cache-dtype` | `MambaDType` | `"auto"` | Mamba/SSM 模型的 cache dtype。默认为 auto。 | [docs×4](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html) |
 | [`--max-model-len`](max-model-len.md) | `int` | `None` | 模型最大上下文长度。不设则从模型 config 自动推断。长文本场景必须显式设置。 | [docs×52](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |

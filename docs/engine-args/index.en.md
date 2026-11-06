@@ -23,7 +23,6 @@ title: Engine args overview
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
 | `--api-server-count` | `str` | `None` | Number of API server processes. Improves request ingress throughput under high concurrency. | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html) |
-| `--cp-kv-cache-interleave-size` | `int` | `None` | KV cache interleave size in CP mode. Tuning knob; default 1 usually suffices. | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
 | `--data-parallel-address` | `str` | `None` | Address of the data parallel cluster head node. | [docs×20](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--data-parallel-backend` | `DataParallelBackend` | `"mp"` | DP backend implementation. Default 'mp'; use 'ray' for Ray clusters. | [docs×1](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
 | `--data-parallel-rank` | `int` | `None` | Data parallel rank of this instance (headless / Ray mode). | [docs×7](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
@@ -44,18 +43,24 @@ title: Engine args overview
 | [`--prefill-context-parallel-size`](prefill-context-parallel-size.md) | `int` | `1` | Prefill context parallel (PCP) size. Speeds up long-context prefill on A2/A3. | [docs×8](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--tensor-parallel-size`](tensor-parallel-size.md) | `int` | `1` | Number of tensor parallel groups. A2 tutorials use 1–8; large A3 models often 8–16. | [docs×64](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html) |
 
+### KV Cache & Memory
+
+| Argument | Type | Default | Description | Official docs |
+|---|---|---|---|---|
+| `--cp-kv-cache-interleave-size` | `int` | `None` | KV cache interleave size in CP mode. Tuning knob; default 1 usually suffices. | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html) |
+| [`--block-size`](block-size.md) | `int` | `None` | KV cache block size. Default None (auto, typically 16); DeepSeek-V4-Pro tutorial sets 32; KVPP etc. use other values. | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| [`--enable-prefix-caching`](enable-prefix-caching.md) | `bool` | `None` | Prefix caching. Default None (auto per model); PD disaggregation tutorials pass --no-enable-prefix-caching on decode nodes. | [docs×34](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
+| [`--kv-cache-dtype`](kv-cache-dtype.md) | `CacheDType` | `"auto"` | KV cache dtype (fp8, int8). Used in Ascend quantized-model tutorials to save HBM. | [docs×15](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| `--kv-cache-memory-bytes` | `int` | `None` | KV cache memory limit in bytes. Finer-grained alternative to gpu-memory-utilization. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
+
 ### Scheduling & Memory
 
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
 | `--async-scheduling` | `bool` | `None` | Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput. | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--block-size`](block-size.md) | `int` | `None` | KV cache block size. Default None (auto, typically 16); DeepSeek-V4-Pro tutorial sets 32; KVPP etc. use other values. | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | Disable hybrid KV cache manager. Auto-detected by default; rarely set manually. | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | Chunked prefill. Enabled by default on vLLM main (SchedulerConfig default True), chunked by remaining max_num_batched_tokens; auto-disabled for encoder-decoder models. | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--enable-prefix-caching`](enable-prefix-caching.md) | `bool` | `None` | Prefix caching. Default None (auto per model); PD disaggregation tutorials pass --no-enable-prefix-caching on decode nodes. | [docs×34](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly. | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
-| [`--kv-cache-dtype`](kv-cache-dtype.md) | `CacheDType` | `"auto"` | KV cache dtype (fp8, int8). Used in Ascend quantized-model tutorials to save HBM. | [docs×15](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
-| `--kv-cache-memory-bytes` | `int` | `None` | KV cache memory limit in bytes. Finer-grained alternative to gpu-memory-utilization. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
 | `--long-prefill-token-threshold` | `int` | `0` | Long prefill token threshold. Requests above this use the chunked path. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html) |
 | `--mamba-ssm-cache-dtype` | `MambaDType` | `"auto"` | Cache dtype for Mamba/SSM models. Default auto. | [docs×4](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html) |
 | [`--max-model-len`](max-model-len.md) | `int` | `None` | Model context length. Auto-derived from model config if unset; must be set for long-context. | [docs×52](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
