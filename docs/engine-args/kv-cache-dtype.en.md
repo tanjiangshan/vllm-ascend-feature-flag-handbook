@@ -33,10 +33,12 @@ title: kv-cache-dtype
 
 | Related arg | Relationship |
 |---|---|
+| `--attention_config.indexer_kv_dtype` | **Ascend-side C8 derivation pair**: since v0.30.0, the C8 layout of SFA sparse-attention models is derived from this arg (cache_dtype ∈ {fp8, int8}), while the Lightning-Indexer sparse layers' C8 layout is derived from `indexer_kv_dtype ∈ {fp8, int8}` — official tutorials set both together (e.g. `--kv-cache-dtype fp8 --attention_config.indexer_kv_dtype fp8`); P and D sides must use identical values |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | KV quantization = effectively enlarging the pool; both stack |
 | [`--block-size`](block-size.md) | commonly configured together in official tutorials (fp8 + block 32) |
 | [`--max-num-seqs`](max-num-seqs.md) | a bigger pool means less preemption at the same concurrency |
 | Weight NZ ([`weight_nz_mode`](../flags/weight-nz-mode.md)) | don't confuse: that one is for weights, this one is KV cache |
+| Ascend-derived flags | since v0.30.0, `cache_dtype ∈ {fp8, int8}` derives [`enable_sparse_sfa_c8`](../flags/enable-sparse-sfa-c8.md) on SFA models; `cache_dtype == turboquant_4bit_nc` derives `enable_sparse_sfa_turboquant` |
 
 **The memory math**: KV tokens that fit ≈ pool capacity ÷ (2 × layers × KV heads × head dim × bytes per element). `kv-cache-dtype fp8` drops "bytes per element" from 2 to 1 — capacity ×2.
 

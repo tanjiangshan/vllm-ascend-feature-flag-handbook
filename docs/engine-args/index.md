@@ -71,7 +71,7 @@ title: 引擎参数总览
 
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
-| `--attention-config` | `AttentionConfig` | `"AttentionConfig()"` | 注意力后端及配置。Ascend 侧 FA3 一致性等通过此配置。 | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| `--attention-config` | `AttentionConfig` | `"AttentionConfig()"` | 注意力后端及配置。子键 indexer_kv_dtype 是 Lightning Indexer 稀疏注意力的 KV dtype（fp8/int8/mxfp4），v0.30.0 起分别派生 LI-C8/LI-C4 布局；与 --kv-cache-dtype 配对使用，P/D 两侧取值须一致。 | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--compilation-config`](compilation-config.md) | `CompilationConfig` | `"CompilationConfig()"` | torch.compile 与 CUDA Graph 捕获配置。Ascend 官方教程中常配 cudagraph_capture_sizes 提升首 token 延迟。 | [docs×53](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
 | [`--enforce-eager`](enforce-eager.md) | `bool` | `false` | 强制 eager 模式（跳过 CUDA Graph）。首次部署或调试时用；生产关闭以获取图捕获性能。 | [docs×21](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html) |
 

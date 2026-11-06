@@ -33,10 +33,12 @@ title: kv-cache-dtype
 
 | 联动对象 | 关系 |
 |---|---|
+| `--attention_config.indexer_kv_dtype` | **Ascend 侧 C8 派生对**：v0.30.0 起，SFA 稀疏注意力模型的 C8 布局由本参数（cache_dtype ∈ {fp8, int8}）派生；Lightning Indexer 稀疏层的 C8 布局由 `indexer_kv_dtype ∈ {fp8, int8}` 派生——官方教程两者成对出现（如 `--kv-cache-dtype fp8 --attention_config.indexer_kv_dtype fp8`），P/D 两侧取值必须一致 |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | KV 量化 = 等效扩大池容量；两者都是扩容手段，可叠加 |
 | [`--block-size`](block-size.md) | 官方教程常组合配置（fp8 + block 32） |
 | [`--max-num-seqs`](max-num-seqs.md) | 池子大了，同样并发下抢占更少 |
 | 权重 NZ（[`weight_nz_mode`](../flags/weight-nz-mode.md)） | 别混淆：那是权重格式，本参数是 KV cache |
+| Ascend 派生开关 | v0.30.0 起 `cache_dtype ∈ {fp8, int8}` 在 SFA 模型上派生 [`enable_sparse_sfa_c8`](../flags/enable-sparse-sfa-c8.md)；`cache_dtype == turboquant_4bit_nc` 派生 `enable_sparse_sfa_turboquant` |
 
 **显存账**：KV 池能装的 token 数 ≈ 池容量 ÷（2 × 层数 × KV 头数 × 头维度 × 每元素字节数）。`kv-cache-dtype fp8` 把"每元素字节数"从 2 降到 1，容量直接 ×2。
 

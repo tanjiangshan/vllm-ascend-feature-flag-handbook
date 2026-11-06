@@ -4,30 +4,37 @@ title: enable_sparse_li_c8
 
 # `enable_sparse_li_c8`
 
-> 为稀疏注意力（Lightning Indexer）启用 C8 KV cache 布局。
+> 为稀疏注意力（Lightning Indexer）启用 C8 KV cache 布局。⚠️ v0.30.0 起改为派生量，`additional-config` 传本键不再生效。
 
 | 属性 | 值 |
 |---|---|
 | 类型 | `bool` |
 | 默认值 | `false` |
-| 状态 | ✅ active |
-| 适用 | GLM-5 系列、DeepSeek 稀疏注意力模型 |
+| 状态 | ❌ removed（v0.30.0 起被派生覆盖） |
+| 支持版本 | v0.23.0 |
 
-## 用法
+## 启用方式对照
 
-```bash
-vllm serve <glm-5> \
-  --additional-config='{"enable_sparse_li_c8": true}'
+| 版本 | 写法 |
+|---|---|
+| v0.23.0 | `--additional-config '{"enable_sparse_li_c8": true}'` |
+| v0.30.0 / main | `--attention_config.indexer_kv_dtype int8`（或 `fp8`） |
+
+v0.30.0 起 `derive_and_validate` 无条件覆盖：
+
+```python
+enable_sparse_li_c8 = attention_config.indexer_kv_dtype in ["fp8", "int8"] and use_sparse
 ```
 
-## 注意事项
+即：只要 `indexer_kv_dtype` 是 fp8/int8 且模型本身是稀疏注意力架构，C8 布局自动启用——不再需要（也不能）用 `additional-config` 手动开。
 
-- **与 `enable_sparse_li_c4` 互斥**：后者由 `attention_config.indexer_kv_dtype = "mxfp4"` 自动派生，源码明确 `if self.enable_sparse_li_c8 and self.enable_sparse_li_c4: raise ValueError(...)`，用户不要同时开启。
-- C8 布局改变 KV cache 内存格式，量化稀疏注意力下可降显存占用。
-- 官方 GLM5.2 教程实测开启。
+## 联动与互斥
 
-## 相关开关
+- **与 `enable_sparse_li_c4` 互斥**：`indexer_kv_dtype = "mxfp4"` 时派生 `enable_sparse_li_c4`，与 C8 路径互斥（源码有防御性 `ValueError`）。一个 `indexer_kv_dtype` 只能取一个值，天然二选一。
+- **P/D 两侧 dtype 必须一致**：官方教程强调 `--kv-cache-dtype` 与 `--attention_config.indexer_kv_dtype` 在 P 和 D 节点要配成同样的值，否则传输的 KV 不能直接复用。
 
-- [`enable_sparse_sfa_c8`](enable-sparse-sfa-c8.md) — SFA 模型的 C8 布局
-- [`c8_enable_reshape_optim`](c8-enable-reshape-optim.md) — C8 reshape 优化（已移除）
-- [`enable_kv_nz`](enable-kv-nz.md) — KV cache NZ 布局（另一独立布局开关）
+## 相关参数
+
+- [`--attention-config`](../engine-args/index.md) — `indexer_kv_dtype` 的宿主参数（v0.30.0 起 C8 的实际开关）
+- [`--kv-cache-dtype`](../engine-args/kv-cache-dtype.md) — 全模型 KV 存储 dtype（SFA 模型 C8 由它派生）
+- `enable_sparse_li_c4` — mxfp4 路径（派生量）

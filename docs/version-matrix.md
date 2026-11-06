@@ -55,8 +55,8 @@ title: 版本支持矩阵
 | [`enable_pcp_o_proj_weight_sharding`](flags/enable-pcp-o-proj-weight-sharding.md) | — | :white_check_mark: | :white_check_mark: | v0.30.0 新增 |
 | [`enable_prefill_mc2`](flags/enable-prefill-mc2.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`enable_shared_expert_dp`](flags/enable-shared-expert-dp.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
-| [`enable_sparse_li_c8`](flags/enable-sparse-li-c8.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
-| [`enable_sparse_sfa_c8`](flags/enable-sparse-sfa-c8.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| [`enable_sparse_li_c8`](flags/enable-sparse-li-c8.md) | :white_check_mark: | — | — | v0.30.0 起由 --attention_config.indexer_kv_dtype fp8/int8 派生 |
+| [`enable_sparse_sfa_c8`](flags/enable-sparse-sfa-c8.md) | :white_check_mark: | — | — | v0.30.0 起由 --kv-cache-dtype fp8/int8 派生 |
 | [`enable_transpose_kv_cache_by_block`](flags/enable-transpose-kv-cache-by-block.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`eplb_config`](flags/eplb-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`finegrained_tp_config`](flags/finegrained-tp-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |

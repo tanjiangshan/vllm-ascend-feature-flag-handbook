@@ -1211,8 +1211,8 @@ args:
   default: AttentionConfig()
   detail_page: false
   desc:
-    zh: 注意力后端及配置。Ascend 侧 FA3 一致性等通过此配置。
-    en: Attention backend and config. Ascend FA3 consistency etc. via this.
+    zh: 注意力后端及配置。子键 indexer_kv_dtype 是 Lightning Indexer 稀疏注意力的 KV dtype（fp8/int8/mxfp4），v0.30.0 起分别派生 LI-C8/LI-C4 布局；与 --kv-cache-dtype 配对使用，P/D 两侧取值须一致。
+    en: Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention (fp8/int8/mxfp4), deriving LI-C8/LI-C4 layouts since v0.30.0; pair with --kv-cache-dtype and keep P/D values identical.
   doc_count: 9
   examples: []
   sources:

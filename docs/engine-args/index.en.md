@@ -71,7 +71,7 @@ title: Engine args overview
 
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
-| `--attention-config` | `AttentionConfig` | `"AttentionConfig()"` | Attention backend and config. Ascend FA3 consistency etc. via this. | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
+| `--attention-config` | `AttentionConfig` | `"AttentionConfig()"` | Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention (fp8/int8/mxfp4), deriving LI-C8/LI-C4 layouts since v0.30.0; pair with --kv-cache-dtype and keep P/D values identical. | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--compilation-config`](compilation-config.md) | `CompilationConfig` | `"CompilationConfig()"` | torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_capture_sizes for TTFT. | [docs×53](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
 | [`--enforce-eager`](enforce-eager.md) | `bool` | `false` | Force eager mode (skip CUDA Graph). For first deploy/debug; disable in production for graph-capture speed. | [docs×21](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html) |
 

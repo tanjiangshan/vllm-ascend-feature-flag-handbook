@@ -4,17 +4,22 @@ name:
   en: SFA-C8 sparse cache
 type: bool
 default: false
-status: active
+status: removed
 hardware: []
 models:
 - GLM-5 / GLM-5.2 等 SFA 模型
 requires: []
 conflicts: []
+removed_in:
+- v0.30.0（被 derive_and_validate 无条件覆盖，additional-config 传入无效）
 desc:
-  zh: 为 SFA（Sparse Flash Attention）稀疏注意力启用 C8 KV cache 布局。官方 GLM5 / GLM5.2 教程实测开启。
-  en: Enable the C8 KV cache layout for SFA (Sparse Flash Attention). Shown enabled in the official GLM5 / GLM5.2 tutorials.
-source: vllm_ascend/ascend_config.py + docs.vllm.ai tutorials/models/GLM5
+  zh: 为 SFA（Sparse Flash Attention）稀疏注意力启用 C8 KV cache 布局。v0.23.0 可经 additional-config 设置；v0.30.0 起改为派生量：由 --kv-cache-dtype ∈ {fp8, int8} 自动决定（且要求模型为 SFA 稀疏注意力模型），传本键不再生效。
+  en: C8 KV cache layout for SFA (Sparse Flash Attention). Settable via additional-config on v0.23.0; derived since v0.30.0 — automatically decided by --kv-cache-dtype ∈ {fp8, int8} (requires an SFA sparse-attention model); passing this key has no effect.
+source: vllm_ascend/ascend_config.py @ v0.23.0（v0.30.0 起派生）
 version_support:
   v0.23.0: true
-  v0.30.0: true
-  main: true
+  v0.30.0: false
+  main: false
+version_note:
+  zh: v0.30.0 起由 --kv-cache-dtype fp8/int8 派生
+  en: derived from --kv-cache-dtype fp8/int8 since v0.30.0
