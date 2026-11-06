@@ -4,6 +4,23 @@ title: Feature Flags Overview
 
 # Feature Flags Overview
 
+> **Feature flags are vLLM-Ascend's own config keys**, defined in `AscendConfig` (`vllm_ascend/ascend_config.py`) and consumed by the Ascend platform plugin only — other backends (GPU/ROCm) have no such concepts.
+>
+> **Usage**: not top-level CLI args; they go inside the `--additional-config` JSON:
+>
+> ```bash
+> vllm serve <model> --additional-config '{"enable_kvpp": true}'
+> ```
+>
+> | | Feature flags (this page) | [Engine args](../engine-args/index.md) |
+> |---|---|---|
+> | Defined by | vLLM-Ascend plugin (`AscendConfig`) | Upstream vLLM (`arg_utils.py`/`config/`) |
+> | Form | `--additional-config '{"key": val}'` | top-level `--key val` CLI args |
+> | Platform | Ascend-only | Cross-platform |
+> | Validation | AscendConfig pydantic (`extra="forbid"`) | vLLM engine validation |
+>
+> Note: some engine-arg values are re-consumed by the Ascend plugin to derive flags (e.g. `--kv-cache-dtype fp8` derives `enable_sparse_sfa_c8`); the two pages cross-link where they meet.
+
 > The tables below are auto-generated from `data/flags/*.yaml` by `scripts/generate_tables.py`. Do not edit them by hand.
 
 Legend: :white_check_mark: active ｜ :warning: deprecated ｜ :x: removed ｜ :construction: planned

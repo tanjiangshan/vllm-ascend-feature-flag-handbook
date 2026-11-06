@@ -4,6 +4,23 @@ title: 特性开关总览
 
 # 特性开关总览
 
+> **特性开关（Feature Flags）是 vLLM-Ascend 插件自己的配置键**，定义在 `vllm_ascend/ascend_config.py` 的 `AscendConfig` 中，仅由 Ascend 平台插件消费——GPU/ROCm 等其他后端没有这些概念。
+>
+> **使用方式**：不作为顶层命令行参数，而是装进 `--additional-config` 的 JSON 里：
+>
+> ```bash
+> vllm serve <model> --additional-config '{"enable_kvpp": true}'
+> ```
+>
+> | | 特性开关（本页） | [引擎参数](../engine-args/index.md) |
+> |---|---|---|
+> | 定义方 | vLLM-Ascend 插件（`AscendConfig`） | vLLM 上游主仓（`arg_utils.py`/`config/`） |
+> | 写法 | `--additional-config '{"key": val}'` | `--key val` 顶层 CLI 参数 |
+> | 平台 | 仅 Ascend | 跨平台通用 |
+> | 校验 | AscendConfig pydantic（`extra="forbid"`） | vLLM 引擎校验 |
+>
+> 注意：部分引擎参数的取值会被 Ascend 插件二次消费并派生开关（如 `--kv-cache-dtype fp8` 派生 `enable_sparse_sfa_c8`），两页在交叉处互相链接。
+
 > 本页表格由 [`scripts/generate_tables.py`](https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/blob/main/scripts/generate_tables.py) 从 `data/flags/*.yaml` 自动生成，请勿手改表格区域。
 
 状态图例：:white_check_mark: active（生效中）｜:warning: deprecated（已弃用，即将移除）｜:x: removed（已移除）｜:construction: planned（规划中）

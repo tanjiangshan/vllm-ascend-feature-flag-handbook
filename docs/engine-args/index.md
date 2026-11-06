@@ -8,7 +8,7 @@ title: 引擎参数总览
 >
 > 收录原则：**只收录 vLLM-Ascend 官方文档（模型教程、特性指南、quick_start、FAQs）中真实出现过的参数**；每个参数都在 vLLM 源码（`arg_utils.py`/`cli_args.py`/`config/`）中有定义。共 **78 个参数**，按功能分 9 类。
 >
-> 这里的参数指 `vllm serve` 命令行参数（`--xxx`）；vLLM-Ascend 专有配置请见[特性开关总览](../flags/index.md)。
+> 这里的参数指 `vllm serve` **顶层命令行参数**（`--xxx`），由 vLLM 主仓定义、跨平台通用；**vLLM-Ascend 插件专有的配置键**（`AscendConfig` 字段，经 `--additional-config` JSON 传入）见[特性开关总览](../flags/index.md)。
 
 ## 与官方文档的关系
 

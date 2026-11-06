@@ -8,7 +8,7 @@ title: Engine args overview
 >
 > **Inclusion rule**: only args that actually appear in vLLM-Ascend official docs (model tutorials, feature guides, quick_start, FAQs). Every arg exists in the vLLM source CLI definitions. **78 args**, grouped into 9 categories.
 >
-> Args here are `vllm serve` command-line args (`--xxx`); for vLLM-Ascend proprietary keys see the [feature flags overview](../flags/index.md).
+> Args here are top-level `vllm serve` command-line args (`--xxx`), defined by upstream vLLM and cross-platform; **Ascend-plugin-specific config keys** (`AscendConfig` fields passed via the `--additional-config` JSON) live in the [feature flags overview](../flags/index.md).
 
 ## Relationship to official docs
 
