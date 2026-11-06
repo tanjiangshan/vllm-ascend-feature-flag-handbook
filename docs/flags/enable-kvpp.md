@@ -25,6 +25,7 @@ vllm serve deepseek-ai/DeepSeek-V3 \
 - KVPP 将 KV cache 的所有权按层划分到 TP 各 rank，而非每 rank 存全量副本，显存容量随 TP 数近似线性放大。
 - 官方 GLM-5.2-W4A8C8 实测：单机 8 卡 TP8+EP 时 KV 容量 **6.25×**；两机 TP8+PP2+EP（38/40 层）时 **5.35×**（该数字仅对文中配置成立，非吞吐倍数）。
 - 可与 TP/EP/PP/PCP 组合；PCP 时按 `TP × PCP` 的层分摊域划分。
+- 可与前缀缓存、**KV 池化**组合（[`--kv-transfer-config`](../engine-args/kv-transfer-config.md) 的 `AscendStoreConnector` + `kv_producer`/`kv_both` + 整块加载；Mooncake 分层池化为 Experimental）。
 - 派生的 `kvpp_config` 不是用户可设的顶层键，而是 `enable_kvpp=true` 后由 `KVPPConfig.from_vllm_config` 自动注入（`size = TP × PCP`），启动时校验通过即生效。
 
 ## 注意事项

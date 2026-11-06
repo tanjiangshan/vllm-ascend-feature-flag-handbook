@@ -35,8 +35,28 @@ title: kv-transfer-config
 |---|---|
 | `MooncakeConnectorV2` | [PD disaggregation Mooncake tutorial](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) etc. — current default recommendation |
 | `MooncakeConnectorV1` | earlier Mooncake deployments |
-| `AscendStoreConnector` | Ascend-native KV pool |
+| `AscendStoreConnector` | Ascend-native KV pooling (KV Cache Pool / Ascend Store) |
 | `MultiConnector` | multi-connector composition |
+
+## KV pooling (Ascend Store)
+
+**KV pooling** (KV Cache Pool / Ascend Store) is vLLM-Ascend's **cross-node KV cache pooling storage**: KV cache is written to external storage backends and shared/reused across multiple vLLM instances under the PD disaggregation architecture, avoiding redundant prefill of identical prefixes. It is configured through this arg's `AscendStoreConnector` — **not** an `additional-config` flag, which is why "pooling" yields no hit in the feature-flags overview.
+
+| Backend | When to choose (official docs) |
+|---|---|
+| Mooncake | Default backend; pick it for SSD Offload (extended KV capacity) or multi-tenant quota management |
+| Memcache | Based on MemFabric; pick it for A3 HCCS low-latency transfer or layer-by-layer KV transfer (`use_layerwise`) |
+| Yuanrong | Based on openyuanrong-datasystem; pick it for multi-node deployment, Remote H2D transfer, or openEuler integration |
+
+**Key constraints** (official feature page):
+
+- Supported since vLLM-Ascend **v0.23.0**; hardware A2 / A3 / 950PR&950DT;
+- `use_layerwise` layer-wise transfer is supported **only on the prefill node of the Mooncake / Memcache backends**;
+- `kv_load_failure_policy=recompute` does not yet support hybrid-attention models (e.g. DeepSeekV4, Qwen 3.5);
+- Mooncake backend requires >= 0.3.11.post1 (layer-wise needs >= 0.3.14); Memcache backend requires `memfabric-hybrid` / `memcache-hybrid` >= 1.3.0;
+- Combines with [`enable_kvpp`](../flags/enable-kvpp.md) (pooling uses `kv_role` = `kv_producer` / `kv_both` with whole-block loading); Mooncake layerwise pooling (`backend="mooncake"` + `use_layerwise=true`) is Experimental.
+
+Official details: [KV Cache Pool (Ascend Store)](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html) · [Mooncake layerwise pooling adaptation](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html)
 
 ## Parameter interplay
 
