@@ -1462,7 +1462,7 @@ args:
   - value: '131072'
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html
     note: from tutorials/models/GLM5.md
-  - value: '132096'
+  - value: '133120'
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.3-Flash.html
     note: from tutorials/models/GLM5.3-Flash.md
   sources:
