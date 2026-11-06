@@ -41,6 +41,7 @@ Legend: :white_check_mark: = supported; — = not present (never introduced, or 
 | [`enable_balance_scheduling`](flags/enable-balance-scheduling.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | top-level key deprecated |
 | [`enable_context_parallel`](flags/enable-context-parallel.md) | — | — | — | Env var only up to v0.18; superseded by enable_dsa_cp |
 | [`enable_cpu_binding`](flags/enable-cpu-binding.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| [`enable_dsa_cp`](flags/enable-dsa-cp.md) | — | :white_check_mark: | — |  |
 | [`enable_flashcomm1`](flags/enable-flashcomm1.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`enable_flashcomm2_parallel_size`](flags/enable-flashcomm2-parallel-size.md) | :white_check_mark: | — | — | Config key + env fallback in v0.23.0; removed in v0.30.0 |
 | [`enable_force_eplb`](flags/enable-force-eplb.md) | — | :white_check_mark: | :white_check_mark: | New in v0.30.0 |

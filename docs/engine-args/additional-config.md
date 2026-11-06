@@ -4,7 +4,7 @@ title: additional-config
 
 # `--additional-config`
 
-> 平台扩展配置（JSON 字典）——**vLLM-Ascend 全部 63 个特性开关的唯一入口**，本站存在的理由。
+> 平台扩展配置（JSON 字典）——**vLLM-Ascend 全部 64 个特性开关的唯一入口**，本站存在的理由。
 
 | 属性 | 值 |
 |---|---|
@@ -20,7 +20,7 @@ title: additional-config
 
 ## 机制详解
 
-**分层设计**：vLLM 主干的 CLI 参数只有引擎通用项；平台（CUDA/ROCm/NPU）的专有配置走这条"透传通道"——vLLM 不解析内容，原样交给平台插件校验。vLLM-Ascend 插件在这里消费**全部 63 个特性开关**（MoE 融合、RL 模式、调度扩展、Runtime Guard 等）。
+**分层设计**：vLLM 主干的 CLI 参数只有引擎通用项；平台（CUDA/ROCm/NPU）的专有配置走这条"透传通道"——vLLM 不解析内容，原样交给平台插件校验。vLLM-Ascend 插件在这里消费**全部 64 个特性开关**（MoE 融合、RL 模式、调度扩展、Runtime Guard 等）。
 
 **键的来源**：合法的键名在 vllm-ascend 源码 `vllm_ascend/ascend_config.py` 与 `vllm_ascend/envs.py` 定义，本站[特性开关总览](../flags/index.md)逐键核验过——**找不到出处的一律不收**。
 
@@ -47,7 +47,7 @@ vllm serve Qwen/Qwen3-8B \
 
 | 联动对象 | 关系 |
 |---|---|
-| 63 个特性开关 | 全部经本参数传入，见[特性开关总览](../flags/index.md) |
+| 64 个特性开关 | 全部经本参数传入，见[特性开关总览](../flags/index.md) |
 | [`--compilation-config`](compilation-config.md) | vLLM 层图配置；Ascend 层的 `ascend_compilation_config` 走本参数，两者分工见该页 |
 | [`--enforce-eager`](enforce-eager.md) | 平台层图模式的裁决输入之一 |
 | [`--quantization`](quantization.md) | `weight_nz_mode` 等量化布局开关走本参数 |
@@ -68,6 +68,6 @@ vllm serve Qwen/Qwen3-8B \
 
 ## 相关
 
-- [特性开关总览](../flags/index.md) — 63 个开关的深度参考（默认值/版本/风险）
+- [特性开关总览](../flags/index.md) — 64 个开关的深度参考（默认值/版本/风险）
 - [迁移对照表](../migration.md) — 环境变量 → additional-config 迁移
 - [版本支持矩阵](../version-matrix.md) — 每个开关在 v0.23.0 / v0.30.0 / main 的支持情况

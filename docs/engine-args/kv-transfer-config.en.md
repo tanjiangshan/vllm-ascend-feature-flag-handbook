@@ -58,6 +58,78 @@ title: kv-transfer-config
 
 Official details: [KV Cache Pool (Ascend Store)](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html) · [Mooncake layerwise pooling adaptation](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html)
 
+### Anatomy of a typical pooling config (PD disaggregation + Memcache pooling)
+
+> The standard form in the official GLM5.2/5.3 tutorials: `MultiConnector` combines **point-to-point transfer + pooling write**. Field-by-field meanings below; for the verbatim command see the [official tutorial](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html).
+
+**Top-level fields**
+
+| Field | Meaning |
+|---|---|
+| `kv_connector: "MultiConnector"` | Combiner: binds the connectors listed under `connectors` into one config, so the same KV travels multiple paths at once |
+| `engine_id` | Engine instance ID, distinguishing co-located engines (the second prefill engine uses `"1"` in the official example) |
+| `kv_role: "kv_producer"` | This node's role: the prefill side is the producer; the decode side uses `kv_consumer` |
+| `kv_port` | Transfer port |
+
+**Connector 1 `MooncakeConnectorV2` — P2P transfer (the "now": this request's KV goes to decode)**
+
+| Field | Meaning |
+|---|---|
+| `use_ascend_direct: true` | Enable Ascend direct transfer: KV cache passes NPU-to-NPU without host-memory staging |
+| `prefill: {dp_size, pp_size, tp_size, pp_layer_partition}` | Declares the prefill-side parallel topology (e.g. `"42,36"` = 78 layers split into two PP stages) for per-layer KV mapping |
+| `decode: {dp_size, tp_size}` | Declares the decode-side topology; P and D shard differently, so KV is re-sliced to the peer's shape |
+
+**Connector 2 `AscendStoreConnector` — pooling write (the "future": prefix-hit requests skip prefill)**
+
+| Field | Meaning |
+|---|---|
+| `backend: "memcache"` | Pool backend choice: `memcache` (MemFabric-based, for A3 HCCS low-latency) / `mooncake` / `yuanrong` |
+| `use_layerwise` | `false` = whole-block pooling (this example); `true` = layer-wise transfer (GLM5.2 1M long-context variant; prefill node of Mooncake/Memcache backends only) |
+| `lookup_rpc_port` | Local IPC endpoint ID between the pooling-scheduler process and the worker; independently launched services sharing one RPC base directory must use distinct values |
+
+**Analogy**: MultiConnector is like courier "direct delivery + warehousing" — MooncakeConnectorV2 is the rider delivering this parcel right now, while AscendStoreConnector simultaneously files it into the shared warehouse, so the next identical order ships straight from stock.
+
+### Full example: PD disaggregation + Memcache pooling (prefill node)
+
+```bash
+vllm serve <MODEL_PATH> \
+  --kv-transfer-config '{
+    "kv_connector": "MultiConnector",
+    "kv_role": "kv_producer",
+    "engine_id": "0",
+    "kv_port": "30000",
+    "kv_connector_extra_config": {
+      "connectors": [
+        {
+          "kv_connector": "MooncakeConnectorV2",          # 1) P2P transfer: KV straight to decode
+          "kv_role": "kv_producer",
+          "kv_port": "30000",
+          "kv_connector_extra_config": {
+            "use_ascend_direct": true,                     # NPU-to-NPU direct path
+            "prefill": {"dp_size": 1, "pp_size": 2, "tp_size": 16, "pp_layer_partition": "42,36"},
+            "decode":  {"dp_size": 16, "tp_size": 2}        # topology per your deployment
+          }
+        },
+        {
+          "kv_connector": "AscendStoreConnector",          # 2) pooling write: KV into the memcache pool
+          "kv_role": "kv_producer",
+          "kv_connector_extra_config": {
+            "backend": "memcache",
+            "use_layerwise": false,                        # false=whole-block; 1M long-context variant uses true
+            "lookup_rpc_port": "0"                         # distinct per co-located service
+          }
+        }
+      ]
+    }
+  }'
+```
+
+> 📌 Source: official [GLM5.2 tutorial](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html), MemCache KV pooling section (abridged). Topology values (pp/tp/dp and layer partition) vary by deployment — **the verbatim command and the decode-side config are governed by the official doc**.
+
+**How to read this command**: first check `kv_role` to confirm this is the prefill node → the two connectors in `MultiConnector.connectors` each do one job → cross-reference each connector's `kv_connector_extra_config` against the three field tables above.
+
+**Combination with feature flags**: the official GLM5.2 pooling example also passes `--additional-config '{"enable_cpu_binding": true, "recompute_scheduler_enable": true, "enable_dsa_cp": true, "enable_flashcomm1": true, "enable_fused_mc2": 1}'` — PD pooling deployments are commonly combined with recompute scheduling, DSA CP (v0.30.0; replaced by PCP on main) and FlashComm1.
+
 ## Parameter interplay
 
 | Related arg | Relationship |

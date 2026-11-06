@@ -4,7 +4,7 @@ title: additional-config
 
 # `--additional-config`
 
-> Platform extension config (JSON dict) — **the sole entry point for all 63 vLLM-Ascend feature flags**: the reason this handbook exists.
+> Platform extension config (JSON dict) — **the sole entry point for all 64 vLLM-Ascend feature flags**: the reason this handbook exists.
 
 | Property | Value |
 |---|---|
@@ -47,7 +47,7 @@ vllm serve Qwen/Qwen3-8B \
 
 | Related arg | Relationship |
 |---|---|
-| The 63 feature flags | all passed through this arg — see the [feature flags overview](../flags/index.md) |
+| The 64 feature flags | all passed through this arg — see the [feature flags overview](../flags/index.md) |
 | [`--compilation-config`](compilation-config.md) | the vLLM-layer graph config; Ascend-layer `ascend_compilation_config` goes through this arg — see that page for the split |
 | [`--enforce-eager`](enforce-eager.md) | one of the inputs to the platform-layer graph-mode arbitration |
 | [`--quantization`](quantization.md) | layout switches like `weight_nz_mode` go through this arg |
@@ -68,6 +68,6 @@ vllm serve Qwen/Qwen3-8B \
 
 ## Related
 
-- [Feature flags overview](../flags/index.md) — deep reference for the 63 flags (defaults/versions/risks)
+- [Feature flags overview](../flags/index.md) — deep reference for the 64 flags (defaults/versions/risks)
 - [Migration table](../migration.md) — env var → additional-config migration
 - [Version support matrix](../version-matrix.md) — per-flag support on v0.23.0 / v0.30.0 / main

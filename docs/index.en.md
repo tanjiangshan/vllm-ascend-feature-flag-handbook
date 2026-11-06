@@ -36,7 +36,7 @@ The official docs scatter these flags across several pages in the form of terse 
 
     ---
 
-    63 vLLM-Ascend proprietary flags: keys / defaults / status / version support
+    64 vLLM-Ascend proprietary flags: keys / defaults / status / version support
 
     [:octicons-arrow-right-24: Open](flags/index.md)
 

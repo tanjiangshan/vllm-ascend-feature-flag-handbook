@@ -1,0 +1,23 @@
+key: enable_dsa_cp
+name:
+  zh: DSA 上下文并行
+  en: DSA context parallel
+type: bool
+default: false
+status: removed
+hardware: []
+models:
+- DSA（DeepSeek Sparse Attention）模型
+requires: []
+conflicts:
+- prefill_context_parallel_size > 1（PCP）
+removed_in:
+- main（启动报错信息明示 Use PCP instead: remove enable_dsa_cp from additional_config）
+desc:
+  zh: 启用 DSA 注意力的上下文并行，与 PCP 互斥。main 分支已移除——开启时会收到明确报错，提示改用 PCP。
+  en: Enable context parallel for DSA attention; mutually exclusive with PCP. Removed on main — enabling it now raises an explicit error telling you to use PCP instead.
+source: vllm_ascend/ascend_config.py @ v0.30.0
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: false

@@ -58,6 +58,78 @@ title: kv-transfer-config
 
 官方详情：[KV Cache Pool (Ascend Store)](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html) · [Mooncake 分层池化适配与优化](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html)
 
+### 典型池化配置拆解（PD 分离 + MemCache 池化）
+
+> 官方 GLM5.2/5.3 教程的标准写法：`MultiConnector` 组合**点对点传输 + 池化写入**两个 connector。逐字段含义如下，逐字命令见[官方教程](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html)。
+
+**顶层字段**
+
+| 字段 | 含义 |
+|---|---|
+| `kv_connector: "MultiConnector"` | 组合器：把下面 `connectors` 列表里的多个 connector 绑成一份配置，同一份 KV 同时走多条路 |
+| `engine_id` | 引擎实例编号，同机多引擎共存时区分（官方示例第二个 prefill 引擎用 `"1"`） |
+| `kv_role: "kv_producer"` | 本节点角色：prefill 侧是生产者；decode 侧对应 `kv_consumer` |
+| `kv_port` | 传输端口 |
+
+**Connector ① `MooncakeConnectorV2`——P2P 传输（管"当下"：本条请求的 KV 送到 decode）**
+
+| 字段 | 含义 |
+|---|---|
+| `use_ascend_direct: true` | 启用 Ascend 直传：KV cache 在 NPU 间直通，不经主机内存中转 |
+| `prefill: {dp_size, pp_size, tp_size, pp_layer_partition}` | 声明 prefill 侧并行拓扑（如 `"42,36"` 表示 78 层按 PP 切两段），供 KV 按层映射 |
+| `decode: {dp_size, tp_size}` | 声明 decode 侧拓扑，P/D 切分不同，KV 需按对端形状重切 |
+
+**Connector ② `AscendStoreConnector`——池化写入（管"将来"：撞前缀的请求免算 prefill）**
+
+| 字段 | 含义 |
+|---|---|
+| `backend: "memcache"` | 池后端选型：`memcache`（MemFabric 底座，A3 HCCS 低延迟场景）/ `mooncake` / `yuanrong` |
+| `use_layerwise` | `false`=整块池化（本例）；`true`=逐层传输分层池化（GLM5.2 的 1M 长上下文变体，仅 Mooncake/Memcache 后端 prefill 节点） |
+| `lookup_rpc_port` | 池化调度进程与 worker 间的本地 IPC 端点标识；共享同一 RPC 基目录的独立服务必须取不同值 |
+
+**类比**：MultiConnector 像快递的"直送 + 入仓"组合——MooncakeConnectorV2 是骑手直送（本条包裹立刻送达），AscendStoreConnector 是同步入仓（包裹同时进共享仓库，下次有人要同款直接从仓库发）。
+
+### 完整示例：PD 分离 + MemCache 池化（prefill 节点）
+
+```bash
+vllm serve <MODEL_PATH> \
+  --kv-transfer-config '{
+    "kv_connector": "MultiConnector",
+    "kv_role": "kv_producer",
+    "engine_id": "0",
+    "kv_port": "30000",
+    "kv_connector_extra_config": {
+      "connectors": [
+        {
+          "kv_connector": "MooncakeConnectorV2",          # ① P2P 传输：KV 直送 decode
+          "kv_role": "kv_producer",
+          "kv_port": "30000",
+          "kv_connector_extra_config": {
+            "use_ascend_direct": true,                     # NPU 间直通
+            "prefill": {"dp_size": 1, "pp_size": 2, "tp_size": 16, "pp_layer_partition": "42,36"},
+            "decode":  {"dp_size": 16, "tp_size": 2}        # 拓扑按你的部署改
+          }
+        },
+        {
+          "kv_connector": "AscendStoreConnector",          # ② 池化写入：KV 入 memcache 池
+          "kv_role": "kv_producer",
+          "kv_connector_extra_config": {
+            "backend": "memcache",
+            "use_layerwise": false,                        # false=整块；1M 长上下文变体用 true
+            "lookup_rpc_port": "0"                         # 同机多服务须各不相同
+          }
+        }
+      ]
+    }
+  }'
+```
+
+> 📌 来源：官方 [GLM5.2 教程](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html) MemCache KV pooling 章节（有删减）。拓扑数值（pp/tp/dp 与层分片）随部署形态变化，**逐字命令与 decode 侧配置以官方原文为准**。
+
+**读懂这条命令的路径**：先看 `kv_role` 确认这是 prefill 节点 → `MultiConnector.connectors` 里两个 connector 各司其职 → 每个 connector 的 `kv_connector_extra_config` 回到上面三张字段表对照。
+
+**与特性开关的组合**：官方 GLM5.2 池化示例同传 `--additional-config '{"enable_cpu_binding": true, "recompute_scheduler_enable": true, "enable_dsa_cp": true, "enable_flashcomm1": true, "enable_fused_mc2": 1}'`——PD 池化部署常与重算调度、DSA CP（v0.30.0，main 已改为 PCP）、FlashComm1 一起开。
+
 ## 参数联动
 
 | 联动对象 | 关系 |

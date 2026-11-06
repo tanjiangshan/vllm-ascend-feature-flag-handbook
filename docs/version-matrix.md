@@ -41,6 +41,7 @@ title: 版本支持矩阵
 | [`enable_balance_scheduling`](flags/enable-balance-scheduling.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | 顶层键废弃 |
 | [`enable_context_parallel`](flags/enable-context-parallel.md) | — | — | — | v0.18 及更早通过环境变量支持；后被 enable_dsa_cp 取代 |
 | [`enable_cpu_binding`](flags/enable-cpu-binding.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| [`enable_dsa_cp`](flags/enable-dsa-cp.md) | — | :white_check_mark: | — |  |
 | [`enable_flashcomm1`](flags/enable-flashcomm1.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`enable_flashcomm2_parallel_size`](flags/enable-flashcomm2-parallel-size.md) | :white_check_mark: | — | — | v0.23.0 为配置键 + 环境变量回退；v0.30.0 已移除 |
 | [`enable_force_eplb`](flags/enable-force-eplb.md) | — | :white_check_mark: | :white_check_mark: | v0.30.0 新增 |
