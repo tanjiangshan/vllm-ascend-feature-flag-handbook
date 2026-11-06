@@ -675,8 +675,8 @@ args:
   default: '{}'
   detail_page: true
   desc:
-    zh: 平台扩展配置（JSON）。vLLM-Ascend 51 个特性开关的唯一入口，详见本站特性开关总览。
-    en: Platform extension config (JSON). Sole entry for vLLM-Ascend's 51 feature flags — see the flags overview.
+    zh: 平台扩展配置（JSON）。vLLM-Ascend 63 个特性开关的唯一入口，详见本站特性开关总览。
+    en: Platform extension config (JSON). Sole entry for vLLM-Ascend's 63 feature flags — see the flags overview.
   doc_count: 66
   examples:
   - value: '{"ascend_compilation_config":'

@@ -4,19 +4,19 @@ name:
   en: KV dump directory
 type: str
 default: null
-status: active
+status: removed
 hardware: []
 models: []
 requires: []
 conflicts: []
 desc:
-  zh: 设置 KV dump 根目录（dump.dump_dir），默认由报告根目录派生。
-  en: Set the KV dump root directory (dump.dump_dir). Default derived from the report root.
+  zh: 设置 KV dump 根目录（dump.dump_dir），默认由报告根目录派生。已移除，请改用 runtime_config.dump.dump_dir。
+  en: Set the KV dump root directory (dump.dump_dir), derived from the report root by default. Removed; use runtime_config.dump.dump_dir instead.
 source: 'vllm_ascend/ runtime_guard (docs: feature_guide/runtime_guard.md)'
 version_support:
   v0.23.0: false
   v0.30.0: false
-  main: true
+  main: false
 version_note:
   zh: Runtime Guard 特性的一部分，main 分支新增
   en: Part of Runtime Guard; new on main

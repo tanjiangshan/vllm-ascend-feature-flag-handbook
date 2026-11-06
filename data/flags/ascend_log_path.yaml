@@ -1,0 +1,19 @@
+key: ascend_log_path
+name:
+  zh: Ascend 日志路径
+  en: Ascend log path
+type: str
+default: ~/ascend/log/vllm_ascend
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: vLLM-Ascend 日志输出路径，默认 ~/ascend/log/vllm_ascend。
+  en: vLLM-Ascend log output path; defaults to ~/ascend/log/vllm_ascend.
+source: vllm_ascend/ascend_config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

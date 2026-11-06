@@ -10,7 +10,7 @@ vLLM-Ascend 特性开关手册（社区文档站）。本文件面向代码代�
 ## 目录结构
 
 ```
-data/flags/                # 单一事实来源：51 个开关的 YAML
+data/flags/                # 单一事实来源：63 个开关的 YAML
 data/engine-args.yaml      # 78 个 vLLM 引擎参数（官方文档实证 + vLLM 源码默认值）
 scripts/generate_tables.py # 校验数据 → 生成总览表/版本矩阵/JSON 导出
 scripts/audit_engine_args.py # 溯源审计：参数∈vLLM CLI、示例值∈官方文档

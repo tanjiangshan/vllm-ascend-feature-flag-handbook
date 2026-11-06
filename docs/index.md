@@ -36,7 +36,7 @@ vLLM-Ascend 通过**特性开关**控制大量实验性、场景化的优化能�
 
     ---
 
-    51 个 vLLM-Ascend 专有开关：配置键 / 默认值 / 状态 / 版本支持
+    63 个 vLLM-Ascend 专有开关：配置键 / 默认值 / 状态 / 版本支持
 
     [:octicons-arrow-right-24: 进入](flags/index.md)
 

@@ -1,0 +1,19 @@
+key: mix_placement
+name:
+  zh: 专家混合放置
+  en: Mixed expert placement
+type: bool
+default: false
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 混合放置模式（DP×TP 平面上的专家/权重放置策略），计入 RFork 权重传输的兼容性指纹；发送端与接收端配置不一致会导致指纹不匹配。
+  en: Mixed placement mode (expert/weight placement on the DP×TP plane); counted into the RFork weight-transfer compatibility fingerprint — a sender/receiver mismatch breaks the fingerprint.
+source: vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/rfork
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

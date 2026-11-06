@@ -10,8 +10,8 @@ models: []
 requires: []
 conflicts: []
 desc:
-  zh: 权重预取配置。
-  en: Weight prefetch configuration.
+  zh: 权重预取配置。已移除（v0.30.0 起源码无读取点）。
+  en: Weight prefetch config. Removed (no source read site since v0.30.0).
 source: vllm_ascend/config.py
 version_support:
   v0.23.0: true

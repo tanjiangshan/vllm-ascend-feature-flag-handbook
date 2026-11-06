@@ -1,0 +1,20 @@
+key: multistream_engram_overlap
+name:
+  zh: Engram 多流重叠
+  en: Engram multistream overlap
+type: bool
+default: 硬件派生（A5 默认 true，其余 false）
+status: active
+hardware: []
+models:
+- DeepSeek V4.1 等 Engram 模型
+requires: []
+conflicts: []
+desc:
+  zh: Engram 模块多流重叠。默认仅在 A5（FP8 优化设备家族）开启；显式设置覆盖默认策略。FULL 图需在消费者侧等待描述符相关的外部事件，故默认策略因硬件而异。
+  en: Multistream overlap for the Engram module. Defaults to on only on A5 (FP8-optimized device family); explicit settings override. FULL graphs wait on descriptor-specific external events at consumers, hence the hardware-dependent default.
+source: vllm_ascend/ascend_config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true

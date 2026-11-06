@@ -1,0 +1,21 @@
+key: hamming_sparse
+name:
+  zh: Hamming 稀疏注意力
+  en: Hamming sparse attention
+type: dict
+default: {"enabled": false, "sparse_json_location": ""}
+status: removed
+hardware: []
+models: []
+requires: []
+conflicts: []
+removed_in:
+- v0.30.0（源码已无读取点）
+desc:
+  zh: Hamming 稀疏注意力配置，dict 含 enabled 与 sparse_json_location（稀疏 JSON 文件路径，须真实存在）。v0.30.0 起从源码移除。
+  en: Hamming sparse attention config; dict with enabled and sparse_json_location (path to a real sparse JSON file). Removed from source since v0.30.0.
+source: vllm_ascend/ascend_config.py @ v0.23.0
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false

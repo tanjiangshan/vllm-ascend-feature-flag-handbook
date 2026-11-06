@@ -1,0 +1,20 @@
+key: draft_window_size
+name:
+  zh: 草稿 KV 滑窗
+  en: Draft KV sliding window
+type: int
+default: None
+status: active
+hardware: []
+models: []
+requires:
+- --speculative-config（eagle3/dflash/dspark）
+conflicts: []
+desc:
+  zh: 投机解码的草稿 KV 滑窗：仅将草稿模型注意力限制在最近 N 个 token，目标模型仍用全上下文，输出质量不变。适配 eagle3/dflash/dspark 方法；长上下文运行时超出草稿训练长度导致接受率崩塌的场景使用。
+  en: "Draft KV sliding window for speculative decoding: caps only the draft model's attention to the most recent N tokens while the target model keeps full context, leaving output quality unchanged. Works with eagle3/dflash/dspark; for long contexts where the draft's acceptance collapses beyond its trained length."
+source: vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/speculative_decoding
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true

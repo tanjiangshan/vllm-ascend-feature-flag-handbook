@@ -4,19 +4,19 @@ name:
   en: DyntraLB load balancing
 type: dict
 default: {}
-status: active
+status: deprecated
 hardware: []
 models: []
 requires: []
 conflicts: []
 desc:
-  zh: PD 分离解码节点 DyntraLB 负载均衡配置。
-  en: DyntraLB load-balancing configuration for PD-disaggregated decode nodes.
+  zh: PD 分离解码节点 DyntraLB 负载均衡配置。仅配置在 Decode 节点上。v0.30.0 起顶层键废弃，请改用 scheduler_config.dyntra_lb_config。
+  en: DyntraLB load-balancing config for the decode node in P/D disaggregation — configure on the Decode node only. Top-level key deprecated since v0.30.0; use scheduler_config.dyntra_lb_config instead.
 source: vllm_ascend/config.py
 version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
 version_note:
-  zh: v0.30.0 新增
-  en: New in v0.30.0
+  zh: v0.30.0 起顶层键不再解析（extra=forbid 会报未知键错误），必须写 scheduler_config.dyntra_lb_config 嵌套形式
+  en: top-level key no longer parsed since v0.30.0 (extra=forbid raises an unknown-key error); must use the nested form scheduler_config.dyntra_lb_config

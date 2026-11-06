@@ -15,9 +15,12 @@ models: []
 requires: []
 conflicts: []
 desc:
-  zh: 启用均衡调度。已弃用，请改用 scheduler_config.enable_balance_scheduling。
-  en: Enable balance scheduling. Deprecated, use scheduler_config.enable_balance_scheduling instead.
+  zh: 启用均衡调度。v0.30.0 起顶层键废弃（发 deprecation 警告），请改用 scheduler_config.enable_balance_scheduling。
+  en: Enable balance scheduling. Top-level key deprecated since v0.30.0 (deprecation warning); use scheduler_config.enable_balance_scheduling instead.
 source: vllm_ascend/config.py
+version_note:
+  zh: 顶层键废弃
+  en: top-level key deprecated
 version_support:
   v0.23.0: true
   v0.30.0: true

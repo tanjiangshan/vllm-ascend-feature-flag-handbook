@@ -4,15 +4,18 @@ name:
   en: Profiling chunk config
 type: dict
 default: {}
-status: active
+status: deprecated
 hardware: []
 models: []
 requires: []
 conflicts: []
 desc:
-  zh: 动态分块流水线并行（profiling chunk）配置。
-  en: Configuration for dynamic chunked pipeline parallel (profiling chunk).
+  zh: 动态分块流水线并行（profiling chunk）配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.profiling_chunk_config。
+  en: Dynamic-chunk pipeline-parallel (profiling chunk) config. Top-level key deprecated since v0.30.0; use scheduler_config.profiling_chunk_config instead.
 source: vllm_ascend/config.py
+version_note:
+  zh: v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config
+  en: top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config
 version_support:
   v0.23.0: true
   v0.30.0: true

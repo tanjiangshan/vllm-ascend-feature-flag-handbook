@@ -1,0 +1,20 @@
+key: sfa_dcp_force_tmajor_restore
+name:
+  zh: SFA DCP T-major 恢复
+  en: SFA DCP T-major restore
+type: bool
+default: false
+status: active
+hardware: []
+models:
+- SFA 模型 + DCP
+requires: []
+conflicts: []
+desc:
+  zh: SFA 注意力在 DCP（Decode Context Parallel）下强制 T-major 布局恢复，仅调试/兼容用途，正常部署无需设置。
+  en: Force T-major layout restore for SFA attention under DCP (Decode Context Parallel). Debug/compatibility only — no need to set in normal deployments.
+source: vllm_ascend/ascend_config.py
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true

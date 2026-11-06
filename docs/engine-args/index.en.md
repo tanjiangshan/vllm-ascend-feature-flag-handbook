@@ -118,7 +118,7 @@ title: Engine args overview
 
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
-| [`--additional-config`](additional-config.md) | `dict` | `"{}"` | Platform extension config (JSON). Sole entry for vLLM-Ascend's 51 feature flags — see the flags overview. | [docs×66](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
+| [`--additional-config`](additional-config.md) | `dict` | `"{}"` | Platform extension config (JSON). Sole entry for vLLM-Ascend's 63 feature flags — see the flags overview. | [docs×66](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
 | `--chat-template` | `str` | `None` | Chat template path. For custom chat formats. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html) |
 | `--default-chat-template-kwargs` | `dict[str, Any]` | `None` | Default chat template kwargs (JSON). E.g. enable_thinking. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
 | `--enable-auto-tool-choice` | `bool` | `false` | Auto tool choice. Use with tool-call-parser. | [docs×18](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |

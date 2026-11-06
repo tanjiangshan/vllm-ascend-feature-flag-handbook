@@ -118,7 +118,7 @@ title: 引擎参数总览
 
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
-| [`--additional-config`](additional-config.md) | `dict` | `"{}"` | 平台扩展配置（JSON）。vLLM-Ascend 51 个特性开关的唯一入口，详见本站特性开关总览。 | [docs×66](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
+| [`--additional-config`](additional-config.md) | `dict` | `"{}"` | 平台扩展配置（JSON）。vLLM-Ascend 63 个特性开关的唯一入口，详见本站特性开关总览。 | [docs×66](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
 | `--chat-template` | `str` | `None` | 对话模板路径。自定义 chat 格式时指定。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html) |
 | `--default-chat-template-kwargs` | `dict[str, Any]` | `None` | 对话模板默认参数（JSON）。如 enable_thinking。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html) |
 | `--enable-auto-tool-choice` | `bool` | `false` | 自动工具选择。配合 tool-call-parser 使用。 | [docs×18](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |

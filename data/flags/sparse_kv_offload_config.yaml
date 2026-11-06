@@ -1,0 +1,20 @@
+key: sparse_kv_offload_config
+name:
+  zh: 稀疏 KV 卸载
+  en: Sparse KV offload
+type: dict
+default: {}
+status: active
+hardware:
+- A5
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 稀疏 KV cache 卸载到 DRAM 的配置。子键：enabled、topk_buffer_size（-1 自动解析为 (1+投机 token 数)×2048）、dram_size_per_dp_GB（110）、keep_device_kv_cache、use_fused_overlap。仅 950 系列产品（A5）；勿在 prefill 节点设置。
+  en: "Config for offloading sparse KV cache to DRAM. Sub-keys: enabled, topk_buffer_size (-1 resolves to (1+num_speculative_tokens)*2048), dram_size_per_dp_GB (110), keep_device_kv_cache, use_fused_overlap. 950-series products (A5) only; do not set on prefill nodes."
+source: vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true

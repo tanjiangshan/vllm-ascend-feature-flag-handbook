@@ -24,6 +24,54 @@
     }
   },
   {
+    "key": "ascend_fusion_config",
+    "name": {
+      "zh": "融合算子配置",
+      "en": "Fused-operator config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "融合算子配置。子键 fusion_ops_gmmswigluquant（默认 true）控制是否使用 GmmSwigluQuant 融合算子。pydantic 校验会拒绝未知子键。",
+      "en": "Fused-operator config. Sub-key fusion_ops_gmmswigluquant (default true) controls the GmmSwigluQuant fused operator. Pydantic validation rejects unknown sub-keys."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
+    "key": "ascend_log_path",
+    "name": {
+      "zh": "Ascend 日志路径",
+      "en": "Ascend log path"
+    },
+    "type": "str",
+    "default": "~/ascend/log/vllm_ascend",
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "vLLM-Ascend 日志输出路径，默认 ~/ascend/log/vllm_ascend。",
+      "en": "vLLM-Ascend log output path; defaults to ~/ascend/log/vllm_ascend."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "ascend_warmup_config",
     "name": {
       "zh": "启动预热配置",
@@ -59,14 +107,14 @@
     },
     "type": "dict",
     "default": {},
-    "status": "active",
+    "status": "deprecated",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "面向 batch-job-aware 调度器的配置。",
-      "en": "Configuration for the batch-job-aware scheduler."
+      "zh": "面向 batch-job-aware 调度器的配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.batch_job_sched_config。",
+      "en": "Config for the batch-job-aware scheduler. Top-level key deprecated since v0.30.0; use scheduler_config.batch_job_sched_config instead."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {
@@ -75,8 +123,37 @@
       "main": true
     },
     "version_note": {
-      "zh": "v0.30.0 新增",
-      "en": "New in v0.30.0"
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.batch_job_sched_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.batch_job_sched_config"
+    }
+  },
+  {
+    "key": "c8_enable_reshape_optim",
+    "name": {
+      "zh": "C8 reshape 优化",
+      "en": "C8 reshape optimization"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [
+      "enable_sparse_li_c8"
+    ],
+    "conflicts": [],
+    "removed_in": [
+      "v0.30.0（源码已无读取点）"
+    ],
+    "desc": {
+      "zh": "LI-C8 的 reshape 优化（仅在 enable_sparse_li_c8 开启时生效）。v0.30.0 起从源码移除。",
+      "en": "Reshape optimization for LI-C8 (only takes effect when enable_sparse_li_c8 is on). Removed from source since v0.30.0."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
     }
   },
   {
@@ -109,6 +186,32 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    }
+  },
+  {
+    "key": "draft_window_size",
+    "name": {
+      "zh": "草稿 KV 滑窗",
+      "en": "Draft KV sliding window"
+    },
+    "type": "int",
+    "default": "None",
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [
+      "--speculative-config（eagle3/dflash/dspark）"
+    ],
+    "conflicts": [],
+    "desc": {
+      "zh": "投机解码的草稿 KV 滑窗：仅将草稿模型注意力限制在最近 N 个 token，目标模型仍用全上下文，输出质量不变。适配 eagle3/dflash/dspark 方法；长上下文运行时超出草稿训练长度导致接受率崩塌的场景使用。",
+      "en": "Draft KV sliding window for speculative decoding: caps only the draft model's attention to the most recent N tokens while the target model keeps full context, leaving output quality unchanged. Works with eagle3/dflash/dspark; for long contexts where the draft's acceptance collapses beyond its trained length."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/speculative_decoding",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
     }
   },
   {
@@ -229,14 +332,14 @@
     },
     "type": "dict",
     "default": {},
-    "status": "active",
+    "status": "deprecated",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "PD 分离解码节点 DyntraLB 负载均衡配置。",
-      "en": "DyntraLB load-balancing configuration for PD-disaggregated decode nodes."
+      "zh": "PD 分离解码节点 DyntraLB 负载均衡配置。仅配置在 Decode 节点上。v0.30.0 起顶层键废弃，请改用 scheduler_config.dyntra_lb_config。",
+      "en": "DyntraLB load-balancing config for the decode node in P/D disaggregation — configure on the Decode node only. Top-level key deprecated since v0.30.0; use scheduler_config.dyntra_lb_config instead."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {
@@ -245,8 +348,8 @@
       "main": true
     },
     "version_note": {
-      "zh": "v0.30.0 新增",
-      "en": "New in v0.30.0"
+      "zh": "v0.30.0 起顶层键不再解析（extra=forbid 会报未知键错误），必须写 scheduler_config.dyntra_lb_config 嵌套形式",
+      "en": "top-level key no longer parsed since v0.30.0 (extra=forbid raises an unknown-key error); must use the nested form scheduler_config.dyntra_lb_config"
     }
   },
   {
@@ -270,10 +373,14 @@
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "启用均衡调度。已弃用，请改用 scheduler_config.enable_balance_scheduling。",
-      "en": "Enable balance scheduling. Deprecated, use scheduler_config.enable_balance_scheduling instead."
+      "zh": "启用均衡调度。v0.30.0 起顶层键废弃（发 deprecation 警告），请改用 scheduler_config.enable_balance_scheduling。",
+      "en": "Enable balance scheduling. Top-level key deprecated since v0.30.0 (deprecation warning); use scheduler_config.enable_balance_scheduling instead."
     },
     "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "顶层键废弃",
+      "en": "top-level key deprecated"
+    },
     "version_support": {
       "v0.23.0": true,
       "v0.30.0": true,
@@ -485,6 +592,32 @@
     }
   },
   {
+    "key": "enable_kvpp",
+    "name": {
+      "zh": "KV 按层并行（KVPP）",
+      "en": "KV layer parallelism (KVPP)"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [
+      "decode_context_parallel_size > 1（DCP）"
+    ],
+    "desc": {
+      "zh": "启用 KVPP（KV 流水线并行），把 MLA/SFA 非混合模型在 TP 各 rank 间冗余的 KV cache 按层分摊，同等显存容纳更多上下文 token 或并发请求。Experimental；仅支持 eager 或 PIECEWISE 图模式；PD 分离时只能在 prefill 节点开启。",
+      "en": "Enable KVPP (KV pipeline parallelism), distributing otherwise-replicated KV caches across TP ranks by layer for non-hybrid MLA/SFA models, so the same HBM fits more context tokens or concurrent requests. Experimental; eager or PIECEWISE graph mode only; for P/D disaggregation enable on the prefill node only."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/kvpp",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "enable_matmul_allreduce",
     "name": {
       "zh": "Matmul-AllReduce 融合",
@@ -678,6 +811,60 @@
     }
   },
   {
+    "key": "enable_sparse_li_c8",
+    "name": {
+      "zh": "LI-C8 稀疏缓存",
+      "en": "LI-C8 sparse cache"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "GLM-5 系列、DeepSeek 稀疏注意力模型"
+    ],
+    "requires": [],
+    "conflicts": [
+      "enable_sparse_li_c4（由 indexer_kv_dtype=mxfp4 自动派生，互斥）"
+    ],
+    "desc": {
+      "zh": "为稀疏注意力（Lightning Indexer）启用 C8 KV cache 布局。与 enable_sparse_li_c4 互斥。官方 GLM5.2 教程实测开启。",
+      "en": "Enable the C8 KV cache layout for sparse attention (Lightning Indexer). Mutually exclusive with enable_sparse_li_c4. Shown enabled in the official GLM5.2 tutorial."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai tutorials/models/GLM5.2",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
+    "key": "enable_sparse_sfa_c8",
+    "name": {
+      "zh": "SFA-C8 稀疏缓存",
+      "en": "SFA-C8 sparse cache"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "GLM-5 / GLM-5.2 等 SFA 模型"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "为 SFA（Sparse Flash Attention）稀疏注意力启用 C8 KV cache 布局。官方 GLM5 / GLM5.2 教程实测开启。",
+      "en": "Enable the C8 KV cache layout for SFA (Sparse Flash Attention). Shown enabled in the official GLM5 / GLM5.2 tutorials."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai tutorials/models/GLM5",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "enable_transpose_kv_cache_by_block",
     "name": {
       "zh": "KV 按块转置",
@@ -753,6 +940,36 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    }
+  },
+  {
+    "key": "hamming_sparse",
+    "name": {
+      "zh": "Hamming 稀疏注意力",
+      "en": "Hamming sparse attention"
+    },
+    "type": "dict",
+    "default": {
+      "enabled": false,
+      "sparse_json_location": ""
+    },
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "removed_in": [
+      "v0.30.0（源码已无读取点）"
+    ],
+    "desc": {
+      "zh": "Hamming 稀疏注意力配置，dict 含 enabled 与 sparse_json_location（稀疏 JSON 文件路径，须真实存在）。v0.30.0 起从源码移除。",
+      "en": "Hamming sparse attention config; dict with enabled and sparse_json_location (path to a real sparse JSON file). Removed from source since v0.30.0."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
     }
   },
   {
@@ -854,6 +1071,30 @@
     }
   },
   {
+    "key": "mix_placement",
+    "name": {
+      "zh": "专家混合放置",
+      "en": "Mixed expert placement"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "混合放置模式（DP×TP 平面上的专家/权重放置策略），计入 RFork 权重传输的兼容性指纹；发送端与接收端配置不一致会导致指纹不匹配。",
+      "en": "Mixed placement mode (expert/weight placement on the DP×TP plane); counted into the RFork weight-transfer compatibility fingerprint — a sender/receiver mismatch breaks the fingerprint."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/rfork",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "mlapo_keep_prefill_weights",
     "name": {
       "zh": "保留 prefill 权重",
@@ -935,6 +1176,32 @@
     }
   },
   {
+    "key": "multistream_engram_overlap",
+    "name": {
+      "zh": "Engram 多流重叠",
+      "en": "Engram multistream overlap"
+    },
+    "type": "bool",
+    "default": "硬件派生（A5 默认 true，其余 false）",
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "DeepSeek V4.1 等 Engram 模型"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "Engram 模块多流重叠。默认仅在 A5（FP8 优化设备家族）开启；显式设置覆盖默认策略。FULL 图需在消费者侧等待描述符相关的外部事件，故默认策略因硬件而异。",
+      "en": "Multistream overlap for the Engram module. Defaults to on only on A5 (FP8-optimized device family); explicit settings override. FULL graphs wait on descriptor-specific external events at consumers, hence the hardware-dependent default."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "multistream_overlap_gate",
     "name": {
       "zh": "多流门控重叠",
@@ -950,8 +1217,8 @@
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "启用多流重叠门控，仅对含共享专家的 MoE 模型生效。",
-      "en": "Enable multi-stream overlap gating; only effective on MoE models with shared experts."
+      "zh": "启用多流重叠门控，仅对含共享专家的 MoE 模型生效。已移除（v0.30.0 起源码无读取点）。",
+      "en": "Enable multistream overlap gating; only effective for MoE models with shared experts. Removed (no source read site since v0.30.0)."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {
@@ -1022,16 +1289,20 @@
     },
     "type": "dict",
     "default": {},
-    "status": "active",
+    "status": "deprecated",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "动态分块流水线并行（profiling chunk）配置。",
-      "en": "Configuration for dynamic chunked pipeline parallel (profiling chunk)."
+      "zh": "动态分块流水线并行（profiling chunk）配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.profiling_chunk_config。",
+      "en": "Dynamic-chunk pipeline-parallel (profiling chunk) config. Top-level key deprecated since v0.30.0; use scheduler_config.profiling_chunk_config instead."
     },
     "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config"
+    },
     "version_support": {
       "v0.23.0": true,
       "v0.30.0": true,
@@ -1046,16 +1317,20 @@
     },
     "type": "bool",
     "default": false,
-    "status": "active",
+    "status": "deprecated",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "启用重计算调度器。仅在 PD 分离的 D 节点（kv_consumer）有效；在 P 节点或 PD-mixed 模式下启用会在启动时报明确错误。",
-      "en": "Enable the recompute scheduler. Only valid on PD-disaggregated D nodes (kv_consumer); enabling it on P nodes or PD-mixed mode fails startup with a clear error."
+      "zh": "启用重计算调度器。仅在 PD 分离的 D 节点（kv_consumer）有效；在 P 节点或 PD-mixed 模式下启用会在启动时报明确错误。v0.30.0 起顶层键废弃，请改用 scheduler_config.recompute_scheduler_enable。",
+      "en": "Enable the recompute scheduler. Effective only on the decode node (kv_consumer) of a P/D disaggregation; enabling on a prefill node or PD-mixed mode raises an explicit startup error. Top-level key deprecated since v0.30.0; use scheduler_config.recompute_scheduler_enable instead. mode fails startup with a clear error."
     },
     "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.recompute_scheduler_enable",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.recompute_scheduler_enable"
+    },
     "version_support": {
       "v0.23.0": true,
       "v0.30.0": true,
@@ -1230,20 +1505,20 @@
     },
     "type": "str",
     "default": null,
-    "status": "active",
+    "status": "removed",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "设置 KV dump 根目录（dump.dump_dir），默认由报告根目录派生。",
-      "en": "Set the KV dump root directory (dump.dump_dir). Default derived from the report root."
+      "zh": "设置 KV dump 根目录（dump.dump_dir），默认由报告根目录派生。已移除，请改用 runtime_config.dump.dump_dir。",
+      "en": "Set the KV dump root directory (dump.dump_dir), derived from the report root by default. Removed; use runtime_config.dump.dump_dir instead."
     },
     "source": "vllm_ascend/ runtime_guard (docs: feature_guide/runtime_guard.md)",
     "version_support": {
       "v0.23.0": false,
       "v0.30.0": false,
-      "main": true
+      "main": false
     },
     "version_note": {
       "zh": "Runtime Guard 特性的一部分，main 分支新增",
@@ -1258,20 +1533,20 @@
     },
     "type": "str",
     "default": null,
-    "status": "active",
+    "status": "removed",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "覆盖报告根目录，默认 /runtime/report。",
-      "en": "Override the report root directory. Default: /runtime/report."
+      "zh": "覆盖报告根目录，默认 /runtime/report。已移除，请改用 runtime_config.report_dir。",
+      "en": "Override the report root directory (default /runtime/report). Removed; use runtime_config.report_dir instead."
     },
     "source": "vllm_ascend/ runtime_guard (docs: feature_guide/runtime_guard.md)",
     "version_support": {
       "v0.23.0": false,
       "v0.30.0": false,
-      "main": true
+      "main": false
     },
     "version_note": {
       "zh": "Runtime Guard 特性的一部分，main 分支新增",
@@ -1307,6 +1582,32 @@
     }
   },
   {
+    "key": "sfa_dcp_force_tmajor_restore",
+    "name": {
+      "zh": "SFA DCP T-major 恢复",
+      "en": "SFA DCP T-major restore"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "SFA 模型 + DCP"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "SFA 注意力在 DCP（Decode Context Parallel）下强制 T-major 布局恢复，仅调试/兼容用途，正常部署无需设置。",
+      "en": "Force T-major layout restore for SFA attention under DCP (Decode Context Parallel). Debug/compatibility only — no need to set in normal deployments."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    }
+  },
+  {
     "key": "short_request_first_config",
     "name": {
       "zh": "短请求优先调度",
@@ -1314,14 +1615,14 @@
     },
     "type": "dict",
     "default": {},
-    "status": "active",
+    "status": "deprecated",
     "hardware": [],
     "models": [],
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。",
-      "en": "ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes."
+      "zh": "ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。v0.30.0 起顶层键废弃，请改用 scheduler_config.short_request_first_config。",
+      "en": "ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes. Top-level key deprecated since v0.30.0; use scheduler_config.short_request_first_config instead."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {
@@ -1330,8 +1631,34 @@
       "main": true
     },
     "version_note": {
-      "zh": "v0.30.0 新增",
-      "en": "New in v0.30.0"
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.short_request_first_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.short_request_first_config"
+    }
+  },
+  {
+    "key": "sparse_kv_offload_config",
+    "name": {
+      "zh": "稀疏 KV 卸载",
+      "en": "Sparse KV offload"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [
+      "A5"
+    ],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "稀疏 KV cache 卸载到 DRAM 的配置。子键：enabled、topk_buffer_size（-1 自动解析为 (1+投机 token 数)×2048）、dram_size_per_dp_GB（110）、keep_device_kv_cache、use_fused_overlap。仅 950 系列产品（A5）；勿在 prefill 节点设置。",
+      "en": "Config for offloading sparse KV cache to DRAM. Sub-keys: enabled, topk_buffer_size (-1 resolves to (1+num_speculative_tokens)*2048), dram_size_per_dp_GB (110), keep_device_kv_cache, use_fused_overlap. 950-series products (A5) only; do not set on prefill nodes."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
     }
   },
   {
@@ -1378,8 +1705,8 @@
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "权重预取配置。",
-      "en": "Weight prefetch configuration."
+      "zh": "权重预取配置。已移除（v0.30.0 起源码无读取点）。",
+      "en": "Weight prefetch config. Removed (no source read site since v0.30.0)."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {

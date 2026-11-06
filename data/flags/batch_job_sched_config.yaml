@@ -4,19 +4,19 @@ name:
   en: Batch-job scheduler config
 type: dict
 default: {}
-status: active
+status: deprecated
 hardware: []
 models: []
 requires: []
 conflicts: []
 desc:
-  zh: 面向 batch-job-aware 调度器的配置。
-  en: Configuration for the batch-job-aware scheduler.
+  zh: 面向 batch-job-aware 调度器的配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.batch_job_sched_config。
+  en: Config for the batch-job-aware scheduler. Top-level key deprecated since v0.30.0; use scheduler_config.batch_job_sched_config instead.
 source: vllm_ascend/config.py
 version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
 version_note:
-  zh: v0.30.0 新增
-  en: New in v0.30.0
+  zh: v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.batch_job_sched_config
+  en: top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.batch_job_sched_config

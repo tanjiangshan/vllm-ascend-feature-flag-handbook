@@ -1,0 +1,20 @@
+key: enable_kvpp
+name:
+  zh: KV 按层并行（KVPP）
+  en: KV layer parallelism (KVPP)
+type: bool
+default: false
+status: active
+hardware: []
+models: []
+requires: []
+conflicts:
+- decode_context_parallel_size > 1（DCP）
+desc:
+  zh: 启用 KVPP（KV 流水线并行），把 MLA/SFA 非混合模型在 TP 各 rank 间冗余的 KV cache 按层分摊，同等显存容纳更多上下文 token 或并发请求。Experimental；仅支持 eager 或 PIECEWISE 图模式；PD 分离时只能在 prefill 节点开启。
+  en: Enable KVPP (KV pipeline parallelism), distributing otherwise-replicated KV caches across TP ranks by layer for non-hybrid MLA/SFA models, so the same HBM fits more context tokens or concurrent requests. Experimental; eager or PIECEWISE graph mode only; for P/D disaggregation enable on the prefill node only.
+source: vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/kvpp
+version_support:
+  v0.23.0: false
+  v0.30.0: true
+  main: true

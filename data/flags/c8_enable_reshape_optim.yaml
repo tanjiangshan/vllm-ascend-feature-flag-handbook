@@ -1,0 +1,22 @@
+key: c8_enable_reshape_optim
+name:
+  zh: C8 reshape 优化
+  en: C8 reshape optimization
+type: bool
+default: false
+status: removed
+hardware: []
+models: []
+requires:
+- enable_sparse_li_c8
+conflicts: []
+removed_in:
+- v0.30.0（源码已无读取点）
+desc:
+  zh: LI-C8 的 reshape 优化（仅在 enable_sparse_li_c8 开启时生效）。v0.30.0 起从源码移除。
+  en: Reshape optimization for LI-C8 (only takes effect when enable_sparse_li_c8 is on). Removed from source since v0.30.0.
+source: vllm_ascend/ascend_config.py @ v0.23.0
+version_support:
+  v0.23.0: true
+  v0.30.0: false
+  main: false

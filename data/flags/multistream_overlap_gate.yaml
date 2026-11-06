@@ -11,8 +11,8 @@ models:
 requires: []
 conflicts: []
 desc:
-  zh: 启用多流重叠门控，仅对含共享专家的 MoE 模型生效。
-  en: Enable multi-stream overlap gating; only effective on MoE models with shared experts.
+  zh: 启用多流重叠门控，仅对含共享专家的 MoE 模型生效。已移除（v0.30.0 起源码无读取点）。
+  en: Enable multistream overlap gating; only effective for MoE models with shared experts. Removed (no source read site since v0.30.0).
 source: vllm_ascend/config.py
 version_support:
   v0.23.0: true

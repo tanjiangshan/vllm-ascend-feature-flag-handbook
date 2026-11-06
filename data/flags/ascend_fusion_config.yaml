@@ -1,0 +1,19 @@
+key: ascend_fusion_config
+name:
+  zh: 融合算子配置
+  en: Fused-operator config
+type: dict
+default: {}
+status: active
+hardware: []
+models: []
+requires: []
+conflicts: []
+desc:
+  zh: 融合算子配置。子键 fusion_ops_gmmswigluquant（默认 true）控制是否使用 GmmSwigluQuant 融合算子。pydantic 校验会拒绝未知子键。
+  en: Fused-operator config. Sub-key fusion_ops_gmmswigluquant (default true) controls the GmmSwigluQuant fused operator. Pydantic validation rejects unknown sub-keys.
+source: vllm_ascend/ascend_config.py
+version_support:
+  v0.23.0: true
+  v0.30.0: true
+  main: true

@@ -4,19 +4,19 @@ name:
   en: Short-request-first scheduling
 type: dict
 default: {}
-status: active
+status: deprecated
 hardware: []
 models: []
 requires: []
 conflicts: []
 desc:
-  zh: ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。
-  en: ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes.
+  zh: ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。v0.30.0 起顶层键废弃，请改用 scheduler_config.short_request_first_config。
+  en: ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes. Top-level key deprecated since v0.30.0; use scheduler_config.short_request_first_config instead.
 source: vllm_ascend/config.py
 version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
 version_note:
-  zh: v0.30.0 新增
-  en: New in v0.30.0
+  zh: v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.short_request_first_config
+  en: top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.short_request_first_config
