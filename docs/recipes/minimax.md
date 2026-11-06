@@ -14,7 +14,7 @@ MiniMax M3 / M3.1-Flash 的官方部署推荐命令。
     官方原文 / Source: <https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html>
 
     ```bash
-    vllm serve ${MODEL_PATH}  \
+    vllm serve "$MODEL_PATH"  \
         --host 0.0.0.0  \
         --port 11223  \
         --served-model-name minimax-m3.1-flash  \
@@ -39,13 +39,13 @@ MiniMax M3 / M3.1-Flash 的官方部署推荐命令。
               "enable_flashcomm1": true,
               "multistream_overlap_shared_expert": true,
               "enable_shared_expert_dp":true,
-              "weight_nz_mode": 2
+              "weight_nz_mode": 1
           }'  \
         --speculative-config '{
               "method":"dspark",
               "num_speculative_tokens":7,
               "enforce_eager":true,
-              "draft_sample_method":"probabilistic"
+              "kv_cache_dtype":"bfloat16"
           }'  \
         --safetensors-load-strategy prefetch
     ```
