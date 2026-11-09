@@ -62,7 +62,7 @@ title: Engine args overview
 | `--async-scheduling` | `bool` | `None` | Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput. | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | Disable hybrid KV cache manager. Auto-detected by default; rarely set manually. | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | Chunked prefill. Enabled by default on vLLM main (SchedulerConfig default True), chunked by remaining max_num_batched_tokens; auto-disabled for encoder-decoder models. | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly. | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
+| [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly. | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |
 | `--long-prefill-token-threshold` | `int` | `0` | Long prefill token threshold. Requests above this use the chunked path. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html) |
 | `--mamba-ssm-cache-dtype` | `MambaDType` | `"auto"` | Cache dtype for Mamba/SSM models. Default auto. | [docs×4](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html) |
 | [`--max-model-len`](max-model-len.md) | `int` | `None` | Model context length. Auto-derived from model config if unset; must be set for long-context. | [docs×52](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
@@ -101,7 +101,7 @@ title: Engine args overview
 
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
-| [`--speculative-config`](speculative-config.md) | `dict[str, Any]` | `None` | Speculative decoding config (JSON). MTP/EAGLE3 for DeepSeek/Kimi in Ascend tutorials. | [docs×40](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
+| [`--speculative-config`](speculative-config.md) | `dict[str, Any]` | `None` | Speculative decoding config (JSON). MTP/EAGLE3 for DeepSeek/Kimi in Ascend tutorials. | [docs×40](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |
 
 ### KV Transfer & PD
 

@@ -886,7 +886,7 @@
     ],
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
     ]
@@ -905,8 +905,8 @@
     "examples": [
       {
         "value": "{\"method\":",
-        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
-        "note": "from tutorials/features/suffix_speculative_decoding.md"
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
+        "note": "from user_guide/feature_guide/speculative_decoding.md"
       },
       {
         "value": "{\"method\":\"dspark\",\"num_speculative_tokens\":5,\"enforce_eager",
@@ -920,7 +920,7 @@
       }
     ],
     "sources": [
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
@@ -956,7 +956,7 @@
     ],
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
     ]
@@ -1103,7 +1103,7 @@
     ],
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
     ]
@@ -1226,7 +1226,7 @@
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html"
     ]
   },
@@ -1685,7 +1685,7 @@
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html"
     ]
   },
@@ -1902,7 +1902,7 @@
       }
     ],
     "sources": [
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
@@ -2050,7 +2050,7 @@
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
     ]
   },
@@ -2084,7 +2084,7 @@
     ],
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
     ]

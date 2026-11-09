@@ -62,7 +62,7 @@ title: 引擎参数总览
 | `--async-scheduling` | `bool` | `None` | 异步调度。默认 None（自动）；部分官方教程显式开启以提升吞吐。 | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | 禁用混合 KV cache 管理器。vLLM 默认按模型自动判断，一般不手动设。 | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | 分块 prefill。vLLM main 默认开启（SchedulerConfig 默认 True），按 max_num_batched_tokens 剩余额度切分；encoder-decoder 模型自动禁用。 | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
-| [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | 模型执行器显存占比（0–1）。默认 None → 可扩展 KV cache 时解析为 1.0，否则 0.92（vLLM main 源码）；官方教程多显式设 0.80–0.90。 | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
+| [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | 模型执行器显存占比（0–1）。默认 None → 可扩展 KV cache 时解析为 1.0，否则 0.92（vLLM main 源码）；官方教程多显式设 0.80–0.90。 | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |
 | `--long-prefill-token-threshold` | `int` | `0` | 长 prefill token 阈值。超过该值的请求走分块路径。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html) |
 | `--mamba-ssm-cache-dtype` | `MambaDType` | `"auto"` | Mamba/SSM 模型的 cache dtype。默认为 auto。 | [docs×4](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html) |
 | [`--max-model-len`](max-model-len.md) | `int` | `None` | 模型最大上下文长度。不设则从模型 config 自动推断。长文本场景必须显式设置。 | [docs×52](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html) |
@@ -101,7 +101,7 @@ title: 引擎参数总览
 
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
-| [`--speculative-config`](speculative-config.md) | `dict[str, Any]` | `None` | 投机解码配置（JSON）。Ascend 教程中为 DeepSeek/Kimi 配置 MTP/EAGLE3。 | [docs×40](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html) |
+| [`--speculative-config`](speculative-config.md) | `dict[str, Any]` | `None` | 投机解码配置（JSON）。Ascend 教程中为 DeepSeek/Kimi 配置 MTP/EAGLE3。 | [docs×40](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |
 
 ### KV 传输与 PD 分离
 

@@ -642,7 +642,7 @@ args:
     note: from tutorials/models/DeepSeek-V4-Pro.md
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
 - arg: speculative-config
@@ -656,8 +656,8 @@ args:
   doc_count: 40
   examples:
   - value: '{"method":'
-    source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
-    note: from tutorials/features/suffix_speculative_decoding.md
+    source: https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
+    note: from user_guide/feature_guide/speculative_decoding.md
   - value: '{"method":"dspark","num_speculative_tokens":5,"enforce_eager'
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
     note: from tutorials/models/DeepSeek-V4-Pro.md
@@ -665,7 +665,7 @@ args:
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
     note: from tutorials/models/DeepSeek-V4-Pro.md
   sources:
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html
@@ -690,7 +690,7 @@ args:
     note: from tutorials/models/DeepSeek-V4-Pro.md
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
 - arg: chat-template
@@ -795,7 +795,7 @@ args:
     note: from tutorials/features/pd_disaggregation_mooncake_single_node.md
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
 - arg: profiler-config
@@ -880,7 +880,7 @@ args:
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html
 - arg: tokens-only
   category: serving
@@ -1203,7 +1203,7 @@ args:
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html
 - arg: attention-config
   category: compilation
@@ -1365,7 +1365,7 @@ args:
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html
     note: from tutorials/models/Kimi-K2.6.md
   sources:
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html
@@ -1468,7 +1468,7 @@ args:
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
 - arg: max-num-batched-tokens
   category: scheduling
@@ -1491,7 +1491,7 @@ args:
     note: from tutorials/models/DeepSeek-V4-Flash.md
   sources:
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html
-  - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/suffix_speculative_decoding.html
+  - https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html
   - https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html
 - arg: max-num-seqs
