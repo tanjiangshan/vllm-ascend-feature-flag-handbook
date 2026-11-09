@@ -20,6 +20,8 @@ title: 特性开关总览
 > | 校验 | AscendConfig pydantic（`extra="forbid"`） | vLLM 引擎校验 |
 >
 > 注意：部分引擎参数的取值会被 Ascend 插件二次消费并派生开关（如 `--kv-cache-dtype fp8` 派生 `enable_sparse_sfa_c8`），两页在交叉处互相链接。
+>
+> 📍 Ascend 配置共有 **6 类入口**（CLI 参数 / additional-config / CLI 值域补丁 / kv-transfer-config 字段 / 环境变量 / runtime_config.json），本页只是其一——先看[配置入口总览](../config-entry-points.md)。
 
 > 本页表格由 [`scripts/generate_tables.py`](https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/blob/main/scripts/generate_tables.py) 从 `data/flags/*.yaml` 自动生成，请勿手改表格区域。
 

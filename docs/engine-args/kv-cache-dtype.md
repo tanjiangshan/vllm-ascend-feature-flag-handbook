@@ -54,8 +54,23 @@ title: kv-cache-dtype
 
 - 官方教程显式取值：
   - **fp8**——[DeepSeek-V4-Pro](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html)：`--kv-cache-dtype fp8`，并配 `--attention_config.indexer_kv_dtype fp8`
-  - **int8** / **mxfp8**——其他量化模型教程
+  - **int8** / **mxfp8**——见下节补丁扩展取值
 - 注意精度与显存的权衡是显式的：fp8 KV 省一半显存，但需按业务验证精度。
+
+## Ascend 补丁扩展取值（int8 / mxfp8）
+
+上游 `CacheDType` 的合法取值（auto / fp8 / fp8_e5m2 / fp8_e4m3 / bf16 / fp16…）**不含 int8**。vLLM-Ascend 通过平台补丁 [`patch/platform/patch_kv_cache_dtype.py`](https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/patch/platform/patch_kv_cache_dtype.py) 把两个 Ascend 专属取值追加进 `CacheConfig.cache_dtype` 的 Literal——**同一个 `--kv-cache-dtype` 参数，在 Ascend 环境下多两个合法值**：
+
+| 补丁值 | 含义 | 适用 |
+|---|---|---|
+| `int8` | KV cache 以 int8 存储 | DeepSeek V4 类稀疏 MLA 模型的 MLA KV cache；在 SFA 模型上派生 [`enable_sparse_sfa_c8`](../flags/enable-sparse-sfa-c8.md)（v0.30.0 起） |
+| `mxfp8` | C8-MXFP 布局：FP8 KV + E8M0 scales | A5 芯片 QFA 路径（补丁注释原文 "the A5 QFA path"）；C8-MXFP 后端要求 512-token 页 |
+
+**补丁机制**：改写 `CacheConfig` 的三处 Literal 引用（模块符号 `CacheDType`、类注解、dataclass 字段类型）后 `rebuild_dataclass(force=True)` 重建 pydantic 校验 schema；main 分支还同步追加 `KV_CACHE_DTYPES` 镜像列表（`is_known_kv_cache_dtype` 校验读它），CLI choices 在 `platform.py::pre_register_and_update` 一并加宽；worker 进程经 `patch/worker/patch_kv_cache_dtype.py` 二次套用。补丁幂等，可重复调用。
+
+**坑**：离开 Ascend 环境这两个值不合法——校验逻辑由插件激活时注入，光看 vLLM 官方文档不知道它们存在。v0.30.0 的 `derive_and_validate` 已消费 `int8`（`cache_dtype in ["fp8", "int8"]` 派生 SFA-C8），即 int8 值域至少从 v0.30.0 起可用。
+
+配套的 [`patch/platform/patch_indexer_kv_dtype.py`](https://github.com/vllm-project/vllm-ascend/blob/main/vllm_ascend/patch/platform/patch_indexer_kv_dtype.py) 对 `--attention_config.indexer_kv_dtype` 做同样的事：上游 Literal 为 `auto / bf16 / fp8 / mxfp4 / nvfp4`，补丁追加 `int8`（DeepSeek V4 Ascend indexer K cache）。这也是 v0.30.0 起 `indexer_kv_dtype ∈ {fp8, int8}` 派生 LI-C8 的前提。
 
 ## 用法
 

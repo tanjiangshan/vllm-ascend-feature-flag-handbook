@@ -1211,8 +1211,8 @@ args:
   default: AttentionConfig()
   detail_page: false
   desc:
-    zh: 注意力后端及配置。子键 indexer_kv_dtype 是 Lightning Indexer 稀疏注意力的 KV dtype（fp8/int8/mxfp4），v0.30.0 起分别派生 LI-C8/LI-C4 布局；与 --kv-cache-dtype 配对使用，P/D 两侧取值须一致。
-    en: Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention (fp8/int8/mxfp4), deriving LI-C8/LI-C4 layouts since v0.30.0; pair with --kv-cache-dtype and keep P/D values identical.
+    zh: 注意力后端及配置。子键 indexer_kv_dtype 是 Lightning Indexer 稀疏注意力的 KV dtype，v0.30.0 起 ∈ {fp8, int8} 派生 LI-C8 布局、mxfp4 派生 LI-C4；其中 int8 由 Ascend 平台补丁注入上游值域（patch_indexer_kv_dtype.py，上游仅 auto/bf16/fp8/mxfp4/nvfp4）；与 --kv-cache-dtype 配对使用，P/D 两侧取值须一致。
+    en: Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention; since v0.30.0 {fp8, int8} derives LI-C8 and mxfp4 derives LI-C4. The int8 value is injected into the upstream domain by an Ascend platform patch (patch_indexer_kv_dtype.py; upstream has only auto/bf16/fp8/mxfp4/nvfp4). Pair with --kv-cache-dtype and keep P/D values identical.
   doc_count: 9
   examples: []
   sources:

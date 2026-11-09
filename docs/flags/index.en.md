@@ -20,6 +20,8 @@ title: Feature Flags Overview
 > | Validation | AscendConfig pydantic (`extra="forbid"`) | vLLM engine validation |
 >
 > Note: some engine-arg values are re-consumed by the Ascend plugin to derive flags (e.g. `--kv-cache-dtype fp8` derives `enable_sparse_sfa_c8`); the two pages cross-link where they meet.
+>
+> 📍 Ascend configuration has **6 entry points** in total (CLI args / additional-config / CLI value-domain patches / kv-transfer-config fields / env vars / runtime_config.json) — this page is just one of them. Start from the [configuration entry points overview](../config-entry-points.md).
 
 > The tables below are auto-generated from `data/flags/*.yaml` by `scripts/generate_tables.py`. Do not edit them by hand.
 

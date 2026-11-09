@@ -13,6 +13,7 @@ Besides the 10+ flags being migrated (see [migration table](migration.md)), the 
 | `VLLM_ASCEND_ENABLE_BATCH_MEMCPY` | `"1"` / `"0"` / unset | unset (auto) | Controls the `aclrtMemcpyBatchAsync` compile path for KV cache offloading. `"1"` force-enables, `"0"` force-disables, unset auto-detects from CANN headers. **Note**: no `--additional-config` key exists; env var only. |
 | `DYNAMIC_EPLB` | `"true"` / `"false"` | `"false"` | Safety guard for dynamic EPLB. Only takes effect when `dynamic_eplb: true` (or record mode) is also set in config. See [`dynamic_eplb`](flags/dynamic-eplb.md) |
 | `EXPERT_MAP_RECORD` | bool | unset | EPLB record mode: records the expert map and saves it to `expert_map_record_path` |
+| `HCCL_SO_PATH` | path | unset (`libhccl.so`) | HCCL library path used by the pyhccl communicator backend. Only needed when explicitly using the pyhccl backend |
 
 ## Build-time environment variables
 
@@ -24,6 +25,11 @@ These affect **source builds** only, not runtime behavior. Full list: [official 
 | `MAX_JOBS` | CPU core count | Build parallelism |
 | `SOC_VERSION` | auto-detect | Chip version, auto-queried via `npu-smi` during build |
 | `ASCEND_HOME_PATH` | `/usr/local/Ascend/ascend-toolkit/latest` | CANN toolkit path |
+| `VERBOSE` | `"0"` | Verbose logs during compilation; set `1` for more build output |
+| `CMAKE_BUILD_TYPE` | `Release` | CMake build type: `Release` / `Debug` / `RelWithDebugInfo` |
+| `C_COMPILER` | system default | C compiler path (when building custom kernels from source) |
+| `CXX_COMPILER` | system default | C++ compiler path (same as above) |
+| `VLLM_VERSION` | unset | Version override for source-installed vLLM: a locally source-built vLLM often reports a version different from PyPI; set this so vllm-ascend's dependency resolution pins the correct one (developer scenario) |
 
 ## Recommendations
 
