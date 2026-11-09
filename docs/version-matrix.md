@@ -25,7 +25,7 @@ title: 版本支持矩阵
 <!-- MATRIX_START -->
 | 配置键 | v0.23.0 | v0.30.0 | main | 备注 |
 |---|---|---|---|---|
-| [`ascend_compilation_config`](flags/ascend-compilation-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| [`ascend_compilation_config`](flags/ascend-compilation-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | enable_super_kernel / fuse_muls_add 自 v0.30.0 起；fuse_allreduce_rms 仅 v0.23.0 有 |
 | [`ascend_fusion_config`](flags/ascend-fusion-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`ascend_log_path`](flags/ascend-log-path.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`ascend_warmup_config`](flags/ascend-warmup-config.md) | — | :white_check_mark: | :white_check_mark: | v0.30.0 新增 |

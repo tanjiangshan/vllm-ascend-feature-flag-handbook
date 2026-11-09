@@ -32,7 +32,7 @@ title: 特性开关总览
 <!-- TABLE_ZH_START -->
 | 配置键 | 中文名 | 类型 | 默认值 | 状态 | 旧环境变量 | v0.23 / v0.30 / main | 适用芯片 | 说明 |
 |---|---|---|---|---|---|---|---|---|
-| [`ascend_compilation_config`](ascend-compilation-config.md) | Ascend 编译配置 | `dict` | `{}` | :white_check_mark: active | — | :white_check_mark: :white_check_mark: :white_check_mark: | All | Ascend 编译配置。 |
+| [`ascend_compilation_config`](ascend-compilation-config.md) | Ascend 编译配置 | `dict` | `{}` | :white_check_mark: active | — | :white_check_mark: :white_check_mark: :white_check_mark: | All | Ascend 图编译配置（typed 为 AscendCompilationConfig）。子键：enable_npugraph_ex（默认 true）、enable_static_kernel（默认 false，静态形状场景按 batch_size 预编译算子）、enable_super_kernel（v0.30.0 新增，缺省时跟随 enable_static_kernel）、fuse_norm_quant / fuse_qknorm_rope / fuse_muls_add（v0.30.0 新增，默认均 true）；v0.23.0 另有 fuse_allreduce_rms。依赖链 super_kernel → static_kernel → npugraph_ex，硬件不支持时自动降级。 |
 | [`ascend_fusion_config`](ascend-fusion-config.md) | 融合算子配置 | `dict` | `{}` | :white_check_mark: active | — | :white_check_mark: :white_check_mark: :white_check_mark: | All | 融合算子配置。子键 fusion_ops_gmmswigluquant（默认 true）控制是否使用 GmmSwigluQuant 融合算子。pydantic 校验会拒绝未知子键。 |
 | [`ascend_log_path`](ascend-log-path.md) | Ascend 日志路径 | `str` | `"~/ascend/log/vllm_ascend"` | :white_check_mark: active | — | :white_check_mark: :white_check_mark: :white_check_mark: | All | vLLM-Ascend 日志输出路径，默认 ~/ascend/log/vllm_ascend。 |
 | [`ascend_warmup_config`](ascend-warmup-config.md) | 启动预热配置 | `dict` | `{}` | :white_check_mark: active | — | — :white_check_mark: :white_check_mark: | All | 与权重加载重叠的启动预热配置。 |

@@ -25,7 +25,7 @@ Legend: :white_check_mark: = supported; — = not present (never introduced, or 
 <!-- MATRIX_START -->
 | Config key | v0.23.0 | v0.30.0 | main | Note |
 |---|---|---|---|---|
-| [`ascend_compilation_config`](flags/ascend-compilation-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| [`ascend_compilation_config`](flags/ascend-compilation-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | enable_super_kernel / fuse_muls_add since v0.30.0; fuse_allreduce_rms exists only on v0.23.0 |
 | [`ascend_fusion_config`](flags/ascend-fusion-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`ascend_log_path`](flags/ascend-log-path.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`ascend_warmup_config`](flags/ascend-warmup-config.md) | — | :white_check_mark: | :white_check_mark: | New in v0.30.0 |

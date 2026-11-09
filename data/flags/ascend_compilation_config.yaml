@@ -10,10 +10,13 @@ models: []
 requires: []
 conflicts: []
 desc:
-  zh: Ascend 编译配置。
-  en: Configuration for Ascend compilation.
-source: vllm_ascend/config.py
+  zh: "Ascend 图编译配置（typed 为 AscendCompilationConfig）。子键：enable_npugraph_ex（默认 true）、enable_static_kernel（默认 false，静态形状场景按 batch_size 预编译算子）、enable_super_kernel（v0.30.0 新增，缺省时跟随 enable_static_kernel）、fuse_norm_quant / fuse_qknorm_rope / fuse_muls_add（v0.30.0 新增，默认均 true）；v0.23.0 另有 fuse_allreduce_rms。依赖链 super_kernel → static_kernel → npugraph_ex，硬件不支持时自动降级。"
+  en: "Ascend graph-compilation config (typed as AscendCompilationConfig). Sub-keys: enable_npugraph_ex (default true), enable_static_kernel (default false, pre-compiles per-batch-size operator binaries for static shapes), enable_super_kernel (new in v0.30.0, inherits enable_static_kernel when omitted), fuse_norm_quant / fuse_qknorm_rope / fuse_muls_add (new in v0.30.0, all default true); v0.23.0 also has fuse_allreduce_rms. Dependency chain super_kernel -> static_kernel -> npugraph_ex with auto-downgrade on unsupported hardware."
+source: vllm_ascend/ascend_config.py
 version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+version_note:
+  zh: enable_super_kernel / fuse_muls_add 自 v0.30.0 起；fuse_allreduce_rms 仅 v0.23.0 有
+  en: enable_super_kernel / fuse_muls_add since v0.30.0; fuse_allreduce_rms exists only on v0.23.0
