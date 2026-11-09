@@ -1226,14 +1226,14 @@ args:
   default: CompilationConfig()
   detail_page: true
   desc:
-    zh: torch.compile 与 CUDA Graph 捕获配置。Ascend 官方教程中常配 cudagraph_capture_sizes 提升首 token 延迟。
-    en: torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_capture_sizes for TTFT.
+    zh: torch.compile 与 CUDA Graph 捕获配置。Ascend 官方教程常配 cudagraph_mode（如 FULL_DECODE_ONLY）或 cudagraph_capture_sizes 提升首 token 延迟。
+    en: torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_mode (e.g. FULL_DECODE_ONLY) or cudagraph_capture_sizes for TTFT.
   doc_count: 53
   examples:
   - value: '{"cudagraph_capture_sizes":'
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3-Dense.html
     note: from tutorials/models/Qwen3-Dense.md
-  - value: '{"cudagraph_capture_sizes":[4,8,12,16,20,24,28,32],"cudagrap'
+  - value: '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
     source: https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html
     note: from tutorials/models/Qwen3.8-Flash-Next.md
   - value: '{"cudagraph_mode":'

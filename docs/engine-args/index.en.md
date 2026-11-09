@@ -74,7 +74,7 @@ title: Engine args overview
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
 | `--attention-config` | `AttentionConfig` | `"AttentionConfig()"` | Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention; since v0.30.0 {fp8, int8} derives LI-C8 and mxfp4 derives LI-C4. The int8 value is injected into the upstream domain by an Ascend platform patch (patch_indexer_kv_dtype.py; upstream has only auto/bf16/fp8/mxfp4/nvfp4). Pair with --kv-cache-dtype and keep P/D values identical. | [docs×9](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
-| [`--compilation-config`](compilation-config.md) | `CompilationConfig` | `"CompilationConfig()"` | torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_capture_sizes for TTFT. | [docs×53](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
+| [`--compilation-config`](compilation-config.md) | `CompilationConfig` | `"CompilationConfig()"` | torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_mode (e.g. FULL_DECODE_ONLY) or cudagraph_capture_sizes for TTFT. | [docs×53](https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html) |
 | [`--enforce-eager`](enforce-eager.md) | `bool` | `false` | Force eager mode (skip CUDA Graph). For first deploy/debug; disable in production for graph-capture speed. | [docs×21](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html) |
 
 ### Model & Loading
