@@ -82,16 +82,6 @@ vLLM-Ascend 通过**特性开关**控制大量实验性、场景化的优化能�
 
 </div>
 
-## 常用开关 TOP 5
-
-| 配置键 | 作用 | 默认值 |
-|---|---|---|
-| [`enable_fused_mc2`](flags/enable-fused-mc2.md) | MoE 融合 MC2 算子（性能关键） | `0` |
-| [`weight_nz_mode`](flags/weight-nz-mode.md) | 权重 NZ 格式（量化模型性能） | `1` |
-| [`enable_mlapo`](flags/enable-mlapo.md) | 模型逐层自适应并行优化 | `true` |
-| [`scheduler_config`](flags/scheduler-config.md) | 调度器配置规范层级（v0.30.0 新增） | `{}` |
-| [`rl_config`](flags/rl-config.md) | 一键 RL 模式（v0.30.0 新增） | `{}` |
-
 ## 贡献
 
 本手册由社区维护，数据源是 [`data/flags/`](https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/tree/main/data/flags) 下的 YAML 文件。修正一个默认值、补充一条风险提示、新增一个开关，都是受欢迎的贡献。详见[贡献指南](contributing.md)。
