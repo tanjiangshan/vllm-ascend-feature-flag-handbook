@@ -1,0 +1,1371 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="vLLM-Ascend 特性开关深度手册：additional-config 全量配置、环境变量、迁移对照与版本历史">
+      
+      
+        <meta name="author" content="vllm-ascend-feature-flag-handbook contributors">
+      
+      
+        <link rel="canonical" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/feature-topics/">
+      
+      
+        <link rel="prev" href="../config-entry-points/">
+      
+      
+        <link rel="next" href="../flags/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+          <link rel="alternate" href="../en/feature-topics/" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>特性专题导览 - vLLM-Ascend 特性开关手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="vLLM-Ascend 特性开关手册" class="md-header__button md-logo" aria-label="vLLM-Ascend 特性开关手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            vLLM-Ascend 特性开关手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              特性专题导览
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../en/feature-topics/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vllm-ascend-feature-flag-handbook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="vLLM-Ascend 特性开关手册" class="md-nav__button md-logo" aria-label="vLLM-Ascend 特性开关手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    vLLM-Ascend 特性开关手册
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vllm-ascend-feature-flag-handbook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config-entry-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置入口总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性专题导览
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性专题导览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#t-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. MoE 通信与计算重叠
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 负载均衡与调度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-kvfmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. KV Cache 量化与内存格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 图与编译
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. PD 分离与并行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-kvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. KV 复用与池化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 投机解码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 稳定性与监控：Runtime Guard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 训练与 RL
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性开关总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../engine-args/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引擎参数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本支持矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env-vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境变量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移对照表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本历史
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#t-moe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. MoE 通信与计算重叠
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 负载均衡与调度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-kvfmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. KV Cache 量化与内存格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 图与编译
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. PD 分离与并行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-kvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. KV 复用与池化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 投机解码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 稳定性与监控：Runtime Guard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 训练与 RL
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/edit/main/docs/feature-topics.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/raw/main/docs/feature-topics.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="_1">特性专题导览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本页按<strong>解决的问题</strong>把 64 个特性开关归入 9 个专题：每个专题先讲原理（是什么、解决什么问题），再给成员速览表（一句话 + 何时开）。适合系统性学习；查单个参数仍去<a href="../flags/">特性开关总览</a>，深入细节去各详情页。</p>
+</blockquote>
+<h2 id="t-moe">1. MoE 通信与计算重叠<a class="headerlink" href="#t-moe" title="Permanent link">&para;</a></h2>
+<p>MoE 模型每层有两次集合通信：dispatch 把 token 按路由发到各专家，combine 把结果收回，通信量随 EP 规模线性增长，容易盖过计算成为瓶颈。这组开关围绕三件事：<strong>融合</strong>（把 dispatch/combine 合成一个算子）、<strong>重叠</strong>（用多余流把通信藏到计算背后）、<strong>量化</strong>（降低通信字节）。都是 MoE 模型（DeepSeek/GLM/Kimi 等）专属，CPU 密集场景无感。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/enable-fused-mc2/"><code>enable_fused_mc2</code></a></td>
+<td>融合 MC2 dispatch/combine 算子（0 关 / 1 开 / 2 MegaMoE）</td>
+<td>官方模型配方默认开；A5 MegaMoE 需 SiTU 模型</td>
+</tr>
+<tr>
+<td><a href="../flags/mc2-comm-alg/"><code>mc2_comm_alg</code></a></td>
+<td>dispatch/combine 通信算法（fullmesh/hierarchy/fullmesh_v2）</td>
+<td>跨机 MoE 按芯片选：hierarchy 仅 A2/A3，fullmesh_v2 仅 A3</td>
+</tr>
+<tr>
+<td><a href="../flags/combine-quant-mode/"><code>combine_quant_mode</code></a></td>
+<td>combine 通信量化（如 4 = FP8）</td>
+<td>跨机 combine 带宽瓶颈时，按官方模型配方（DeepSeek-V4 D 节点）</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-shared-expert-dp/"><code>enable_shared_expert_dp</code></a></td>
+<td>共享专家在 TP rank 间以数据并行运行</td>
+<td>TP&gt;1 且共享专家占比高；以更多显存换性能</td>
+</tr>
+<tr>
+<td><a href="../flags/multistream-overlap-shared-expert/"><code>multistream_overlap_shared_expert</code></a></td>
+<td>独立流重叠共享专家计算与通信</td>
+<td>含共享专家的 MoE；TP=1 或开了 shared_expert_dp 时</td>
+</tr>
+<tr>
+<td><a href="../flags/multistream-dsv4-dsa-overlap/"><code>multistream_dsv4_dsa_overlap</code></a></td>
+<td>DeepSeek V4 的 DSA 多流重叠</td>
+<td>默认开；DSV4 模型自动生效</td>
+</tr>
+<tr>
+<td><a href="../flags/multistream-engram-overlap/"><code>multistream_engram_overlap</code></a></td>
+<td>Engram 模块多流重叠</td>
+<td>默认仅 A5 开；显式设置可覆盖</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-flashcomm1/"><code>enable_flashcomm1</code></a></td>
+<td>SP MoE 的 FlashComm1 通信优化</td>
+<td>仅 Model Runner V1；MRv2 请改用 PCP</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-prefill-mc2/"><code>enable_prefill_mc2</code></a></td>
+<td>为 prefill 批次预留 MC2 token 容量</td>
+<td>P 节点（PD 分离）；官方注明的临时开关</td>
+</tr>
+<tr>
+<td><a href="../flags/mix-placement/"><code>mix_placement</code></a></td>
+<td>DP×TP 平面专家混合放置策略</td>
+<td>收发两端配置必须一致（RFork 权重传输指纹）</td>
+</tr>
+<tr>
+<td>~~enable_mc2_hierarchy_comm~~</td>
+<td>已弃用</td>
+<td>用 <code>mc2_comm_alg="hierarchy"</code> 取代</td>
+</tr>
+<tr>
+<td>~~enable_matmul_allreduce~~ / ~~enable_flashcomm2_parallel_size~~ / ~~multistream_overlap_gate~~</td>
+<td>已移除</td>
+<td>见详情页/版本历史</td>
+</tr>
+</tbody>
+</table>
+<h2 id="t-scheduling">2. 负载均衡与调度<a class="headerlink" href="#t-scheduling" title="Permanent link">&para;</a></h2>
+<p>专家并行的痛点是<strong>路由不均</strong>：热点专家排队、冷点专家闲置。这组开关覆盖四个层面：EP 权重均衡（EPLB）、PD 分离下的调度策略（重算/均衡/短请求优先）、批作业场景、RL 采样。多数据互斥——<strong>启动时校验组合合法性</strong>，配错会直接报错。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/eplb-config/"><code>eplb_config</code></a></td>
+<td>EPLB 均衡配置（dynamic_eplb / expert_map_record 等子键）</td>
+<td>EP 部署默认关注；动态均衡需配 <code>DYNAMIC_EPLB=true</code> 环境变量</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-force-eplb/"><code>enable_force_eplb</code></a></td>
+<td>强制确定性轮询专家路由</td>
+<td><strong>仅性能分析</strong>——替换真实路由使结果无效，切勿生产</td>
+</tr>
+<tr>
+<td><a href="../flags/scheduler-config/"><code>scheduler_config</code></a></td>
+<td>调度扩展的规范聚合层</td>
+<td>v0.30.0 起各调度键统一收编于此</td>
+</tr>
+<tr>
+<td><a href="../flags/recompute-scheduler-enable/"><code>recompute_scheduler_enable</code></a></td>
+<td>重计算调度（请求回填时重算而非存 KV）</td>
+<td><strong>仅 PD 分离 D 节点</strong>；P 节点/混部开启会启动报错</td>
+</tr>
+<tr>
+<td><a href="../flags/dyntra-lb-config/"><code>dyntra_lb_config</code></a></td>
+<td>DyntraLB 动态负载均衡</td>
+<td><strong>仅 PD 分离 D 节点</strong>，DP&gt;1；勿配 P 节点</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-balance-scheduling/"><code>enable_balance_scheduling</code></a></td>
+<td>均衡调度</td>
+<td><strong>仅 PD 混部</strong>（A3 单机/共置场景）</td>
+</tr>
+<tr>
+<td><a href="../flags/short-request-first-config/"><code>short_request_first_config</code></a></td>
+<td>短请求优先 prefill 调度</td>
+<td>普通部署 / PD 混部 / P 节点；<strong>不支持 D 节点</strong></td>
+</tr>
+<tr>
+<td><a href="../flags/batch-job-sched-config/"><code>batch_job_sched_config</code></a></td>
+<td>batch 作业感知调度</td>
+<td>批作业场景；不可与 ShortRequestFirst 组合</td>
+</tr>
+<tr>
+<td>~~batch_job_sched_config 等旧顶层键~~</td>
+<td>v0.30.0 起收编 scheduler_config</td>
+<td>过渡期旧键仍可用但发弃用警告</td>
+</tr>
+</tbody>
+</table>
+<p>官方功能页：<a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html">DyntraLB</a> · <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html">ShortRequestFirst</a> · <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html">动态分块流水线</a></p>
+<h2 id="t-kvfmt">3. KV Cache 量化与内存格式<a class="headerlink" href="#t-kvfmt" title="Permanent link">&para;</a></h2>
+<p>KV cache 是长上下文服务的第一显存消费者。这组开关管<strong>布局</strong>（NZ / T-major / 按块转置）、<strong>量化</strong>（C8 稀疏布局、int8/mxfp8——后者走 CLI 值域补丁）、<strong>卸载</strong>（稀疏 KV 下沉 DRAM），目标都是在不损精度（或少损）的前提下把 KV 显存砍下来。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/weight-nz-mode/"><code>weight_nz_mode</code></a></td>
+<td>权重 NZ 格式（0 关 / 1 仅量化权重 / 2 含 BF16/FP16）</td>
+<td>按权重格式跟随官方模型配方</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-kv-nz/"><code>enable_kv_nz</code></a></td>
+<td>KV cache NZ 布局</td>
+<td>仅 MLA 模型（DeepSeek 类）</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-transpose-kv-cache-by-block/"><code>enable_transpose_kv_cache_by_block</code></a></td>
+<td>按块转置 KV cache（融合算子路径）</td>
+<td>默认开；融合 attention 路径要求</td>
+</tr>
+<tr>
+<td><a href="../flags/sparse-kv-offload-config/"><code>sparse_kv_offload_config</code></a></td>
+<td>稀疏 KV 卸载到 DRAM</td>
+<td><strong>勿配 P 节点</strong>（官方明示）；D 节点按显存压力开</td>
+</tr>
+<tr>
+<td>~~enable_sparse_li_c8~~ / ~~enable_sparse_sfa_c8~~</td>
+<td>已移除</td>
+<td>v0.30.0 起由 <code>--attention_config.indexer_kv_dtype</code> / <code>--kv-cache-dtype</code> ∈ {fp8,int8} 自动派生</td>
+</tr>
+<tr>
+<td>~~c8_enable_reshape_optim~~ / ~~hamming_sparse~~</td>
+<td>已移除</td>
+<td>见版本历史</td>
+</tr>
+</tbody>
+</table>
+<p>相关引擎参数：<a href="../engine-args/kv-cache-dtype/">kv-cache-dtype 值域补丁</a>（int8/mxfp8）</p>
+<h2 id="t-graph">4. 图与编译<a class="headerlink" href="#t-graph" title="Permanent link">&para;</a></h2>
+<p>录图把一整步前向固化成一次图重放，砍掉 kernel launch 与 CPU 调度开销——decode 步（每序列仅 1 token）收益最大。这组开关分两层：<strong>vLLM 层</strong>（<code>--compilation-config</code>，跨平台）与 <strong>Ascend 平台层</strong>（本组开关，管 ACLGraph/Xlite 与算子融合）。最终图模式由平台代码裁决，两层别打架。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/ascend-compilation-config/"><code>ascend_compilation_config</code></a></td>
+<td>Ascend 图编译配置（enable_npugraph_ex 等子键）</td>
+<td>官方 PD 配方 D 侧常开 npugraph_ex；P 侧多跑 eager</td>
+</tr>
+<tr>
+<td><a href="../flags/xlite-graph-config/"><code>xlite_graph_config</code></a></td>
+<td>Xlite 图模式（full_mode 控制 prefill 是否入图）</td>
+<td>支持的模型按官方 graph_mode 指南</td>
+</tr>
+<tr>
+<td><a href="../flags/ascend-fusion-config/"><code>ascend_fusion_config</code></a></td>
+<td>融合算子配置（GmmSwigluQuant 等子键）</td>
+<td>按模型配方；默认子键多已开</td>
+</tr>
+<tr>
+<td><a href="../flags/ascend-warmup-config/"><code>ascend_warmup_config</code></a></td>
+<td>与权重加载重叠的启动预热</td>
+<td>大模型缩短启动时间</td>
+</tr>
+</tbody>
+</table>
+<p>相关引擎参数：<a href="../engine-args/compilation-config/">--compilation-config</a>（cudagraph_mode 全取值） · 官方 <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/graph_mode.html">graph_mode 指南</a></p>
+<h2 id="t-pd">5. PD 分离与并行<a class="headerlink" href="#t-pd" title="Permanent link">&para;</a></h2>
+<p>PD 分离把 prefill（算得慢、吃算力）与 decode（跑得快、吃带宽/显存）拆到不同节点，各自独立扩缩。这组开关管<strong>长文本并行的两种形态</strong>（PCP prefill 侧 / DCP decode 侧）、<strong>细粒度 TP</strong>（D 节点内存换并发）、<strong>MLAPO 逐层并行</strong>与 <strong>CPU 绑定</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/enable-pcp-embedding-lmhead-weight-sharding/"><code>enable_pcp_embedding_lmhead_weight_sharding</code></a></td>
+<td>PCP 组内 Embedding/LMHead 权重分片</td>
+<td>PCP&gt;1 时默认开</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-pcp-o-proj-weight-sharding/"><code>enable_pcp_o_proj_weight_sharding</code></a></td>
+<td>PCP 组内 O 投影权重分片</td>
+<td>PCP&gt;1 时默认开</td>
+</tr>
+<tr>
+<td><a href="../flags/finegrained-tp-config/"><code>finegrained_tp_config</code></a></td>
+<td>细粒度 TP（oproj/mlp/lmhead/embedding 独立 TP 度）</td>
+<td><strong>仅 PD 分离 D 节点</strong>（oproj/mlp&gt;1 启动校验），配重算调度 + 预取卸载</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-mlapo/"><code>enable_mlapo</code></a></td>
+<td>MLAPO 逐层自适应并行优化</td>
+<td><strong>PD 场景仅 D 节点</strong>（官方明示）；耗更多显存</td>
+</tr>
+<tr>
+<td><a href="../flags/mlapo-keep-prefill-weights/"><code>mlapo_keep_prefill_weights</code></a></td>
+<td>D 节点保留 prefill 权重不释放</td>
+<td>D 节点本地 prefill 路径需要（issue #11882），以显存换稳定</td>
+</tr>
+<tr>
+<td><a href="../flags/enable-cpu-binding/"><code>enable_cpu_binding</code></a></td>
+<td>ARM 服务器昇腾 CPU 绑定</td>
+<td>官方 PD 配方 P/D 两侧普遍开启</td>
+</tr>
+<tr>
+<td><a href="../flags/profiling-chunk-config/"><code>profiling_chunk_config</code></a></td>
+<td>动态分块流水线并行</td>
+<td>需 PP&gt;1；GLM5.2 实证 P 节点；与 DyntraLB/均衡调度互斥</td>
+</tr>
+<tr>
+<td>~~enable_context_parallel~~ / ~~enable_dsa_cp~~</td>
+<td>已移除</td>
+<td>PCP 取代（main 上开 dsa_cp 会报错提示）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="t-kvp">6. KV 复用与池化<a class="headerlink" href="#t-kvp" title="Permanent link">&para;</a></h2>
+<p>两个"让 KV 不吃重复计算"的特性：<strong>KVPP</strong> 在单机内把 MLA/SFA 各层冗余 KV 分摊到 TP rank（等显存换更长上下文）；<strong>KV 池化</strong>（Ascend Store）跨节点共享 KV。注意池化<strong>不是 additional-config 开关</strong>，入口在 <code>--kv-transfer-config</code>。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/enable-kvpp/"><code>enable_kvpp</code></a></td>
+<td>KV 按层并行，TP rank 分摊 KV</td>
+<td><strong>仅 P 节点</strong>（官方明示）；要求 PIECEWISE 图模式</td>
+</tr>
+<tr>
+<td><a href="../flags/kv-pool-range-debug/"><code>kv_pool_range_debug</code></a></td>
+<td>KV pool 逐层传输审计日志</td>
+<td>仅调试时开，正常运行保持禁用</td>
+</tr>
+</tbody>
+</table>
+<p>池化配置 → <a href="../engine-args/">引擎参数总览 · KV 池化专题</a> · 官方 <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html">KV Cache Pool</a></p>
+<h2 id="t-spec">7. 投机解码<a class="headerlink" href="#t-spec" title="Permanent link">&para;</a></h2>
+<p>用小模型（草稿）先猜 token、大模型一次验证多 token，用验证通过率换 decode 加速。这组开关管<strong>动态投机</strong>（按负载自适应草稿长度）与<strong>草稿 KV 滑窗</strong>（草稿只看最近 N token 省显存）。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/dynamic-spec-config/"><code>dynamic_spec_config</code></a></td>
+<td>动态投机解码配置</td>
+<td>负载波动大、想自适应草稿长度的场景</td>
+</tr>
+<tr>
+<td><a href="../flags/draft-window-size/"><code>draft_window_size</code></a></td>
+<td>草稿 KV 滑窗（草稿只看最近 N token）</td>
+<td>长上下文 + eagle3/dflash 路径；输出质量不变</td>
+</tr>
+</tbody>
+</table>
+<p>相关引擎参数：<a href="../engine-args/speculative-config/">--speculative-config</a> · 官方<a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html">投机解码指南</a></p>
+<h2 id="t-guard">8. 稳定性与监控：Runtime Guard<a class="headerlink" href="#t-guard" title="Permanent link">&para;</a></h2>
+<p>vLLM-Ascend 的<strong>在线异常检测与事故响应层</strong>：监视 decode 期信号（token 重复、乱码、非有限 logits、投机接受率漂移等），触发时写结构化报告并可选 dump 请求级 KV cache。默认全关、开销可忽略；出问题时再按开关逐级打开。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/runtime-config/"><code>runtime_config</code></a></td>
+<td>运行时配置启动叠加层</td>
+<td>需要在线调整检测器/dump 配额时</td>
+</tr>
+<tr>
+<td><a href="../flags/runtime-config-path/"><code>runtime_config_path</code></a></td>
+<td>Runtime Guard JSON 路径</td>
+<td>配置不放默认路径时</td>
+</tr>
+<tr>
+<td><a href="../flags/runtime-config-hot-reload/"><code>runtime_config_hot_reload</code></a></td>
+<td>配置热重载</td>
+<td>想运行时改配置不重启用</td>
+</tr>
+<tr>
+<td><a href="../flags/dump-config/"><code>dump_config</code></a></td>
+<td>内联 msprobe dump 配置</td>
+<td>对接 msprobe 调试器</td>
+</tr>
+<tr>
+<td><a href="../flags/dump-config-path/"><code>dump_config_path</code></a></td>
+<td>msprobe dump 配置文件路径</td>
+<td>兼容旧版选项</td>
+</tr>
+<tr>
+<td><a href="../flags/msmonitor-use-daemon/"><code>msmonitor_use_daemon</code></a></td>
+<td>msmonitor 守护进程模式</td>
+<td>按监控部署需要</td>
+</tr>
+<tr>
+<td><a href="../flags/ascend-log-path/"><code>ascend_log_path</code></a></td>
+<td>vLLM-Ascend 日志路径</td>
+<td>默认 <code>~/ascend/log/vllm_ascend</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="t-rl">9. 训练与 RL<a class="headerlink" href="#t-rl" title="Permanent link">&para;</a></h2>
+<p>RL 训练（rollout 推理 + 权重同步）需要推理侧的特殊配合：这组开关管<strong>一键 RL 模式</strong>（强制关闭推理期优化、设置开发模式）、<strong>全局配置刷新</strong>（训练循环里重置 Ascend 配置）、<strong>拒绝采样器</strong>（block/entropy 两级验证）。</p>
+<table>
+<thead>
+<tr>
+<th>开关</th>
+<th>一句话</th>
+<th>何时开</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../flags/rl-config/"><code>rl_config</code></a></td>
+<td>一键 RL 模式总开关</td>
+<td>RL 训练框架接入时；enabled 时强制 weight_nz_mode=0 等</td>
+</tr>
+<tr>
+<td><a href="../flags/refresh/"><code>refresh</code></a></td>
+<td>刷新全局 Ascend 配置</td>
+<td>RLHF 训练循环 / 测试用例每次重置配置时</td>
+</tr>
+<tr>
+<td><a href="../flags/rejection-sampler-config/"><code>rejection_sampler_config</code></a></td>
+<td>拒绝采样器（block / entropy verify）</td>
+<td>RL rollout 采样质量过滤</td>
+</tr>
+</tbody>
+</table>
+<p>相关引擎参数：RL 类（<code>--weight-transfer-config</code> 等）见<a href="../engine-args/">引擎参数总览</a> · 官方 <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">RL 指南</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../config-entry-points/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 配置入口总览">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                配置入口总览
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../flags/" class="md-footer__link md-footer__link--next" aria-label="下一页: 特性开关总览">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                特性开关总览
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.highlight", "search.share", "content.action.view", "content.action.edit"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2344 @@
+[
+  {
+    "key": "ascend_compilation_config",
+    "name": {
+      "zh": "Ascend 编译配置",
+      "en": "Ascend compilation config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "Ascend 图编译配置（typed 为 AscendCompilationConfig）。子键：enable_npugraph_ex（默认 true）、enable_static_kernel（默认 false，静态形状场景按 batch_size 预编译算子）、enable_super_kernel（v0.30.0 新增，缺省时跟随 enable_static_kernel）、fuse_norm_quant / fuse_qknorm_rope / fuse_muls_add（v0.30.0 新增，默认均 true）；v0.23.0 另有 fuse_allreduce_rms。依赖链 super_kernel → static_kernel → npugraph_ex，硬件不支持时自动降级。",
+      "en": "Ascend graph-compilation config (typed as AscendCompilationConfig). Sub-keys: enable_npugraph_ex (default true), enable_static_kernel (default false, pre-compiles per-batch-size operator binaries for static shapes), enable_super_kernel (new in v0.30.0, inherits enable_static_kernel when omitted), fuse_norm_quant / fuse_qknorm_rope / fuse_muls_add (new in v0.30.0, all default true); v0.23.0 also has fuse_allreduce_rms. Dependency chain super_kernel -> static_kernel -> npugraph_ex with auto-downgrade on unsupported hardware."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "enable_super_kernel / fuse_muls_add 自 v0.30.0 起；fuse_allreduce_rms 仅 v0.23.0 有",
+      "en": "enable_super_kernel / fuse_muls_add since v0.30.0; fuse_allreduce_rms exists only on v0.23.0"
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 教程两侧都配但配方不同：P 侧常以 --enforce-eager 跑 eager（如 Qwen3.5-397B 显式 enable_npugraph_ex: false），D 侧典型开 enable_npugraph_ex——DeepSeek-V4-Flash 原文「enables the extended NPU graph mode on Decode … Prefill runs in eager mode」；static/super kernel 在 Qwen3.8-Flash-Next 等配方中仅 D 侧开启。",
+        "en": "Official PD tutorials configure both sides differently: Prefill often runs eager (--enforce-eager; Qwen3.5-397B sets enable_npugraph_ex: false) while Decode enables enable_npugraph_ex (DeepSeek-V4-Flash: \"enables the extended NPU graph mode on Decode ... Prefill runs in eager mode\"); static/super kernel appear only on the D side in recipes like Qwen3.8-Flash-Next."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
+    }
+  },
+  {
+    "key": "ascend_fusion_config",
+    "name": {
+      "zh": "融合算子配置",
+      "en": "Fused-operator config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "融合算子配置。子键 fusion_ops_gmmswigluquant（默认 true）控制是否使用 GmmSwigluQuant 融合算子。pydantic 校验会拒绝未知子键。",
+      "en": "Fused-operator config. Sub-key fusion_ops_gmmswigluquant (default true) controls the GmmSwigluQuant fused operator. Pydantic validation rejects unknown sub-keys."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "ascend_log_path",
+    "name": {
+      "zh": "Ascend 日志路径",
+      "en": "Ascend log path"
+    },
+    "type": "str",
+    "default": "~/ascend/log/vllm_ascend",
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "vLLM-Ascend 日志输出路径，默认 ~/ascend/log/vllm_ascend。",
+      "en": "vLLM-Ascend log output path; defaults to ~/ascend/log/vllm_ascend."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "ascend_warmup_config",
+    "name": {
+      "zh": "启动预热配置",
+      "en": "Startup warmup config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "与权重加载重叠的启动预热配置。",
+      "en": "Startup warmup configuration that overlaps with weight loading."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "batch_job_sched_config",
+    "name": {
+      "zh": "批作业调度配置",
+      "en": "Batch-job scheduler config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "deprecated",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "面向 batch-job-aware 调度器的配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.batch_job_sched_config。",
+      "en": "Config for the batch-job-aware scheduler. Top-level key deprecated since v0.30.0; use scheduler_config.batch_job_sched_config instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.batch_job_sched_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.batch_job_sched_config"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知约束：与 ShortRequestFirst 不可组合（batch-job-aware 调度下不安装 ShortRequestFirst 等待队列）。",
+        "en": "No colocated/PD guidance found; known constraint: cannot be combined with ShortRequestFirst."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html"
+    }
+  },
+  {
+    "key": "c8_enable_reshape_optim",
+    "name": {
+      "zh": "C8 reshape 优化",
+      "en": "C8 reshape optimization"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [
+      "enable_sparse_li_c8"
+    ],
+    "conflicts": [],
+    "removed_in": [
+      "v0.30.0（源码已无读取点）"
+    ],
+    "desc": {
+      "zh": "LI-C8 的 reshape 优化（仅在 enable_sparse_li_c8 开启时生效）。v0.30.0 起从源码移除。",
+      "en": "Reshape optimization for LI-C8 (only takes effect when enable_sparse_li_c8 is on). Removed from source since v0.30.0."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "combine_quant_mode",
+    "name": {
+      "zh": "Combine 通信量化",
+      "en": "Combine comm quantization"
+    },
+    "type": "int",
+    "default": 0,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [
+      "enable_fused_mc2"
+    ],
+    "conflicts": [],
+    "values": {
+      "0": "禁用通信量化（沿用模型自身 quant_type）",
+      "2": "源码 Literal[0,2,3,4] 允许此值，官方文档未说明语义（指向算子文档）",
+      "3": "源码 Literal[0,2,3,4] 允许此值，官方文档未说明语义（指向算子文档）",
+      "4": "MXFP float8_e4m3 通信量化（DeepSeek-V4 官方配方值）"
+    },
+    "desc": {
+      "zh": "融合 combine 算子的通信量化模式，作为 comm_quant_mode 传给 npu_moe_distribute_combine_v2。有效范围见算子文档。",
+      "en": "Communication quantization mode for the fused combine op, passed as comm_quant_mode to npu_moe_distribute_combine_v2. See operator docs for valid values."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "DeepSeek-V4-Pro/Flash 教程原文：combine_quant_mode: 4「forces the MoE MC2 combine stage on Decode nodes to use FP8 … communication quantization」；官方配方中该键配在 D 节点。",
+        "en": "DeepSeek-V4-Pro/Flash tutorials: combine_quant_mode: 4 \"forces the MoE MC2 combine stage on Decode nodes to use FP8 (MXFP float8_e4m3) communication quantization\"; configured on the D node in official recipes."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    }
+  },
+  {
+    "key": "draft_window_size",
+    "name": {
+      "zh": "草稿 KV 滑窗",
+      "en": "Draft KV sliding window"
+    },
+    "type": "int",
+    "default": "None",
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [
+      "--speculative-config（eagle3/dflash/dspark）"
+    ],
+    "conflicts": [],
+    "desc": {
+      "zh": "投机解码的草稿 KV 滑窗：仅将草稿模型注意力限制在最近 N 个 token，目标模型仍用全上下文，输出质量不变。适配 eagle3/dflash/dspark 方法；长上下文运行时超出草稿训练长度导致接受率崩塌的场景使用。",
+      "en": "Draft KV sliding window for speculative decoding: caps only the draft model's attention to the most recent N tokens while the target model keeps full context, leaving output quality unchanged. Works with eagle3/dflash/dspark; for long contexts where the draft's acceptance collapses beyond its trained length."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/speculative_decoding",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "dump_config",
+    "name": {
+      "zh": "msprobe 内联 dump",
+      "en": "msprobe inline dump"
+    },
+    "type": "dict",
+    "default": null,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "内联 msprobe dump 配置，vLLM-Ascend 会物化为临时 JSON 文件传给调试器。",
+      "en": "Inline msprobe dump configuration; vLLM-Ascend materializes it to a temporary JSON file passed to the debugger."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "dump_config_path",
+    "name": {
+      "zh": "msprobe dump 路径",
+      "en": "msprobe dump path"
+    },
+    "type": "str",
+    "default": null,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "msprobe dump 的配置文件路径（兼容旧版选项）。",
+      "en": "Path to the msprobe dump configuration file (legacy-compatible option)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "dynamic_eplb",
+    "name": {
+      "zh": "动态专家负载均衡",
+      "en": "Dynamic expert load balancing"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "legacy_env": "DYNAMIC_EPLB",
+    "hardware": [
+      "A2",
+      "A3"
+    ],
+    "models": [
+      "MoE"
+    ],
+    "requires": [
+      "eplb_config 中需设置 dynamic_eplb: true 且需环境变量 DYNAMIC_EPLB=true 作为安全防护"
+    ],
+    "conflicts": [
+      "enable_force_eplb"
+    ],
+    "desc": {
+      "zh": "启用动态专家并行负载均衡（Dynamic EPLB）。属于 eplb_config 子配置；旧版需配合环境变量 DYNAMIC_EPLB=true。",
+      "en": "Enable dynamic Expert Parallelism Load Balancer. Part of eplb_config; legacy mode also requires the DYNAMIC_EPLB=true env var as a safety guard."
+    },
+    "source": "vllm_ascend/eplb/",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "dynamic_spec_config",
+    "name": {
+      "zh": "动态投机解码配置",
+      "en": "Dynamic spec decoding config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "动态投机解码（Dynamic Speculative Decoding）配置。",
+      "en": "Configuration for Dynamic Speculative Decoding."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "dyntra_lb_config",
+    "name": {
+      "zh": "DyntraLB 负载均衡",
+      "en": "DyntraLB load balancing"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "deprecated",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "PD 分离解码节点 DyntraLB 负载均衡配置。仅配置在 Decode 节点上。v0.30.0 起顶层键废弃，请改用 scheduler_config.dyntra_lb_config。",
+      "en": "DyntraLB load-balancing config for the decode node in P/D disaggregation — configure on the Decode node only. Top-level key deprecated since v0.30.0; use scheduler_config.dyntra_lb_config instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 起顶层键不再解析（extra=forbid 会报未知键错误），必须写 scheduler_config.dyntra_lb_config 嵌套形式",
+      "en": "top-level key no longer parsed since v0.30.0 (extra=forbid raises an unknown-key error); must use the nested form scheduler_config.dyntra_lb_config"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方 DyntraLB 指南：仅在 PD 分离 D 节点（kv_role=\"kv_consumer\"）开启，且要求 DP>1、DP ranks 同节点；「Do not add dyntra_lb_config with enabled=true to Prefill nodes」；不能与 enable_balance_scheduling / profiling_chunk_config 同开（启动拒绝）。",
+        "en": "Official DyntraLB guide: PD-disaggregated Decode nodes only (kv_role=\"kv_consumer\"), DP>1, DP ranks on one node; \"Do not add dyntra_lb_config with enabled=true to Prefill nodes\"; incompatible with enable_balance_scheduling / profiling_chunk_config (startup rejection)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html"
+    }
+  },
+  {
+    "key": "enable_balance_scheduling",
+    "name": {
+      "zh": "均衡调度",
+      "en": "Balanced scheduling"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "deprecated",
+    "legacy_env": "VLLM_ASCEND_BALANCE_SCHEDULING",
+    "deprecated_in": [
+      "PR #9064 起迁移至 scheduler_config.enable_balance_scheduling"
+    ],
+    "removed_in": [
+      "下一版本（见 issue #10381）"
+    ],
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用均衡调度。v0.30.0 起顶层键废弃（发 deprecation 警告），请改用 scheduler_config.enable_balance_scheduling。",
+      "en": "Enable balance scheduling. Top-level key deprecated since v0.30.0 (deprecation warning); use scheduler_config.enable_balance_scheduling instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "顶层键废弃",
+      "en": "top-level key deprecated"
+    },
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "mixed",
+      "colocated": "ok",
+      "note": {
+        "zh": "设计文档注明「supports PD-mixed mode only」；GLM5 优化表：适用 A3 单节点/共置/非 PD 场景，「not recommended when Prefill-Decode is separated」。",
+        "en": "Design doc: \"supports PD-mixed mode only\"; GLM5 tuning table: A3 single-node / co-located / non-PD scenarios, \"not recommended when Prefill-Decode is separated\"."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    }
+  },
+  {
+    "key": "enable_context_parallel",
+    "name": {
+      "zh": "上下文并行",
+      "en": "Context parallel"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "legacy_env": "VLLM_ASCEND_ENABLE_CONTEXT_PARALLEL",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用上下文并行（Context Parallel）。",
+      "en": "Enable Context Parallelism."
+    },
+    "source": "vllm_ascend/envs.py @ v0.18.0（VLLM_ASCEND_ENABLE_CONTEXT_PARALLEL）",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.18 及更早通过环境变量支持；后被 enable_dsa_cp 取代",
+      "en": "Env var only up to v0.18; superseded by enable_dsa_cp"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_cpu_binding",
+    "name": {
+      "zh": "昇腾 CPU 绑定",
+      "en": "Ascend CPU binding"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "在 ARM 服务器上启用昇腾原生 CPU 绑定。设为 false 可禁用。",
+      "en": "Enable Ascend-native CPU binding on ARM servers. Set to false to disable."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 分离教程 P/D 两侧普遍开启（Qwen3.8-Flash-Next、MiniMax-M3、GLM5.2 等配方）。",
+        "en": "Enabled on both P and D sides across official PD-disaggregation tutorials (Qwen3.8-Flash-Next, MiniMax-M3, GLM5.2, etc.)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"
+    }
+  },
+  {
+    "key": "enable_dsa_cp",
+    "name": {
+      "zh": "DSA 上下文并行",
+      "en": "DSA context parallel"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [
+      "DSA（DeepSeek Sparse Attention）模型"
+    ],
+    "requires": [],
+    "conflicts": [
+      "prefill_context_parallel_size > 1（PCP）"
+    ],
+    "removed_in": [
+      {
+        "main（启动报错信息明示 Use PCP instead": "remove enable_dsa_cp from additional_config）"
+      }
+    ],
+    "desc": {
+      "zh": "启用 DSA 注意力的上下文并行，与 PCP 互斥。main 分支已移除——开启时会收到明确报错，提示改用 PCP。",
+      "en": "Enable context parallel for DSA attention; mutually exclusive with PCP. Removed on main — enabling it now raises an explicit error telling you to use PCP instead."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.30.0",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": false
+    },
+    "deployment": {
+      "pd": "n/a",
+      "colocated": "n/a",
+      "note": {
+        "zh": "v0.30.0 专属开关，main 已移除（启动报错提示改用 PCP），无部署形态意义。",
+        "en": "v0.30.0-only flag, removed on main (startup error points to PCP); no deployment-form semantics."
+      },
+      "source": "vllm_ascend/ascend_config.py @ main"
+    }
+  },
+  {
+    "key": "enable_flashcomm1",
+    "name": {
+      "zh": "FlashComm1 通信优化",
+      "en": "FlashComm1 comm optimization"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_ENABLE_FLASHCOMM1",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用 SP MoE 的 FlashComm1 通信优化。仅 Model Runner V1 支持且需序列并行；MRv2 下启用会报配置错误，请改用 PCP。",
+      "en": "Enable FlashComm1 for SP MoE. Model Runner V1 only and requires sequence parallelism; errors on MRv2 — use PCP instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "GLM5 优化表与教程模板标注适用「A3 prefill nodes / co-located nodes」；实际 PD 配方中 P/D 两侧均出现（GLM5.2/GLM5.3 D 侧亦开启），按模型配方配置。",
+        "en": "GLM5 tuning table and tutorial template mark it for \"A3 prefill nodes / co-located nodes\"; in PD recipes it appears on both sides (GLM5.2/GLM5.3 enable it on D too). Follow the model recipe."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    }
+  },
+  {
+    "key": "enable_flashcomm2_parallel_size",
+    "name": {
+      "zh": "FlashComm2 并行规模",
+      "en": "FlashComm2 parallel size"
+    },
+    "type": "int",
+    "default": 0,
+    "status": "removed",
+    "legacy_env": "VLLM_ASCEND_FLASHCOMM2_PARALLEL_SIZE",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "FlashComm2 并行规模，0 表示禁用。",
+      "en": "FlashComm2 parallel size; 0 disables it."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.23.0 为配置键 + 环境变量回退；v0.30.0 已移除",
+      "en": "Config key + env fallback in v0.23.0; removed in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_force_eplb",
+    "name": {
+      "zh": "强制轮询专家路由",
+      "en": "Force round-robin expert routing"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [
+      "eplb_config.dynamic_eplb"
+    ],
+    "desc": {
+      "zh": "强制使用确定性轮询专家路由，仅用于性能分析。会替换真实 MoE 路由，导致模型结果与精度无效，切勿用于生产。",
+      "en": "Force deterministic round-robin expert routing, for profiling only. Replaces real MoE routing so model output/accuracy is invalid — never use in production."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_fused_mc2",
+    "name": {
+      "zh": "融合 MC2 算子",
+      "en": "Fused MC2 operator"
+    },
+    "type": "int",
+    "default": 0,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_ENABLE_FUSED_MC2",
+    "hardware": [
+      "A2",
+      "A3",
+      "A5"
+    ],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "values": {
+      "0": "禁用融合路径",
+      "1": "dispatch-FFN-combine 融合",
+      "2": "CANN MegaMoe（需模型暴露 activation/activation_params）"
+    },
+    "desc": {
+      "zh": "融合 MC2（MoE dispatch/combine）配置。A5 上 MegaMoe 需 SiTU 模型暴露 CANN MegaMoe 包装器。",
+      "en": "Fused MC2 (MoE dispatch/combine) configuration. On A5, MegaMoe requires SiTU models to expose the CANN MegaMoe wrapper."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "GLM5 优化表标注「A3 prefill nodes」；DeepSeek-V4-Flash 指出 P 侧置 0 时以 multistream_overlap_shared_expert 替代；GLM5.2 等配方 D 侧用 enable_fused_mc2: 2（MegaMoE）。两侧均可配，取值随模型路径。",
+        "en": "GLM5 tuning table: \"A3 prefill nodes\"; DeepSeek-V4-Flash disables it on Prefill in favor of multistream_overlap_shared_expert; GLM5.2 sets 2 (MegaMoE) on the D side. Both sides configurable; value follows the model path."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
+    }
+  },
+  {
+    "key": "enable_kv_nz",
+    "name": {
+      "zh": "KV NZ 布局",
+      "en": "KV NZ layout"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "DeepSeek",
+      "MLA"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用 KV cache 的 NZ 布局，仅对使用 MLA 的模型（如 DeepSeek）生效。",
+      "en": "Enable NZ layout for KV cache; only effective for MLA models such as DeepSeek."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_kvpp",
+    "name": {
+      "zh": "KV 按层并行（KVPP）",
+      "en": "KV layer parallelism (KVPP)"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [
+      "decode_context_parallel_size > 1（DCP）"
+    ],
+    "desc": {
+      "zh": "启用 KVPP（KV 流水线并行），把 MLA/SFA 非混合模型在 TP 各 rank 间冗余的 KV cache 按层分摊，同等显存容纳更多上下文 token 或并发请求。Experimental；仅支持 eager 或 PIECEWISE 图模式；PD 分离时只能在 prefill 节点开启。",
+      "en": "Enable KVPP (KV pipeline parallelism), distributing otherwise-replicated KV caches across TP ranks by layer for non-hybrid MLA/SFA models, so the same HBM fits more context tokens or concurrent requests. Experimental; eager or PIECEWISE graph mode only; for P/D disaggregation enable on the prefill node only."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/kvpp",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "KVPP 官方指南：「Enable KVPP only on the prefill node」；PD 分离经 MooncakeConnectorV2（实验性），D-only 节点由源码校验强制禁用。",
+        "en": "Official KVPP guide: \"Enable KVPP only on the prefill node\"; P/D via MooncakeConnectorV2 (experimental); hard-disabled on decode-only nodes by source validation."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kvpp.html"
+    }
+  },
+  {
+    "key": "enable_matmul_allreduce",
+    "name": {
+      "zh": "Matmul-AllReduce 融合",
+      "en": "Matmul-AllReduce fusion"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "legacy_env": "VLLM_ASCEND_ENABLE_MATMUL_ALLREDUCE",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用 Matmul 与 AllReduce 融合优化。",
+      "en": "Enable fused Matmul+AllReduce optimization."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.23.0 仅环境变量；v0.30.0 已移除",
+      "en": "Env var only in v0.23.0; removed in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_mc2_hierarchy_comm",
+    "name": {
+      "zh": "MC2 跨机分层通信",
+      "en": "MC2 cross-node comm"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "deprecated",
+    "hardware": [
+      "A2",
+      "A3"
+    ],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [
+      "mc2_comm_alg"
+    ],
+    "desc": {
+      "zh": "通过 ROCE 启用 dispatch/combine 算子的节点间通信。已弃用，将由 mc2_comm_alg=\"hierarchy\" 取代。",
+      "en": "Enable inter-node RoCE communication for dispatch/combine ops. Deprecated, replaced by mc2_comm_alg=\"hierarchy\"."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知约束：以 ROCE 做 dispatch/combine 跨节点通信，将被 mc2_comm_alg=\"hierarchy\" 取代。",
+        "en": "No colocated/PD guidance; known: RoCE inter-node dispatch/combine communication, to be replaced by mc2_comm_alg=\"hierarchy\"."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "enable_mlapo",
+    "name": {
+      "zh": "MLAPO 逐层并行优化",
+      "en": "MLAPO per-layer optimization"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_ENABLE_MLAPO",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用 MLAPO（模型逐层自适应并行优化）。",
+      "en": "Enable MLAPO (Model Layer-wise Adaptive Parallel Optimization)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "ok",
+      "note": {
+        "zh": "Kimi-K2.6 与 GLM5 教程原文：「in PD scenarios enable MLAPO only on decode nodes」；混部高吞吐场景可用（GLM5 表「A3 co-located high-throughput / PD decode nodes」）；注意消耗更多 NPU 显存。",
+        "en": "Kimi-K2.6 and GLM5 tutorials: \"in PD scenarios enable MLAPO only on decode nodes\"; usable for co-located high-throughput (GLM5 table); consumes more NPU memory."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
+    }
+  },
+  {
+    "key": "enable_pcp_embedding_lmhead_weight_sharding",
+    "name": {
+      "zh": "PCP Embedding/LMHead 分片",
+      "en": "PCP embedding/LMHead sharding"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "PCP size > 1 时，在每个 TP 分片内对 embedding 与 LM Head 权重跨 PCP rank 分片。与 batch-sharded sampling 及这两个模块的细粒度 TP 不兼容。",
+      "en": "When PCP size > 1, shard embedding and LM Head weights across PCP ranks within each TP shard. Incompatible with batch-sharded sampling and fine-grained TP for these modules."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_pcp_o_proj_weight_sharding",
+    "name": {
+      "zh": "PCP O 投影分片",
+      "en": "PCP O-proj sharding"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "PCP 是否在组内对 O 投影权重分片（SFA-PCP 的 o_proj 与 DSA-PCP 两阶段 wo_a/wo_b）。不支持的权重方法/PCP 分区会警告并自动禁用；其他注意力后端不使用此选项。",
+      "en": "Whether PCP shards O-projection weights inside the group (SFA-PCP o_proj and DSA-PCP two-stage wo_a/wo_b). Auto-disabled with a warning when unsupported; unused by other attention backends."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "enable_prefill_mc2",
+    "name": {
+      "zh": "Prefill MC2 预留",
+      "en": "Prefill MC2 reservation"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "为 prefill 批次预留 mc2_token_capacity（用 max_num_batched_tokens 计算）。临时开关，未来 MC2 完备后默认启用并移除。",
+      "en": "Reserve mc2_token_capacity for prefill batches using max_num_batched_tokens. Temporary switch; will be removed once MC2 is complete."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "语义即「为 prefill batch 预留 mc2_token_capacity」；Qwen3.8-Flash-Next 配方 P 节点开启、D 节点不配。官方注明是临时开关，MC2 算子补全后移除。",
+        "en": "Semantics: reserve mc2_token_capacity for prefill batches; Qwen3.8-Flash-Next enables it on P only. Officially a temporary switch, to be removed once MC2 operators are complete."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"
+    }
+  },
+  {
+    "key": "enable_shared_expert_dp",
+    "name": {
+      "zh": "共享专家数据并行",
+      "en": "Shared-expert data parallel"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "在 TP rank 间复制共享专家权重并以数据并行运行。提升性能但消耗更多内存，与上游 MoE 序列并行相互独立。",
+      "en": "Replicate shared-expert weights across TP ranks and run them data-parallel. Improves performance at higher memory cost; independent of upstream MoE sequence parallelism."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 配方 P/D 两侧均出现；DeepSeek-V4-Pro 说明其作用为把 shared experts 放到 DP ranks。",
+        "en": "Appears on both sides in official PD recipes; DeepSeek-V4-Pro: places shared experts on DP ranks."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
+    }
+  },
+  {
+    "key": "enable_sparse_li_c8",
+    "name": {
+      "zh": "LI-C8 稀疏缓存",
+      "en": "LI-C8 sparse cache"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [
+      "GLM-5 系列、DeepSeek 稀疏注意力模型"
+    ],
+    "requires": [],
+    "conflicts": [
+      "enable_sparse_li_c4（由 indexer_kv_dtype=mxfp4 派生，互斥）"
+    ],
+    "removed_in": [
+      "v0.30.0（被 derive_and_validate 无条件覆盖，additional-config 传入无效）"
+    ],
+    "desc": {
+      "zh": "为稀疏注意力（Lightning Indexer）启用 C8 KV cache 布局。v0.23.0 可经 additional-config 设置；v0.30.0 起改为派生量：由 --attention_config.indexer_kv_dtype ∈ {fp8, int8} 自动决定（且要求模型为稀疏注意力模型），传本键不再生效。",
+      "en": "C8 KV cache layout for sparse attention (Lightning Indexer). Settable via additional-config on v0.23.0; derived since v0.30.0 — automatically decided by --attention_config.indexer_kv_dtype ∈ {fp8, int8} (requires a sparse-attention model); passing this key has no effect."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0（v0.30.0 起派生）",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.30.0 起由 --attention_config.indexer_kv_dtype fp8/int8 派生",
+      "en": "derived from --attention_config.indexer_kv_dtype fp8/int8 since v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "GLM5.2 PD 配方中配在 D 节点（kv_consumer）；GLM5 优化表按吞吐场景区分：高吞吐/PD 场景开启、低延迟场景关闭。v0.30.0 起由 --attention_config.indexer_kv_dtype 派生。",
+        "en": "Set on the D node (kv_consumer) in the GLM5.2 PD recipe; GLM5 table: on for high-throughput/PD, off for low-latency. Derived from --attention_config.indexer_kv_dtype since v0.30.0."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    }
+  },
+  {
+    "key": "enable_sparse_sfa_c8",
+    "name": {
+      "zh": "SFA-C8 稀疏缓存",
+      "en": "SFA-C8 sparse cache"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [
+      "GLM-5 / GLM-5.2 等 SFA 模型"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "removed_in": [
+      "v0.30.0（被 derive_and_validate 无条件覆盖，additional-config 传入无效）"
+    ],
+    "desc": {
+      "zh": "为 SFA（Sparse Flash Attention）稀疏注意力启用 C8 KV cache 布局。v0.23.0 可经 additional-config 设置；v0.30.0 起改为派生量：由 --kv-cache-dtype ∈ {fp8, int8} 自动决定（且要求模型为 SFA 稀疏注意力模型），传本键不再生效。",
+      "en": "C8 KV cache layout for SFA (Sparse Flash Attention). Settable via additional-config on v0.23.0; derived since v0.30.0 — automatically decided by --kv-cache-dtype ∈ {fp8, int8} (requires an SFA sparse-attention model); passing this key has no effect."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0（v0.30.0 起派生）",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.30.0 起由 --kv-cache-dtype fp8/int8 派生",
+      "en": "derived from --kv-cache-dtype fp8/int8 since v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "GLM5.2 PD 配方中配在 D 节点；GLM5 优化表：面向长上下文 prefill 的 A3 (w8a8c8) 场景，参考配置中高吞吐与 PD 场景开启、低延迟场景关闭。v0.30.0 起由 --kv-cache-dtype 派生。",
+        "en": "Set on the D node in the GLM5.2 PD recipe; GLM5 table: A3 (w8a8c8) long-context prefill, on for high-throughput/PD, off for low-latency. Derived from --kv-cache-dtype since v0.30.0."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
+    }
+  },
+  {
+    "key": "enable_transpose_kv_cache_by_block",
+    "name": {
+      "zh": "KV 按块转置",
+      "en": "Per-block KV transpose"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_FUSION_OP_TRANSPOSE_KV_CACHE_BY_BLOCK",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "是否启用按块转置 KV cache（融合算子路径）。",
+      "en": "Whether to enable block-wise transposed KV cache (fused-op path)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "eplb_config",
+    "name": {
+      "zh": "EPLB 配置",
+      "en": "EPLB config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [
+      "A2",
+      "A3"
+    ],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "EPLB（专家并行负载均衡）配置。dynamic_eplb 启用动态均衡；expert_map_record_path 录制映射；expert_map_path 加载静态映射。",
+      "en": "EPLB (Expert Parallelism Load Balancer) config. dynamic_eplb enables dynamic balancing; expert_map_record_path records maps; expert_map_path loads static maps."
+    },
+    "source": "vllm_ascend/eplb/",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "finegrained_tp_config",
+    "name": {
+      "zh": "细粒度 TP 配置",
+      "en": "Fine-grained TP config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "细粒度张量并行配置。",
+      "en": "Configuration for fine-grained tensor parallelism."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "careful",
+      "note": {
+        "zh": "官方 Fine-grained TP 指南：oproj/mlp_tensor_parallel_size>1 仅在 PD 分离 D 节点（kv_consumer）通过启动校验，且要求 recompute_scheduler_enable + PreemptOffloadConnector 组合；生产推荐拓扑即 PD 分离 D 节点。lmhead/embedding 子键限制较宽。",
+        "en": "Official Fine-grained TP guide: oproj/mlp_tensor_parallel_size>1 only passes startup validation on PD-disaggregated D nodes (kv_consumer), requiring recompute_scheduler_enable + PreemptOffloadConnector; the recommended production topology is exactly that. lmhead/embedding knobs are less restricted."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/Fine_grained_TP.html"
+    }
+  },
+  {
+    "key": "hamming_sparse",
+    "name": {
+      "zh": "Hamming 稀疏注意力",
+      "en": "Hamming sparse attention"
+    },
+    "type": "dict",
+    "default": {
+      "enabled": false,
+      "sparse_json_location": ""
+    },
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "removed_in": [
+      "v0.30.0（源码已无读取点）"
+    ],
+    "desc": {
+      "zh": "Hamming 稀疏注意力配置，dict 含 enabled 与 sparse_json_location（稀疏 JSON 文件路径，须真实存在）。v0.30.0 起从源码移除。",
+      "en": "Hamming sparse attention config; dict with enabled and sparse_json_location (path to a real sparse JSON file). Removed from source since v0.30.0."
+    },
+    "source": "vllm_ascend/ascend_config.py @ v0.23.0",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "kv_pool_range_debug",
+    "name": {
+      "zh": "KV 池审计日志",
+      "en": "KV pool audit log"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_KVPOOL_RANGE_DEBUG",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "为 KV pool 的整键操作、逐层范围和提交操作输出 JSON 审计日志。仅在调试时开启，正常运行保持禁用以避免日志开销。",
+      "en": "Emit per-layer KVPool ranged-transfer audit events as JSON. Debug only; keep disabled in production to avoid logging overhead."
+    },
+    "source": "vllm_ascend/envs.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "mc2_comm_alg",
+    "name": {
+      "zh": "MC2 通信算法",
+      "en": "MC2 comm algorithm"
+    },
+    "type": "str",
+    "default": "",
+    "status": "active",
+    "hardware": [
+      "A2",
+      "A3"
+    ],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [
+      "enable_mc2_hierarchy_comm"
+    ],
+    "values": {
+      "\"\"": "默认算法",
+      "\"fullmesh\"": "全互联算法",
+      "\"hierarchy\"": "层次化算法（仅 A2/A3 支持）",
+      "\"fullmesh_v2\"": "全互联 v2（目前仅 A3 支持）"
+    },
+    "desc": {
+      "zh": "dispatch/combine 算子的通信算法选择，将取代 enable_mc2_hierarchy_comm。",
+      "en": "Communication algorithm for dispatch/combine ops; supersedes enable_mc2_hierarchy_comm."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知芯片约束：\"hierarchy\" 仅 A2/A3，\"fullmesh_v2\" 当前仅 A3。",
+        "en": "No colocated/PD guidance; chip constraints: \"hierarchy\" A2/A3 only, \"fullmesh_v2\" A3 only for now."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "mega_moe_max_tokens",
+    "name": {
+      "zh": "MegaMoe token 容量",
+      "en": "MegaMoe token capacity"
+    },
+    "type": "int",
+    "default": 65536,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [
+      "enable_fused_mc2"
+    ],
+    "conflicts": [],
+    "desc": {
+      "zh": "融合 MC2/MegaMoe 路径中 dispatch 后每个 rank 的 token 容量参考值。超出可能出现精度下降，需按实际 expert 负载调整。",
+      "en": "Per-rank token capacity after dispatch in the fused MC2/MegaMoe path. Exceeding it may degrade accuracy; tune to actual expert load."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；为 fused MC2/MegaMoe 路径的每 rank token 容量参考值，超出可能精度劣化。",
+        "en": "No colocated/PD guidance; per-rank token capacity reference for the fused MC2/MegaMoe path, exceeding it may degrade precision."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "mix_placement",
+    "name": {
+      "zh": "专家混合放置",
+      "en": "Mixed expert placement"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "混合放置模式（DP×TP 平面上的专家/权重放置策略），计入 RFork 权重传输的兼容性指纹；发送端与接收端配置不一致会导致指纹不匹配。",
+      "en": "Mixed placement mode (expert/weight placement on the DP×TP plane); counted into the RFork weight-transfer compatibility fingerprint — a sender/receiver mismatch breaks the fingerprint."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/rfork",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "mlapo_keep_prefill_weights",
+    "name": {
+      "zh": "保留 prefill 权重",
+      "en": "Keep prefill weights"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [
+      "enable_mlapo"
+    ],
+    "conflicts": [],
+    "desc": {
+      "zh": "MLAPO 下在 kv_consumer（仅 decode 的 D 节点）保留 prefill 权重而非释放。用 NPU 内存换取稳定性，规避权重释放后本地 prefill 路径崩溃（issue",
+      "en": "Keep MLAPO prefill weights on kv_consumer (decode-only D nodes) instead of freeing them. Trades NPU memory for stability against local-prefill crashes after weight freeing (issue"
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方配置文档：在 kv_consumer（decode-only D）节点上保留 MLAPO prefill 权重——D 节点的本地 prefill 路径（recompute/fallback/preempt）在权重释放后会崩溃（issue #11882）；以显存换稳定。",
+        "en": "Official config doc: keep MLAPO prefill weights on NPU for kv_consumer (decode-only D) nodes — D-node local-prefill paths (recompute/fallback/preempt) crash when freed (issue #11882); trades memory for stability."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "msmonitor_use_daemon",
+    "name": {
+      "zh": "msmonitor 守护模式",
+      "en": "msmonitor daemon mode"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "legacy_env": "MSMONITOR_USE_DAEMON",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "msmonitor 是否使用守护进程模式。",
+      "en": "Whether msmonitor uses daemon mode."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "multistream_dsv4_dsa_overlap",
+    "name": {
+      "zh": "DSV4 DSA 多流重叠",
+      "en": "DSV4 DSA multistream overlap"
+    },
+    "type": "bool",
+    "default": true,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "DeepSeek-V4"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "为 DeepSeek V4 启用 DSA 多流重叠。",
+      "en": "Enable DSA multi-stream overlap for DeepSeek V4."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "multistream_engram_overlap",
+    "name": {
+      "zh": "Engram 多流重叠",
+      "en": "Engram multistream overlap"
+    },
+    "type": "bool",
+    "default": "硬件派生（A5 默认 true，其余 false）",
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "DeepSeek V4.1 等 Engram 模型"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "Engram 模块多流重叠。默认仅在 A5（FP8 优化设备家族）开启；显式设置覆盖默认策略。FULL 图需在消费者侧等待描述符相关的外部事件，故默认策略因硬件而异。",
+      "en": "Multistream overlap for the Engram module. Defaults to on only on A5 (FP8-optimized device family); explicit settings override. FULL graphs wait on descriptor-specific external events at consumers, hence the hardware-dependent default."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "仅见 DeepSeek-V4.1-Flash P 配方显式置 false，未见部署形态语义说明。",
+        "en": "Only seen as an explicit false in the DeepSeek-V4.1-Flash P recipe; no deployment-form semantics documented."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
+    }
+  },
+  {
+    "key": "multistream_overlap_gate",
+    "name": {
+      "zh": "多流门控重叠",
+      "en": "Multistream gate overlap"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "removed",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用多流重叠门控，仅对含共享专家的 MoE 模型生效。已移除（v0.30.0 起源码无读取点）。",
+      "en": "Enable multistream overlap gating; only effective for MoE models with shared experts. Removed (no source read site since v0.30.0)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.30.0 起已移除",
+      "en": "Removed since v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "multistream_overlap_shared_expert",
+    "name": {
+      "zh": "共享专家多流重叠",
+      "en": "Shared-expert multistream overlap"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "MoE"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用多流共享专家重叠，仅对含共享专家的 MoE 模型生效。",
+      "en": "Enable multi-stream overlap for the shared expert; only effective on MoE models with shared experts."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "Kimi-K2.6：TP=1 或 enable_shared_expert_dp 时启用额外流重叠 shared-expert 计算；Kimi-K3 配方按侧区分（P false / D true）；GLM5 表列为 A3 通用优化。",
+        "en": "Kimi-K2.6: extra stream overlaps shared-expert computation when TP=1 or enable_shared_expert_dp; Kimi-K3 sets it per side (P false / D true); GLM5 table lists it as a general A3 optimization."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
+    }
+  },
+  {
+    "key": "pa_shape_list",
+    "name": {
+      "zh": "PA 算子 shape 列表",
+      "en": "PA operator shape list"
+    },
+    "type": "list",
+    "default": [],
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "page attention 算子的自定义 shape 列表。",
+      "en": "Custom shape list for page-attention ops."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "profiling_chunk_config",
+    "name": {
+      "zh": "分块流水线配置",
+      "en": "Profiling chunk config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "deprecated",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "动态分块流水线并行（profiling chunk）配置。v0.30.0 起顶层键废弃，请改用 scheduler_config.profiling_chunk_config。",
+      "en": "Dynamic-chunk pipeline-parallel (profiling chunk) config. Top-level key deprecated since v0.30.0; use scheduler_config.profiling_chunk_config instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config"
+    },
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "要求 pipeline-parallel-size>1；GLM5.2 配方在 P 节点（kv_producer）开启；不能与 dyntra_lb_config / enable_balance_scheduling 同开，可与 ShortRequestFirst 组合。",
+        "en": "Requires pipeline-parallel-size>1; enabled on the P node (kv_producer) in the GLM5.2 recipe; incompatible with dyntra_lb_config / enable_balance_scheduling, combinable with ShortRequestFirst."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
+    }
+  },
+  {
+    "key": "recompute_scheduler_enable",
+    "name": {
+      "zh": "重计算调度",
+      "en": "Recompute scheduler"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "deprecated",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用重计算调度器。仅在 PD 分离的 D 节点（kv_consumer）有效；在 P 节点或 PD-mixed 模式下启用会在启动时报明确错误。v0.30.0 起顶层键废弃，请改用 scheduler_config.recompute_scheduler_enable。",
+      "en": "Enable the recompute scheduler. Effective only on the decode node (kv_consumer) of a P/D disaggregation; enabling on a prefill node or PD-mixed mode raises an explicit startup error. Top-level key deprecated since v0.30.0; use scheduler_config.recompute_scheduler_enable instead. mode fails startup with a clear error."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.recompute_scheduler_enable",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.recompute_scheduler_enable"
+    },
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方配置文档：仅在 PD 分离 D 节点（kv_consumer）有效——「Do not enable on P nodes or in PD-mixed mode … startup will fail」；GLM5 表注明 P 节点置 false；与 dyntra_lb_config 同开时组成 combined scheduler。",
+        "en": "Official config doc: valid only on PD-disaggregated D nodes — \"Do not enable on P nodes or in PD-mixed mode ... startup will fail\"; GLM5 table sets it false on P; combined with dyntra_lb_config it forms the combined scheduler."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "refresh",
+    "name": {
+      "zh": "全局配置刷新",
+      "en": "Refresh global config"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "是否刷新全局 Ascend 配置内容。通常用于 RLHF 或 ut/e2e 测试用例。",
+      "en": "Whether to refresh the global Ascend configuration. Usually used by RLHF or ut/e2e tests."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "rejection_sampler_config",
+    "name": {
+      "zh": "拒绝采样器配置",
+      "en": "Rejection sampler config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "拒绝采样器配置（block verify 与 entropy verify）。",
+      "en": "Rejection sampler configuration (block verify and entropy verify)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "rl_config",
+    "name": {
+      "zh": "RL 模式总开关",
+      "en": "RL mode master switch"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "一键 RL 模式总开关（enabled: true 时强制 weight_nz_mode=0、设置 VLLM_SERVER_DEV_MODE=1 等固定行为）。子键含 sleep_mode_extra_cleanup、enable_training_consistency、enable_batch_invariant。",
+      "en": "One-click RL mode (enabled: true forces weight_nz_mode=0, VLLM_SERVER_DEV_MODE=1, etc.). Sub-keys include sleep_mode_extra_cleanup, enable_training_consistency, enable_batch_invariant."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "runtime_config",
+    "name": {
+      "zh": "运行时配置叠加",
+      "en": "Runtime config overlay"
+    },
+    "type": "dict",
+    "default": null,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启动时叠加层，与运行时配置默认值合并（检测器、dump 配额、报告标志）。",
+      "en": "Startup overlay merged into runtime config defaults (detectors, dump quota, report flags)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": true
+    },
+    "version_note": {
+      "zh": "main 分支新增，下一版本发布",
+      "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "runtime_config_hot_reload",
+    "name": {
+      "zh": "运行时配置热重载",
+      "en": "Runtime config hot reload"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "启用 runtime_config.json 热重载（仅启动时生效；不是 JSON 字段）。",
+      "en": "Enable hot-reload of runtime_config.json (startup-only; not a JSON field)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": true
+    },
+    "version_note": {
+      "zh": "main 分支新增，下一版本发布",
+      "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "runtime_config_path",
+    "name": {
+      "zh": "Runtime Guard 路径",
+      "en": "Runtime Guard path"
+    },
+    "type": "str",
+    "default": null,
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "Runtime Guard JSON 配置路径，默认 /runtime/config/runtime_config.json。",
+      "en": "Path to the Runtime Guard JSON config. Default: /runtime/config/runtime_config.json."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": true
+    },
+    "version_note": {
+      "zh": "main 分支新增，下一版本发布",
+      "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "runtime_dump_dir",
+    "name": {
+      "zh": "KV dump 目录",
+      "en": "KV dump directory"
+    },
+    "type": "str",
+    "default": null,
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "设置 KV dump 根目录（dump.dump_dir），默认由报告根目录派生。已移除，请改用 runtime_config.dump.dump_dir。",
+      "en": "Set the KV dump root directory (dump.dump_dir), derived from the report root by default. Removed; use runtime_config.dump.dump_dir instead."
+    },
+    "source": "vllm_ascend/ runtime_guard (docs: feature_guide/runtime_guard.md)",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "Runtime Guard 特性的一部分，main 分支新增",
+      "en": "Part of Runtime Guard; new on main"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "runtime_report_dir",
+    "name": {
+      "zh": "报告根目录",
+      "en": "Report root directory"
+    },
+    "type": "str",
+    "default": null,
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "覆盖报告根目录，默认 /runtime/report。已移除，请改用 runtime_config.report_dir。",
+      "en": "Override the report root directory (default /runtime/report). Removed; use runtime_config.report_dir instead."
+    },
+    "source": "vllm_ascend/ runtime_guard (docs: feature_guide/runtime_guard.md)",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "Runtime Guard 特性的一部分，main 分支新增",
+      "en": "Part of Runtime Guard; new on main"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "scheduler_config",
+    "name": {
+      "zh": "调度器扩展配置",
+      "en": "Scheduler extensions"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "调度器扩展配置的规范层级，包含均衡调度、重计算调度、DyntraLB、ShortRequestFirst、动态分块流水线并行等。过渡期旧顶层键仍兼容但已弃用。",
+      "en": "Canonical nesting for scheduler extensions: balance scheduling, recompute scheduling, DyntraLB, ShortRequestFirst, dynamic chunked pipeline parallel, etc. Legacy top-level keys still parse but are deprecated."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 新增",
+      "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "聚合键，放置由子键决定：recompute_scheduler_enable 仅 D、short_request_first_config 仅 P/混部、dyntra_lb_config 仅 D、enable_balance_scheduling 仅混部、profiling_chunk_config 见 P 侧实证。详见各子键详情页。",
+        "en": "Aggregate key; placement follows sub-keys: recompute_scheduler_enable D-only, short_request_first_config P/mixed-only, dyntra_lb_config D-only, enable_balance_scheduling mixed-only, profiling_chunk_config evidenced on P. See sub-key pages."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
+    }
+  },
+  {
+    "key": "sfa_dcp_force_tmajor_restore",
+    "name": {
+      "zh": "SFA DCP T-major 恢复",
+      "en": "SFA DCP T-major restore"
+    },
+    "type": "bool",
+    "default": false,
+    "status": "active",
+    "hardware": [],
+    "models": [
+      "SFA 模型 + DCP"
+    ],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "SFA 注意力在 DCP（Decode Context Parallel）下强制 T-major 布局恢复，仅调试/兼容用途，正常部署无需设置。",
+      "en": "Force T-major layout restore for SFA attention under DCP (Decode Context Parallel). Debug/compatibility only — no need to set in normal deployments."
+    },
+    "source": "vllm_ascend/ascend_config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "short_request_first_config",
+    "name": {
+      "zh": "短请求优先调度",
+      "en": "Short-request-first scheduling"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "deprecated",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "ShortRequestFirst prefill 调度配置，用于 FCFS 同步/异步、PD-prefill（P）或 PD-mixed 节点。v0.30.0 起顶层键废弃，请改用 scheduler_config.short_request_first_config。",
+      "en": "ShortRequestFirst prefill scheduling config for FCFS sync/async, PD-prefill (P) or PD-mixed nodes. Top-level key deprecated since v0.30.0; use scheduler_config.short_request_first_config instead."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "version_note": {
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.short_request_first_config",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.short_request_first_config"
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 ShortRequestFirst 指南：支持普通部署、PD 分离 P 节点与 PD 混部；「not supported … on PD-disaggregated D nodes」；不依赖 recompute_scheduler_enable。",
+        "en": "Official ShortRequestFirst guide: ordinary deployments, PD-disaggregated P nodes and PD-mixed; \"not supported on PD-disaggregated D nodes\"; does not require recompute_scheduler_enable."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html"
+    }
+  },
+  {
+    "key": "sparse_kv_offload_config",
+    "name": {
+      "zh": "稀疏 KV 卸载",
+      "en": "Sparse KV offload"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [
+      "A5"
+    ],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "稀疏 KV cache 卸载到 DRAM 的配置。子键：enabled、topk_buffer_size（-1 自动解析为 (1+投机 token 数)×2048）、dram_size_per_dp_GB（110）、keep_device_kv_cache、use_fused_overlap。仅 950 系列产品（A5）；勿在 prefill 节点设置。",
+      "en": "Config for offloading sparse KV cache to DRAM. Sub-keys: enabled, topk_buffer_size (-1 resolves to (1+num_speculative_tokens)*2048), dram_size_per_dp_GB (110), keep_device_kv_cache, use_fused_overlap. 950-series products (A5) only; do not set on prefill nodes."
+    },
+    "source": "vllm_ascend/ascend_config.py + docs.vllm.ai user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading",
+    "version_support": {
+      "v0.23.0": false,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "官方分层/稀疏 KV 卸载指南：「Do not set sparse_kv_offload_config on Prefill」；D 节点用独立 host pool，配置与 P 侧不同；与 PreemptOffloadConnector 互斥（含 MultiConnector 包装）。",
+        "en": "Official layerwise/sparse KV offloading guide: \"Do not set sparse_kv_offload_config on Prefill\"; Decode uses a separate host pool with different config; mutually exclusive with PreemptOffloadConnector (incl. inside MultiConnector)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading.html"
+    }
+  },
+  {
+    "key": "weight_nz_mode",
+    "name": {
+      "zh": "权重 NZ 格式",
+      "en": "Weight NZ mode"
+    },
+    "type": "int",
+    "default": 1,
+    "status": "active",
+    "legacy_env": "VLLM_ASCEND_ENABLE_NZ",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "values": {
+      "0": "禁用 NZ",
+      "1": "仅对量化权重启用 NZ",
+      "2": "在支持的情况下也对 BF16/FP16 权重启用 NZ"
+    },
+    "desc": {
+      "zh": "权重 NZ 格式模式。0 禁用，1 仅量化权重，2 扩展至 BF16/FP16。",
+      "en": "Weight NZ layout mode. 0 disables NZ, 1 enables for quantized weights only, 2 extends to BF16/FP16 when supported."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 配方 P/D 两侧均配置（Qwen3.5-397B-A17B、MiniMax-M3 等）；取值由权重格式决定（0 关 / 1 仅量化权重 / 2 含 BF16/FP16）。",
+        "en": "Configured on both sides in official PD recipes (Qwen3.5-397B-A17B, MiniMax-M3, etc.); value follows weight format (0 off / 1 quantized only / 2 incl. BF16/FP16)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html"
+    }
+  },
+  {
+    "key": "weight_prefetch_config",
+    "name": {
+      "zh": "权重预取配置",
+      "en": "Weight prefetch config"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "removed",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "权重预取配置。已移除（v0.30.0 起源码无读取点）。",
+      "en": "Weight prefetch config. Removed (no source read site since v0.30.0)."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": false,
+      "main": false
+    },
+    "version_note": {
+      "zh": "v0.30.0 起已移除",
+      "en": "Removed since v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
+    }
+  },
+  {
+    "key": "xlite_graph_config",
+    "name": {
+      "zh": "Xlite 图模式",
+      "en": "Xlite graph mode"
+    },
+    "type": "dict",
+    "default": {},
+    "status": "active",
+    "hardware": [],
+    "models": [],
+    "requires": [],
+    "conflicts": [],
+    "desc": {
+      "zh": "Xlite 图模式配置。",
+      "en": "Configuration for Xlite graph mode."
+    },
+    "source": "vllm_ascend/config.py",
+    "version_support": {
+      "v0.23.0": true,
+      "v0.30.0": true,
+      "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 graph_mode 指南：默认（full_mode=false）token 预算按 decode 步 sizing，prefill 与大批次回退 ACLGraph——偏 D 侧重 decode；full_mode=true 时预算按 max_num_batched_tokens，prefill/decode 都走 xlite（建议 --enforce-eager）。",
+        "en": "Official graph_mode guide: by default (full_mode=false) the token budget is sized for decode steps with prefill/large batches falling back to ACLGraph — decode-leaning; full_mode=true sizes by max_num_batched_tokens so prefill and decode both run on xlite (--enforce-eager recommended)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/graph_mode.html"
+    }
+  }
+]

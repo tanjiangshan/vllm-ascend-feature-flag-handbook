@@ -1,0 +1,1871 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="vLLM-Ascend 特性开关深度手册：additional-config 全量配置、环境变量、迁移对照与版本历史">
+      
+      
+        <meta name="author" content="vllm-ascend-feature-flag-handbook contributors">
+      
+      
+        <link rel="canonical" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/">
+      
+      
+        <link rel="prev" href="../flags/">
+      
+      
+        <link rel="next" href="../version-matrix/">
+      
+      
+        
+          <link rel="alternate" href="../../engine-args/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Engine args overview - vLLM-Ascend 特性开关手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vllm-engine-args-overview-ascend-context" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="vLLM-Ascend 特性开关手册" class="md-header__button md-logo" aria-label="vLLM-Ascend 特性开关手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            vLLM-Ascend 特性开关手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Engine args overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../engine-args/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vllm-ascend-feature-flag-handbook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="vLLM-Ascend 特性开关手册" class="md-nav__button md-logo" aria-label="vLLM-Ascend 特性开关手册" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    vLLM-Ascend 特性开关手册
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vllm-ascend-feature-flag-handbook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速上手
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config-entry-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置入口总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性专题导览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性开关总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引擎参数
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引擎参数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-official-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to official docs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship to official docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-cache-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KV Cache &amp; Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduling &amp; Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compilation &amp; Graphs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model &amp; Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speculative-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speculative Decoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-transfer-pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KV Transfer &amp; PD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multimodal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic-kv-pooling-ascend-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic: KV pooling (Ascend Store)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-combos-from-official-tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended combos (from official tutorials)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-data-is-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this data is verified
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本支持矩阵
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env-vars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境变量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    迁移对照表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../version-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本历史
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-official-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to official docs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship to official docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-cache-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KV Cache &amp; Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduling &amp; Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compilation &amp; Graphs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model &amp; Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speculative-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speculative Decoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kv-transfer-pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KV Transfer &amp; PD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multimodal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topic-kv-pooling-ascend-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic: KV pooling (Ascend Store)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-combos-from-official-tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended combos (from official tutorials)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-data-is-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How this data is verified
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/edit/main/docs/engine-args/index.en.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook/raw/main/docs/engine-args/index.en.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="vllm-engine-args-overview-ascend-context">vLLM Engine Args Overview (Ascend context)<a class="headerlink" href="#vllm-engine-args-overview-ascend-context" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Tables on this page are auto-generated from <code>data/engine-args.yaml</code> by <code>scripts/generate_tables.py</code>. Do not edit the table region by hand.</p>
+<p><strong>Inclusion rule</strong>: only args that actually appear in vLLM-Ascend official docs (model tutorials, feature guides, quick_start, FAQs). Every arg exists in the vLLM source CLI definitions. <strong>78 args</strong>, grouped into 9 categories.</p>
+<p>Args here are top-level <code>vllm serve</code> command-line args (<code>--xxx</code>), defined by upstream vLLM and cross-platform; <strong>Ascend-plugin-specific config keys</strong> (<code>AscendConfig</code> fields passed via the <code>--additional-config</code> JSON) live in the <a href="../flags/">feature flags overview</a>.</p>
+<p>📍 Ascend configuration has <strong>6 entry points</strong> in total — this page is just one of them. Start from the <a href="../config-entry-points/">configuration entry points overview</a> (covers CLI value-domain patches, env vars, runtime_config.json and other entries not listed here).</p>
+</blockquote>
+<h2 id="relationship-to-official-docs">Relationship to official docs<a class="headerlink" href="#relationship-to-official-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>vLLM's official args docs cover 270+ args; this table focuses on the <strong>Ascend deployment context</strong> (real usage in official tutorials, recommended values, Ascend notes).</li>
+<li>Each arg's "Official docs" column links to the specific tutorial page it was taken from — click through to see the original command line.</li>
+<li>Defaults come from the vLLM source dataclass definitions (<code>ParallelConfig</code>/<code>ModelConfig</code>/<code>VllmConfig</code>), not prose.</li>
+<li>Key args have dedicated detail pages (linked arg names).</li>
+</ul>
+<!-- EA_TABLE_START -->
+<h3 id="parallelism">Parallelism<a class="headerlink" href="#parallelism" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--api-server-count</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Number of API server processes. Improves request ingress throughput under high concurrency.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html">docs×9</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-address</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Address of the data parallel cluster head node.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×20</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-backend</code></td>
+<td><code>DataParallelBackend</code></td>
+<td><code>"mp"</code></td>
+<td>DP backend implementation. Default 'mp'; use 'ray' for Ray clusters.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html">docs×1</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-rank</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Data parallel rank of this instance (headless / Ray mode).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×7</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-rpc-port</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Fixed port for DP RPC communication. Required for multi-node DP.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×18</a></td>
+</tr>
+<tr>
+<td><a href="data-parallel-size/"><code>--data-parallel-size</code></a></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Number of data parallel groups. MoE experts are sharded by TP×PCP×DP. Required for multi-node EP.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×39</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-size-local</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Number of DP replicas on this node. Used with data-parallel-size for multi-node DP.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×20</a></td>
+</tr>
+<tr>
+<td><code>--data-parallel-start-rank</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Starting DP rank for this node. Multi-node DP node addressing.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×16</a></td>
+</tr>
+<tr>
+<td><code>--decode-context-parallel-size</code></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Decode context parallel size. Complements PCP for decode phase.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×7</a></td>
+</tr>
+<tr>
+<td><a href="distributed-executor-backend/"><code>--distributed-executor-backend</code></a></td>
+<td><code>(</code></td>
+<td><code>None</code></td>
+<td>Distributed executor backend: 'mp' (single node) or 'ray' (multi-node). Official multi-node tutorials use ray.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html">docs×20</a></td>
+</tr>
+<tr>
+<td><a href="enable-expert-parallel/"><code>--enable-expert-parallel</code></a></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Use expert parallelism instead of TP for MoE layers. Standard in official MoE tutorials.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html">docs×45</a></td>
+</tr>
+<tr>
+<td><code>--eplb-config</code></td>
+<td><code>EPLBConfig</code></td>
+<td><code>"EPLBConfig()"</code></td>
+<td>Expert parallelism load balancer config (vLLM core). Ascend dynamic EPLB is via additional-config eplb_config.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/expert_parallelism_load_balancer.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--headless</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Headless mode: no API server on this node, DP inference only. Used for multi-node DP clusters.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×19</a></td>
+</tr>
+<tr>
+<td><code>--master-addr</code></td>
+<td><code>str</code></td>
+<td><code>"127.0.0.1"</code></td>
+<td>Master node address (torchrun launcher).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×9</a></td>
+</tr>
+<tr>
+<td><code>--master-port</code></td>
+<td><code>int</code></td>
+<td><code>29501</code></td>
+<td>Master node port (torchrun launcher).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×9</a></td>
+</tr>
+<tr>
+<td><code>--nnodes</code></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Number of cluster nodes (torchrun launcher). Passed via torchrun in official multi-node tutorials.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×9</a></td>
+</tr>
+<tr>
+<td><code>--node-rank</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Rank of this node (torchrun launcher).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×9</a></td>
+</tr>
+<tr>
+<td><a href="pipeline-parallel-size/"><code>--pipeline-parallel-size</code></a></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Number of pipeline parallel groups. Used for multi-node large models, often combined with DP.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html">docs×11</a></td>
+</tr>
+<tr>
+<td><a href="prefill-context-parallel-size/"><code>--prefill-context-parallel-size</code></a></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Prefill context parallel (PCP) size. Speeds up long-context prefill on A2/A3.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×8</a></td>
+</tr>
+<tr>
+<td><a href="tensor-parallel-size/"><code>--tensor-parallel-size</code></a></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Number of tensor parallel groups. A2 tutorials use 1–8; large A3 models often 8–16.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/ray.html">docs×64</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kv-cache-memory">KV Cache &amp; Memory<a class="headerlink" href="#kv-cache-memory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--cp-kv-cache-interleave-size</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>KV cache interleave size in CP mode. Tuning knob; default 1 usually suffices.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K3.1-Pro.html">docs×5</a></td>
+</tr>
+<tr>
+<td><a href="block-size/"><code>--block-size</code></a></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>KV cache block size. Default None (auto, typically 16); DeepSeek-V4-Pro tutorial sets 32; KVPP etc. use other values.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×13</a></td>
+</tr>
+<tr>
+<td><a href="enable-prefix-caching/"><code>--enable-prefix-caching</code></a></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Prefix caching. Default None (auto per model); PD disaggregation tutorials pass --no-enable-prefix-caching on decode nodes.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×34</a></td>
+</tr>
+<tr>
+<td><a href="kv-cache-dtype/"><code>--kv-cache-dtype</code></a></td>
+<td><code>CacheDType</code></td>
+<td><code>"auto"</code></td>
+<td>KV cache dtype (fp8, int8). Used in Ascend quantized-model tutorials to save HBM.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×15</a></td>
+</tr>
+<tr>
+<td><code>--kv-cache-memory-bytes</code></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>KV cache memory limit in bytes. Finer-grained alternative to gpu-memory-utilization.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×2</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="scheduling-memory">Scheduling &amp; Memory<a class="headerlink" href="#scheduling-memory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--async-scheduling</code></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×16</a></td>
+</tr>
+<tr>
+<td><code>--disable-hybrid-kv-cache-manager</code></td>
+<td><code>bool</code></td>
+<td><code>"("</code></td>
+<td>Disable hybrid KV cache manager. Auto-detected by default; rarely set manually.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×5</a></td>
+</tr>
+<tr>
+<td><a href="enable-chunked-prefill/"><code>--enable-chunked-prefill</code></a></td>
+<td><code>bool</code></td>
+<td><code>None</code></td>
+<td>Chunked prefill. Enabled by default on vLLM main (SchedulerConfig default True), chunked by remaining max_num_batched_tokens; auto-disabled for encoder-decoder models.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html">docs×13</a></td>
+</tr>
+<tr>
+<td><a href="gpu-memory-utilization/"><code>--gpu-memory-utilization</code></a></td>
+<td><code>float</code></td>
+<td><code>None</code></td>
+<td>Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html">docs×46</a></td>
+</tr>
+<tr>
+<td><code>--long-prefill-token-threshold</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Long prefill token threshold. Requests above this use the chunked path.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--mamba-ssm-cache-dtype</code></td>
+<td><code>MambaDType</code></td>
+<td><code>"auto"</code></td>
+<td>Cache dtype for Mamba/SSM models. Default auto.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html">docs×4</a></td>
+</tr>
+<tr>
+<td><a href="max-model-len/"><code>--max-model-len</code></a></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Model context length. Auto-derived from model config if unset; must be set for long-context.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×52</a></td>
+</tr>
+<tr>
+<td><a href="max-num-batched-tokens/"><code>--max-num-batched-tokens</code></a></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Max tokens per iteration. Default None (auto); the CPP dynamic-chunk guide suggests search space [8192, 16384, 24576, 32768].</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×50</a></td>
+</tr>
+<tr>
+<td><a href="max-num-seqs/"><code>--max-num-seqs</code></a></td>
+<td><code>int</code></td>
+<td><code>None</code></td>
+<td>Max sequences per iteration (concurrency cap). Default None (auto); official tutorials use 12–128, trade off memory vs latency.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html">docs×47</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="compilation-graphs">Compilation &amp; Graphs<a class="headerlink" href="#compilation-graphs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--attention-config</code></td>
+<td><code>AttentionConfig</code></td>
+<td><code>"AttentionConfig()"</code></td>
+<td>Attention backend and config. Sub-key indexer_kv_dtype is the KV dtype for Lightning Indexer sparse attention; since v0.30.0 {fp8, int8} derives LI-C8 and mxfp4 derives LI-C4. The int8 value is injected into the upstream domain by an Ascend platform patch (patch_indexer_kv_dtype.py; upstream has only auto/bf16/fp8/mxfp4/nvfp4). Pair with --kv-cache-dtype and keep P/D values identical.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×9</a></td>
+</tr>
+<tr>
+<td><a href="compilation-config/"><code>--compilation-config</code></a></td>
+<td><code>CompilationConfig</code></td>
+<td><code>"CompilationConfig()"</code></td>
+<td>torch.compile and CUDA Graph capture config. Ascend tutorials set cudagraph_mode (e.g. FULL_DECODE_ONLY) or cudagraph_capture_sizes for TTFT.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html">docs×53</a></td>
+</tr>
+<tr>
+<td><a href="enforce-eager/"><code>--enforce-eager</code></a></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Force eager mode (skip CUDA Graph). For first deploy/debug; disable in production for graph-capture speed.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Cohere-Transcribe.html">docs×21</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="model-loading">Model &amp; Loading<a class="headerlink" href="#model-loading" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--dtype</code></td>
+<td><code>ModelDType</code></td>
+<td><code>"auto"</code></td>
+<td>Weight dtype (auto/bfloat16/float16). Ascend quantized models often use bfloat16.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html">docs×18</a></td>
+</tr>
+<tr>
+<td><code>--enable-lora</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Enable LoRA. Supported on Ascend; use with lora-modules.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--generation-config</code></td>
+<td><code>str</code></td>
+<td><code>"auto"</code></td>
+<td>Generation config (auto-loaded from model or overridden).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--hf-overrides</code></td>
+<td><code>HfOverrides</code></td>
+<td><code>"{}"</code></td>
+<td>HF config overrides (JSON). For architecture tweaks like rope scaling.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html">docs×4</a></td>
+</tr>
+<tr>
+<td><code>--load-format</code></td>
+<td><code>str</code></td>
+<td><code>"auto"</code></td>
+<td>Weight load format (auto/pt/safetensors). safetensors is the default recommendation.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/netloader.html">docs×4</a></td>
+</tr>
+<tr>
+<td><code>--logprobs-mode</code></td>
+<td><code>LogprobsMode</code></td>
+<td><code>"raw_logprobs"</code></td>
+<td>Logprobs output mode (raw_logprobs/processed_logprobs).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">docs×1</a></td>
+</tr>
+<tr>
+<td><code>--lora-modules</code></td>
+<td><code>list[LoRAModulePath]</code></td>
+<td><code>None</code></td>
+<td>LoRA modules list (JSON). Use with enable-lora.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--max-lora-rank</code></td>
+<td><code>MaxLoRARanks</code></td>
+<td><code>16</code></td>
+<td>Max LoRA rank. Caps the size of loadable LoRA adapters.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/lora.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--model</code></td>
+<td><code>str</code></td>
+<td><code>"Qwen/Qwen3-0.6B"</code></td>
+<td>Model path or HF model ID. Positional, but tutorials sometimes pass it explicitly.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen-VL-Dense.html">docs×4</a></td>
+</tr>
+<tr>
+<td><code>--model-loader-extra-config</code></td>
+<td><code>dict</code></td>
+<td><code>"dict()"</code></td>
+<td>Model loader extra config. For advanced scenarios like Ascend NetLoader.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×8</a></td>
+</tr>
+<tr>
+<td><a href="quantization/"><code>--quantization</code></a></td>
+<td><code>QuantizationMethods</code></td>
+<td><code>None</code></td>
+<td>Weight quantization method. Ascend tutorials use 'ascend', 'deepseek_v4_fp8', 'mxfp8'; None infers from model config.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×38</a></td>
+</tr>
+<tr>
+<td><code>--safetensors-load-strategy</code></td>
+<td><code>SafetensorsLoadStrategy</code></td>
+<td><code>"("</code></td>
+<td>safetensors load strategy (lazy/prefetch). lazy saves startup memory.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×14</a></td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Random seed. Set explicitly for reproducibility tests and RL rollouts.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×10</a></td>
+</tr>
+<tr>
+<td><code>--tokenizer-mode</code></td>
+<td><code>TokenizerMode</code></td>
+<td><code>"auto"</code></td>
+<td>Tokenizer mode. Set to a specific tokenizer for DeepSeek-V4/Kimi-K3 in official tutorials.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×8</a></td>
+</tr>
+<tr>
+<td><code>--trust-remote-code</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Trust custom code in model repo. Required for some models (InternVL, newer architectures).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×53</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="speculative-decoding">Speculative Decoding<a class="headerlink" href="#speculative-decoding" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="speculative-config/"><code>--speculative-config</code></a></td>
+<td><code>dict[str, Any]</code></td>
+<td><code>None</code></td>
+<td>Speculative decoding config (JSON). MTP/EAGLE3 for DeepSeek/Kimi in Ascend tutorials.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html">docs×40</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kv-transfer-pd">KV Transfer &amp; PD<a class="headerlink" href="#kv-transfer-pd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ec-transfer-config</code></td>
+<td><code>ECTransferConfig</code></td>
+<td><code>None</code></td>
+<td>EC transfer config. For encoder cache scenarios.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/encoder_cache_cpu_offload.html">docs×1</a></td>
+</tr>
+<tr>
+<td><a href="kv-transfer-config/"><code>--kv-transfer-config</code></a></td>
+<td><code>KVTransferConfig</code></td>
+<td><code>None</code></td>
+<td>KV transfer config (JSON). Core of PD disaggregation: NixlConnector/Mooncake etc.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×17</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="multimodal">Multimodal<a class="headerlink" href="#multimodal" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--allowed-local-media-path</code></td>
+<td><code>str</code></td>
+<td><code>""</code></td>
+<td>Allowed local media path prefix. For local image/video inference.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×7</a></td>
+</tr>
+<tr>
+<td><code>--limit-mm-per-prompt</code></td>
+<td><code>dict[str, int]</code></td>
+<td><code>None</code></td>
+<td>Per-prompt multimodal limit (JSON). E.g. {"image":1,"video":0}.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×14</a></td>
+</tr>
+<tr>
+<td><code>--mm-encoder-tp-mode</code></td>
+<td><code>MMEncoderTPMode</code></td>
+<td><code>"weights"</code></td>
+<td>MM encoder TP mode (weights/data). Tuning for vision models.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×9</a></td>
+</tr>
+<tr>
+<td><code>--mm-processor-cache-gb</code></td>
+<td><code>float</code></td>
+<td><code>4</code></td>
+<td>MM processor cache size (GB). Default 4; may need increase for video models.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×13</a></td>
+</tr>
+<tr>
+<td><code>--mm-processor-cache-type</code></td>
+<td><code>MMCacheType</code></td>
+<td><code>"("</code></td>
+<td>MM processor cache type (lru etc.).</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-27B-Qwen3.6-27B.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--skip-mm-profiling</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Skip MM profiling. Speeds up startup for known models.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×5</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="additional-config/"><code>--additional-config</code></a></td>
+<td><code>dict</code></td>
+<td><code>"{}"</code></td>
+<td>Platform extension config (JSON). Sole entry for vLLM-Ascend's 64 feature flags — see the flags overview.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/getting_started/quick_start/online/qwen3-0.6b-310p.inc.html">docs×66</a></td>
+</tr>
+<tr>
+<td><code>--chat-template</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Chat template path. For custom chat formats.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--default-chat-template-kwargs</code></td>
+<td><code>dict[str, Any]</code></td>
+<td><code>None</code></td>
+<td>Default chat template kwargs (JSON). E.g. enable_thinking.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Dots3-Note.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--enable-auto-tool-choice</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Auto tool choice. Use with tool-call-parser.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×18</a></td>
+</tr>
+<tr>
+<td><code>--enable-return-routed-experts</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Return routed expert info. For MoE debugging/analysis.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--host</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>API listen address. Default 127.0.0.1; use 0.0.0.0 for cluster.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×47</a></td>
+</tr>
+<tr>
+<td><code>--port</code></td>
+<td><code>int</code></td>
+<td><code>8000</code></td>
+<td>API service port. Default 8000.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×57</a></td>
+</tr>
+<tr>
+<td><code>--profiler-config</code></td>
+<td><code>ProfilerConfig</code></td>
+<td><code>"ProfilerConfig()"</code></td>
+<td>Profiler config (JSON). Entry for Ascend msprof profiling toolchain.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html">docs×3</a></td>
+</tr>
+<tr>
+<td><code>--reasoning-parser</code></td>
+<td><code>str</code></td>
+<td><code>""</code></td>
+<td>Reasoning parser (deepseek_v41, glm45). Separates chain-of-thought content.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html">docs×15</a></td>
+</tr>
+<tr>
+<td><code>--runner</code></td>
+<td><code>RunnerOption</code></td>
+<td><code>"auto"</code></td>
+<td>Runner type (generate/pooling). Default auto.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/SigLIP2.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--served-model-name</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Model name(s) exposed in API. Can differ from path; supports aliases.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/features/pd_disaggregation_mooncake_single_node.html">docs×63</a></td>
+</tr>
+<tr>
+<td><code>--tokens-only</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Return tokens only, no text. For benchmarking/dev.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--tool-call-parser</code></td>
+<td><code>str</code></td>
+<td><code>None</code></td>
+<td>Tool call parser (deepseek_v4, glm47). Use with enable-auto-tool-choice.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html">docs×15</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rl-training">RL Training<a class="headerlink" href="#rl-training" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Official docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ec-manager-config</code></td>
+<td><code>EcManagerConfig</code></td>
+<td><code>None</code></td>
+<td>Encoder cache manager config. Capacity/eviction policy for multimodal encoder cache.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/encoder_cache_manager.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--enable-sleep-mode</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Sleep mode. Frees HBM for the trainer during RL training, at the cost of wakeup latency.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">docs×2</a></td>
+</tr>
+<tr>
+<td><code>--engram-config</code></td>
+<td><code>EngramConfig</code></td>
+<td><code>None</code></td>
+<td>Engram config. Ascend-specific graph optimization mode.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/DeepSeek-V4.1-Flash.html">docs×1</a></td>
+</tr>
+<tr>
+<td><code>--weight-transfer-config</code></td>
+<td><code>WeightTransferConfig</code></td>
+<td><code>None</code></td>
+<td>Weight transfer config (JSON). For rollout→train weight sync in RL.</td>
+<td><a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html">docs×2</a></td>
+</tr>
+</tbody>
+</table>
+<!-- EA_TABLE_END -->
+
+<h2 id="topic-kv-pooling-ascend-store">Topic: KV pooling (Ascend Store)<a class="headerlink" href="#topic-kv-pooling-ascend-store" title="Permanent link">&para;</a></h2>
+<p><strong>KV pooling</strong> (KV Cache Pool / Ascend Store) is cross-node KV-cache pooling storage: the KV cache is written to an external backend (mooncake / memcache / yuanrong) and shared across vLLM instances under PD disaggregation, so identical prefixes skip redundant prefill. It is <strong>not an <code>--additional-config</code> flag</strong> — which is why it is absent from the feature-flags overview. The entry point is the <a href="kv-transfer-config/"><code>--kv-transfer-config</code></a> <code>AscendStoreConnector</code> on this page:</p>
+<table>
+<thead>
+<tr>
+<th>What you want to configure</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connector fields (<code>backend</code> / <code>use_layerwise</code> / <code>lookup_rpc_port</code>)</td>
+<td><a href="kv-transfer-config/">kv-transfer-config detail page</a>, "KV 池化" section: per-field breakdown + full example</td>
+</tr>
+<tr>
+<td>Pooling + P2P transport combined (<code>MultiConnector</code>)</td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td>Layerwise-transfer debug logging</td>
+<td>Flag <a href="../flags/kv-pool-range-debug/"><code>kv_pool_range_debug</code></a></td>
+</tr>
+<tr>
+<td>Concepts, architecture, deployment details</td>
+<td>Official <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html">KV Cache Pool (Ascend Store)</a> · <a href="https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html">Mooncake layerwise pooling</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommended-combos-from-official-tutorials">Recommended combos (from official tutorials)<a class="headerlink" href="#recommended-combos-from-official-tutorials" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Typical args</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-card A2 small model</td>
+<td><code>--tensor-parallel-size 1 --max-model-len 32768 --gpu-memory-utilization 0.9 --max-num-seqs 32</code></td>
+</tr>
+<tr>
+<td>MoE large model EP</td>
+<td><code>--enable-expert-parallel --data-parallel-size N --tensor-parallel-size M</code> (M×DP = experts)</td>
+</tr>
+<tr>
+<td>Long context</td>
+<td><code>--max-model-len &lt;big&gt; --enable-chunked-prefill --max-num-batched-tokens 16384+</code></td>
+</tr>
+<tr>
+<td>PD disaggregation</td>
+<td><code>--kv-transfer-config '{...}' --enable-prefix-caching/--no-enable-prefix-caching</code> per node</td>
+</tr>
+<tr>
+<td>Production</td>
+<td>Drop <code>--enforce-eager</code> (enable CUDA Graph); set <code>--compilation-config</code> capture policy</td>
+</tr>
+</tbody>
+</table>
+<p>For full commands and per-model deployment guides, see the official tutorials: <a href="https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/index.html">Model Deployment Tutorials</a>.</p>
+<h2 id="how-this-data-is-verified">How this data is verified<a class="headerlink" href="#how-this-data-is-verified" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Existence</strong>: all 78 args are defined via <code>add_argument()</code> in vLLM source.</li>
+<li><strong>Ascend context</strong>: every arg appears in ≥1 real command line in official docs (<code>doc_count</code> shows file count).</li>
+<li><strong>Defaults</strong>: extracted from <code>EngineArgs</code>/<code>FrontendArgs</code> dataclasses and <code>vllm/config/*.py</code>; <code>None</code> means "auto-infer" or "unset".</li>
+<li><strong>Descriptions</strong>: faithful translations of official help text plus observed usage in official tutorials — everything is traceable.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../flags/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 特性开关总览">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                特性开关总览
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../version-matrix/" class="md-footer__link md-footer__link--next" aria-label="Next: 版本支持矩阵">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                版本支持矩阵
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tanjiangshan/vllm-ascend-feature-flag-handbook" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.highlight", "search.share", "content.action.view", "content.action.edit"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

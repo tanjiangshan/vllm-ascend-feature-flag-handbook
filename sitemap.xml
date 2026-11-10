@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/config-entry-points/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/config-entry-points/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/config-entry-points/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/contributing/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/contributing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/contributing/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/env-vars/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/env-vars/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/env-vars/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/feature-topics/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/feature-topics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/feature-topics/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/migration/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/migration/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/migration/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/quick-start/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/quick-start/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/quick-start/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-history/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-history/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-history/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-matrix/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-matrix/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-matrix/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/additional-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/additional-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/additional-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/block-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/block-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/block-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/compilation-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/compilation-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/compilation-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/data-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/data-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/data-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/distributed-executor-backend/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/distributed-executor-backend/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/distributed-executor-backend/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-chunked-prefill/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-chunked-prefill/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-chunked-prefill/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-expert-parallel/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-expert-parallel/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-expert-parallel/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-prefix-caching/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-prefix-caching/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-prefix-caching/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enforce-eager/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enforce-eager/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enforce-eager/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/gpu-memory-utilization/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/gpu-memory-utilization/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/gpu-memory-utilization/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-cache-dtype/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-cache-dtype/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-cache-dtype/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-transfer-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-transfer-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-transfer-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-model-len/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-model-len/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-model-len/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-batched-tokens/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-batched-tokens/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-batched-tokens/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-seqs/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-seqs/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-seqs/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/pipeline-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/pipeline-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/pipeline-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/prefill-context-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/prefill-context-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/prefill-context-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/quantization/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/quantization/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/quantization/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/speculative-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/speculative-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/speculative-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/tensor-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/tensor-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/tensor-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-compilation-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-compilation-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-compilation-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-fusion-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-fusion-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-fusion-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-log-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-log-path/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-log-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-warmup-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-warmup-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-warmup-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/batch-job-sched-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/batch-job-sched-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/batch-job-sched-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/c8-enable-reshape-optim/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/c8-enable-reshape-optim/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/c8-enable-reshape-optim/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/combine-quant-mode/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/combine-quant-mode/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/combine-quant-mode/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/draft-window-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/draft-window-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/draft-window-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config-path/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-eplb/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-eplb/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-eplb/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-spec-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-spec-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-spec-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dyntra-lb-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dyntra-lb-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dyntra-lb-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-balance-scheduling/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-balance-scheduling/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-balance-scheduling/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-context-parallel/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-context-parallel/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-context-parallel/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-cpu-binding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-cpu-binding/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-cpu-binding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-dsa-cp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-dsa-cp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-dsa-cp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm1/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm1/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm1/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm2-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm2-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm2-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-force-eplb/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-force-eplb/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-force-eplb/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-fused-mc2/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-fused-mc2/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-fused-mc2/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kv-nz/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kv-nz/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kv-nz/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kvpp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kvpp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kvpp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-matmul-allreduce/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-matmul-allreduce/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-matmul-allreduce/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mc2-hierarchy-comm/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mc2-hierarchy-comm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mc2-hierarchy-comm/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mlapo/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mlapo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mlapo/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-embedding-lmhead-weight-sharding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-embedding-lmhead-weight-sharding/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-embedding-lmhead-weight-sharding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-o-proj-weight-sharding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-o-proj-weight-sharding/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-o-proj-weight-sharding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-prefill-mc2/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-prefill-mc2/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-prefill-mc2/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-shared-expert-dp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-shared-expert-dp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-shared-expert-dp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-li-c8/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-li-c8/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-li-c8/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-sfa-c8/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-sfa-c8/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-sfa-c8/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-transpose-kv-cache-by-block/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-transpose-kv-cache-by-block/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-transpose-kv-cache-by-block/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/eplb-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/eplb-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/eplb-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/finegrained-tp-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/finegrained-tp-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/finegrained-tp-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/hamming-sparse/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/hamming-sparse/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/hamming-sparse/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/kv-pool-range-debug/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/kv-pool-range-debug/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/kv-pool-range-debug/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mc2-comm-alg/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mc2-comm-alg/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mc2-comm-alg/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mega-moe-max-tokens/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mega-moe-max-tokens/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mega-moe-max-tokens/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mix-placement/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mix-placement/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mix-placement/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mlapo-keep-prefill-weights/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mlapo-keep-prefill-weights/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mlapo-keep-prefill-weights/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/msmonitor-use-daemon/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/msmonitor-use-daemon/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/msmonitor-use-daemon/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-dsv4-dsa-overlap/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-dsv4-dsa-overlap/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-dsv4-dsa-overlap/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-engram-overlap/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-engram-overlap/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-engram-overlap/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-gate/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-gate/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-gate/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-shared-expert/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-shared-expert/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-shared-expert/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/pa-shape-list/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/pa-shape-list/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/pa-shape-list/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/profiling-chunk-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/profiling-chunk-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/profiling-chunk-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/recompute-scheduler-enable/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/recompute-scheduler-enable/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/recompute-scheduler-enable/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/refresh/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/refresh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/refresh/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rejection-sampler-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rejection-sampler-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rejection-sampler-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rl-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rl-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rl-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-hot-reload/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-hot-reload/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-hot-reload/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-path/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-dump-dir/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-dump-dir/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-dump-dir/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-report-dir/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-report-dir/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-report-dir/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/scheduler-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/scheduler-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/scheduler-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sfa-dcp-force-tmajor-restore/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sfa-dcp-force-tmajor-restore/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sfa-dcp-force-tmajor-restore/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/short-request-first-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/short-request-first-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/short-request-first-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sparse-kv-offload-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sparse-kv-offload-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sparse-kv-offload-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-nz-mode/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-nz-mode/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-nz-mode/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-prefetch-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-prefetch-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-prefetch-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/xlite-graph-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/xlite-graph-config/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/xlite-graph-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/config-entry-points/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/config-entry-points/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/config-entry-points/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/contributing/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/contributing/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/contributing/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/env-vars/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/env-vars/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/env-vars/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/feature-topics/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/feature-topics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/feature-topics/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/migration/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/migration/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/migration/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/quick-start/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/quick-start/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/quick-start/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-history/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-history/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-history/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-matrix/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/version-matrix/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/version-matrix/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/additional-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/additional-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/additional-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/block-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/block-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/block-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/compilation-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/compilation-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/compilation-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/data-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/data-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/data-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/distributed-executor-backend/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/distributed-executor-backend/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/distributed-executor-backend/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-chunked-prefill/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-chunked-prefill/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-chunked-prefill/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-expert-parallel/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-expert-parallel/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-expert-parallel/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-prefix-caching/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enable-prefix-caching/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enable-prefix-caching/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enforce-eager/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/enforce-eager/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/enforce-eager/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/gpu-memory-utilization/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/gpu-memory-utilization/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/gpu-memory-utilization/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-cache-dtype/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-cache-dtype/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-cache-dtype/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-transfer-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/kv-transfer-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/kv-transfer-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-model-len/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-model-len/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-model-len/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-batched-tokens/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-batched-tokens/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-batched-tokens/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-seqs/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/max-num-seqs/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/max-num-seqs/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/pipeline-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/pipeline-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/pipeline-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/prefill-context-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/prefill-context-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/prefill-context-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/quantization/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/quantization/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/quantization/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/speculative-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/speculative-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/speculative-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/tensor-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/engine-args/tensor-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/engine-args/tensor-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-compilation-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-compilation-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-compilation-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-fusion-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-fusion-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-fusion-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-log-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-log-path/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-log-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-warmup-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/ascend-warmup-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/ascend-warmup-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/batch-job-sched-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/batch-job-sched-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/batch-job-sched-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/c8-enable-reshape-optim/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/c8-enable-reshape-optim/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/c8-enable-reshape-optim/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/combine-quant-mode/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/combine-quant-mode/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/combine-quant-mode/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/draft-window-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/draft-window-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/draft-window-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config-path/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dump-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dump-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-eplb/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-eplb/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-eplb/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-spec-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dynamic-spec-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dynamic-spec-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dyntra-lb-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/dyntra-lb-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/dyntra-lb-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-balance-scheduling/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-balance-scheduling/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-balance-scheduling/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-context-parallel/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-context-parallel/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-context-parallel/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-cpu-binding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-cpu-binding/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-cpu-binding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-dsa-cp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-dsa-cp/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-dsa-cp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm1/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm1/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm1/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm2-parallel-size/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-flashcomm2-parallel-size/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-flashcomm2-parallel-size/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-force-eplb/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-force-eplb/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-force-eplb/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-fused-mc2/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-fused-mc2/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-fused-mc2/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kv-nz/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kv-nz/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kv-nz/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kvpp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-kvpp/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-kvpp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-matmul-allreduce/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-matmul-allreduce/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-matmul-allreduce/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mc2-hierarchy-comm/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mc2-hierarchy-comm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mc2-hierarchy-comm/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mlapo/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-mlapo/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-mlapo/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-embedding-lmhead-weight-sharding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-embedding-lmhead-weight-sharding/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-embedding-lmhead-weight-sharding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-o-proj-weight-sharding/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-pcp-o-proj-weight-sharding/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-pcp-o-proj-weight-sharding/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-prefill-mc2/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-prefill-mc2/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-prefill-mc2/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-shared-expert-dp/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-shared-expert-dp/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-shared-expert-dp/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-li-c8/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-li-c8/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-li-c8/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-sfa-c8/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-sparse-sfa-c8/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-sparse-sfa-c8/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-transpose-kv-cache-by-block/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/enable-transpose-kv-cache-by-block/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/enable-transpose-kv-cache-by-block/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/eplb-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/eplb-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/eplb-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/finegrained-tp-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/finegrained-tp-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/finegrained-tp-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/hamming-sparse/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/hamming-sparse/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/hamming-sparse/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/kv-pool-range-debug/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/kv-pool-range-debug/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/kv-pool-range-debug/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mc2-comm-alg/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mc2-comm-alg/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mc2-comm-alg/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mega-moe-max-tokens/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mega-moe-max-tokens/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mega-moe-max-tokens/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mix-placement/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mix-placement/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mix-placement/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mlapo-keep-prefill-weights/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/mlapo-keep-prefill-weights/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/mlapo-keep-prefill-weights/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/msmonitor-use-daemon/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/msmonitor-use-daemon/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/msmonitor-use-daemon/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-dsv4-dsa-overlap/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-dsv4-dsa-overlap/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-dsv4-dsa-overlap/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-engram-overlap/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-engram-overlap/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-engram-overlap/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-gate/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-gate/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-gate/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-shared-expert/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/multistream-overlap-shared-expert/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/multistream-overlap-shared-expert/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/pa-shape-list/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/pa-shape-list/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/pa-shape-list/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/profiling-chunk-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/profiling-chunk-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/profiling-chunk-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/recompute-scheduler-enable/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/recompute-scheduler-enable/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/recompute-scheduler-enable/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/refresh/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/refresh/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/refresh/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rejection-sampler-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rejection-sampler-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rejection-sampler-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rl-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/rl-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/rl-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-hot-reload/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-hot-reload/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-hot-reload/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-path/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config-path/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config-path/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-dump-dir/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-dump-dir/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-dump-dir/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-report-dir/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/runtime-report-dir/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/runtime-report-dir/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/scheduler-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/scheduler-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/scheduler-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sfa-dcp-force-tmajor-restore/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sfa-dcp-force-tmajor-restore/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sfa-dcp-force-tmajor-restore/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/short-request-first-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/short-request-first-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/short-request-first-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sparse-kv-offload-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/sparse-kv-offload-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/sparse-kv-offload-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-nz-mode/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-nz-mode/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-nz-mode/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-prefetch-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/weight-prefetch-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/weight-prefetch-config/"/>
+    </url>
+    <url>
+        <loc>https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/xlite-graph-config/</loc>
+        <lastmod>2026-11-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/en/flags/xlite-graph-config/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tanjiangshan.github.io/vllm-ascend-feature-flag-handbook/flags/xlite-graph-config/"/>
+    </url>
+</urlset>
