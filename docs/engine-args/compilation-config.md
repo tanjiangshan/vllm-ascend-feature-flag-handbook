@@ -24,9 +24,19 @@ title: compilation-config
 
 | 子项 | 作用 |
 |---|---|
-| `cudagraph_mode` | 录图范围：`FULL`（prefill+decode 全录）/ `FULL_DECODE_ONLY`（只录 decode）/ `PIECEWISE` 等 |
+| `cudagraph_mode` | 录图范围，共 5 个取值（见下表） |
 | `cudagraph_capture_sizes` | 显式枚举要捕获的 batch 尺寸列表 |
 | `max_cudagraph_capture_size` | 捕获尺寸上界 |
+
+`cudagraph_mode` 完整取值（vLLM 源码 [`CUDAGraphMode`](https://github.com/vllm-project/vllm/blob/main/vllm/config/compilation.py) 枚举）：
+
+| 取值 | 语义 |
+|---|---|
+| `NONE` | 不录图（`--enforce-eager` 会强制落为此值） |
+| `PIECEWISE` | 只录分段图，图不兼容算子（如部分 attention）留在图外 |
+| `FULL` | 所有 batch 整图录制（部分后端不支持） |
+| `FULL_DECODE_ONLY` | 仅 decode batch 录整图，prefill / 混合批不录 |
+| `FULL_AND_PIECEWISE` | decode 录整图，prefill 与混合批录分段图——**v1 引擎默认值** |
 
 **decode 步为什么最需要图**：每步只做一次前向（每序列 1 个 token），kernel launch 和 CPU 调度占比最高；录图后整步回放，TPOT 收益最大。prefill 步计算量大、形状多变，录图收益小还容易 miss——这是官方教程偏爱 `FULL_DECODE_ONLY` 的原因。
 

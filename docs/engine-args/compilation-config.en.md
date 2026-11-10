@@ -24,9 +24,19 @@ title: compilation-config
 
 | Sub-field | Role |
 |---|---|
-| `cudagraph_mode` | Capture scope: `FULL` (prefill+decode), `FULL_DECODE_ONLY` (decode only), `PIECEWISE`, etc. |
+| `cudagraph_mode` | Capture scope — 5 possible values (table below) |
 | `cudagraph_capture_sizes` | Explicit list of batch sizes to capture |
 | `max_cudagraph_capture_size` | Upper bound on capture sizes |
+
+Full `cudagraph_mode` values (vLLM source [`CUDAGraphMode`](https://github.com/vllm-project/vllm/blob/main/vllm/config/compilation.py) enum):
+
+| Value | Semantics |
+|---|---|
+| `NONE` | No graph capture (`--enforce-eager` forces this) |
+| `PIECEWISE` | Piecewise graphs only; graph-incompatible ops (e.g. some attention) stay outside |
+| `FULL` | Full-graph capture for all batches (unsupported by some backends) |
+| `FULL_DECODE_ONLY` | Full graphs for decode batches only; prefill / mixed batches run ungraphed |
+| `FULL_AND_PIECEWISE` | Full graphs for decode, piecewise for prefill and mixed batches — **the v1 engine default** |
 
 **Why decode steps need graphs most**: each decode step is a single forward (1 token per sequence), where kernel-launch and CPU scheduling dominate; replaying the whole step as one graph maximizes TPOT gains. Prefill steps are compute-heavy with varying shapes — little capture benefit, frequent misses. This is why official tutorials favor `FULL_DECODE_ONLY`.
 
