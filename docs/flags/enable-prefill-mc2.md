@@ -5,6 +5,7 @@ title: enable_prefill_mc2
 # `enable_prefill_mc2`
 
 > 为 prefill 批次预留 MC2 token 容量。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

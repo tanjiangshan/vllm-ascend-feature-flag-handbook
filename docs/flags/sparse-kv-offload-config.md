@@ -5,6 +5,7 @@ title: sparse_kv_offload_config
 # `sparse_kv_offload_config`
 
 > 稀疏 KV cache 卸载到 DRAM 的配置，把长上下文的冷 KV 块搬出 HBM，扩大可并发 token 数。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

@@ -5,6 +5,7 @@ title: mix_placement
 # `mix_placement`
 
 > 混合放置模式（DP×TP 平面上的专家/权重放置策略），计入 RFork 权重传输的兼容性指纹。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

@@ -5,6 +5,7 @@ title: combine_quant_mode
 # `combine_quant_mode`
 
 > 融合 combine 算子的通信量化模式（v0.30.0 新增）。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|
@@ -17,7 +18,18 @@ title: combine_quant_mode
 
 作为 `comm_quant_mode` 参数传给 `torch_npu.npu_moe_distribute_combine_v2` 算子，控制融合 combine 阶段的通信量化方式。
 
-## 用法
+## 取值
+
+源码类型 `Literal[0, 2, 3, 4]`，默认 `0`：
+
+| 值 | 语义 | 依据 |
+|---|---|---|
+| `0` | 禁用强制量化，沿用模型自身 quant_type | 源码注释 + 官方配置文档 |
+| `4` | MXFP float8_e4m3 通信量化 | 源码注释 + DeepSeek-V4 官方配方（D 节点） |
+| `2` / `3` | 源码 Literal 允许，**官方文档未说明语义**（原文指向算子文档） | 官方配置文档 |
+
+!!! note "有效值范围"
+    有效取值范围以算子文档为准，不同 CANN 版本支持情况可能不同。
 
 ```bash
 vllm serve Qwen/Qwen3-8B \

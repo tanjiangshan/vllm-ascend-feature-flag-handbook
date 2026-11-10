@@ -5,6 +5,7 @@ title: enable_transpose_kv_cache_by_block
 # `enable_transpose_kv_cache_by_block`
 
 > 融合算子路径下按块转置 KV cache。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

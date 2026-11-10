@@ -5,6 +5,7 @@ title: weight_nz_mode
 # `weight_nz_mode`
 
 > 权重 NZ（FractalNZ）格式模式。量化模型推理性能的重要开关。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

@@ -5,6 +5,7 @@ title: enable_sparse_sfa_c8
 # `enable_sparse_sfa_c8`
 
 > 为 SFA（Sparse Flash Attention）稀疏注意力启用 C8 KV cache 布局。⚠️ v0.30.0 起改为派生量，`additional-config` 传本键不再生效。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

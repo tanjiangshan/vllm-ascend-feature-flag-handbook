@@ -5,6 +5,7 @@ title: c8_enable_reshape_optim
 # `c8_enable_reshape_optim`
 
 > LI-C8 的 reshape 优化。⚠️ 已从源码移除（v0.30.0 起）。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

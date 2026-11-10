@@ -5,6 +5,7 @@ title: runtime_config_path
 # `runtime_config_path`
 
 > Runtime Guard JSON 配置文件路径。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

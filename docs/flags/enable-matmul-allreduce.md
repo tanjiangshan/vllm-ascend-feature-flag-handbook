@@ -5,6 +5,7 @@ title: enable_matmul_allreduce
 # `enable_matmul_allreduce`
 
 > Matmul + AllReduce 融合优化。**已在 v0.30.0 移除**。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

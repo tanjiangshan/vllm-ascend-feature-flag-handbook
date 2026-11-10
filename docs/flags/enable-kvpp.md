@@ -5,6 +5,7 @@ title: enable_kvpp
 # `enable_kvpp`
 
 > KVPP（KV 流水线并行）总开关：把 MLA/SFA 非混合模型在 TP 各 rank 间冗余的 KV cache 按层分摊，同等显存容纳更多上下文 token 或并发请求。
+> 📚 所属专题：[6. KV 复用与池化](../feature-topics.md#t-kvp)
 
 | 属性 | 值 |
 |---|---|

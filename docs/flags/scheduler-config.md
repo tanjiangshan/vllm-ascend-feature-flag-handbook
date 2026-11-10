@@ -5,6 +5,7 @@ title: scheduler_config
 # `scheduler_config`
 
 > Ascend 调度器扩展配置的**规范层级**（v0.30.0 新增）。均衡调度、重计算调度、DyntraLB、ShortRequestFirst、动态分块流水线并行等开关的统一入口。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 | 属性 | 值 |
 |---|---|

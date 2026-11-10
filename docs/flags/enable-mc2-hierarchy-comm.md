@@ -5,6 +5,7 @@ title: enable_mc2_hierarchy_comm
 # `enable_mc2_hierarchy_comm`
 
 > 跨节点 MoE 通信（ROCE）开关。**已弃用**，请改用 [`mc2_comm_alg`](mc2-comm-alg.md)。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

@@ -11,6 +11,11 @@ models:
 requires:
 - enable_fused_mc2
 conflicts: []
+values:
+  "0": 禁用通信量化（沿用模型自身 quant_type）
+  "2": 源码 Literal[0,2,3,4] 允许此值，官方文档未说明语义（指向算子文档）
+  "3": 源码 Literal[0,2,3,4] 允许此值，官方文档未说明语义（指向算子文档）
+  "4": MXFP float8_e4m3 通信量化（DeepSeek-V4 官方配方值）
 desc:
   zh: 融合 combine 算子的通信量化模式，作为 comm_quant_mode 传给 npu_moe_distribute_combine_v2。有效范围见算子文档。
   en: Communication quantization mode for the fused combine op, passed as comm_quant_mode to npu_moe_distribute_combine_v2.

@@ -5,6 +5,7 @@ title: runtime_report_dir
 # `runtime_report_dir`
 
 > Runtime Guard 报告根目录覆盖。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

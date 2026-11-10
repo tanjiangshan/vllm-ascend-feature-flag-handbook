@@ -5,6 +5,7 @@ title: hamming_sparse
 # `hamming_sparse`
 
 > Hamming 稀疏注意力配置。⚠️ 已从源码移除（v0.30.0 起）。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

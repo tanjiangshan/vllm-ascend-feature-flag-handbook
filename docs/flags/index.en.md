@@ -6,6 +6,8 @@ title: Feature Flags Overview
 
 > **Feature flags are vLLM-Ascend's own config keys**, defined in `AscendConfig` (`vllm_ascend/ascend_config.py`) and consumed by the Ascend platform plugin only — other backends (GPU/ROCm) have no such concepts.
 >
+> 📚 **Want a systematic, problem-driven tour?** Start with the [Feature Topics](../feature-topics.md) page: 9 topics with principle explainers and when-to-enable tables; this page is the per-key quick reference.
+>
 > **Usage**: not top-level CLI args; they go inside the `--additional-config` JSON:
 >
 > ```bash

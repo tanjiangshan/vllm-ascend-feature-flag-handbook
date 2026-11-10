@@ -5,6 +5,7 @@ title: enable_kv_nz
 # `enable_kv_nz`
 
 > KV cache 的 NZ 布局开关。注意与权重 NZ（[`weight_nz_mode`](weight-nz-mode.md)）是两个独立开关。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

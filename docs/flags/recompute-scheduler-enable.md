@@ -5,6 +5,7 @@ title: recompute_scheduler_enable
 # `recompute_scheduler_enable`
 
 > 重计算调度器：PD 分离架构 D 节点上的显存节省方案。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 !!! warning \"顶层键已废弃\"
     v0.30.0 起该顶层键迁移至 `scheduler_config.<key>`，直接设置顶层键会收到 deprecation 警告。官方文档写法见 [`scheduler_config`](scheduler-config.md)。

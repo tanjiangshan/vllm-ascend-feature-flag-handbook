@@ -5,6 +5,7 @@ title: enable_context_parallel
 # `enable_context_parallel`
 
 > 上下文并行开关。**已移除**，功能由 `enable_dsa_cp` 等接替。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

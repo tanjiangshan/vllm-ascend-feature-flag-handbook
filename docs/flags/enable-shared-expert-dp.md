@@ -5,6 +5,7 @@ title: enable_shared_expert_dp
 # `enable_shared_expert_dp`
 
 > 共享专家权重在 TP rank 间复制、以数据并行方式运行。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

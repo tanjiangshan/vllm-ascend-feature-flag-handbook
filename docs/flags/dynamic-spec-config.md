@@ -5,6 +5,7 @@ title: dynamic_spec_config
 # `dynamic_spec_config`
 
 > 动态投机解码（Dynamic Speculative Decoding）配置。
+> 📚 所属专题：[7. 投机解码](../feature-topics.md#t-spec)
 
 | 属性 | 值 |
 |---|---|

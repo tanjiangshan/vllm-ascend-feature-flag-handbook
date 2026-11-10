@@ -5,6 +5,7 @@ title: runtime_dump_dir
 # `runtime_dump_dir`
 
 > KV dump 根目录设置。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

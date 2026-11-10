@@ -5,6 +5,7 @@ title: mega_moe_max_tokens
 # `mega_moe_max_tokens`
 
 > 融合 MC2/MegaMoe 路径中 dispatch 后每个 rank 的 token 容量参考值。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

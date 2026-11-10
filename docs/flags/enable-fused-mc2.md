@@ -5,6 +5,7 @@ title: enable_fused_mc2
 # `enable_fused_mc2`
 
 > 融合 MC2（MoE dispatch/combine）路径选择。MoE 推理性能的关键开关之一。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

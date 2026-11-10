@@ -5,6 +5,7 @@ title: enable_force_eplb
 # `enable_force_eplb`
 
 > 强制确定性轮询专家路由，用于测量 EPLB 性能上限。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 | 属性 | 值 |
 |---|---|

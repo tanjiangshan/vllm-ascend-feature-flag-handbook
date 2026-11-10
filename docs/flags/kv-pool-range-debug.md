@@ -5,6 +5,7 @@ title: kv_pool_range_debug
 # `kv_pool_range_debug`
 
 > KV pool 逐层范围传输审计日志。调试 KV cache 管理问题的工具开关。
+> 📚 所属专题：[6. KV 复用与池化](../feature-topics.md#t-kvp)
 
 | 属性 | 值 |
 |---|---|

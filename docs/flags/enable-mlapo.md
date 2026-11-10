@@ -5,6 +5,7 @@ title: enable_mlapo
 # `enable_mlapo`
 
 > MLAPO（Model Layer-wise Adaptive Parallel Optimization，模型逐层自适应并行优化）。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

@@ -5,6 +5,7 @@ title: enable_flashcomm1
 # `enable_flashcomm1`
 
 > 启用 SP MoE 的 FlashComm1 通信优化。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

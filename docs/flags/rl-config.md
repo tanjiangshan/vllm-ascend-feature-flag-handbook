@@ -5,6 +5,7 @@ title: rl_config
 # `rl_config`
 
 > 一键 RL 模式总开关（v0.30.0 新增）。为 RLHF/训练-推理一体场景自动套用一组经过验证的固定行为。
+> 📚 所属专题：[9. 训练与 RL](../feature-topics.md#t-rl)
 
 | 属性 | 值 |
 |---|---|

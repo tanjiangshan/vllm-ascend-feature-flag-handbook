@@ -5,6 +5,7 @@ title: multistream_engram_overlap
 # `multistream_engram_overlap`
 
 > Engram 模块多流重叠，把 Engram 子模块的计算与通信分配到多条 NPU 流并行执行。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

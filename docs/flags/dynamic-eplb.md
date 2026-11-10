@@ -5,6 +5,7 @@ title: dynamic_eplb
 # `dynamic_eplb`
 
 > 动态专家并行负载均衡（Dynamic EPLB）。MoE 模型在 expert 热点明显时的关键优化。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 | 属性 | 值 |
 |---|---|

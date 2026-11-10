@@ -5,6 +5,7 @@ title: multistream_dsv4_dsa_overlap
 # `multistream_dsv4_dsa_overlap`
 
 > DeepSeek V4 的 DSA 多流重叠优化。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

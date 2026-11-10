@@ -5,6 +5,7 @@ title: profiling_chunk_config
 # `profiling_chunk_config`
 
 > 动态分块流水线并行（profiling chunk）配置。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 !!! warning \"顶层键已废弃\"
     v0.30.0 起该顶层键迁移至 `scheduler_config.<key>`，直接设置顶层键会收到 deprecation 警告。官方文档写法见 [`scheduler_config`](scheduler-config.md)。

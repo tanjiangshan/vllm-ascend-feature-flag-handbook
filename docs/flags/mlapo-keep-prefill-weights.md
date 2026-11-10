@@ -5,6 +5,7 @@ title: mlapo_keep_prefill_weights
 # `mlapo_keep_prefill_weights`
 
 > MLAPO 场景下，D 节点是否保留 prefill 权重。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

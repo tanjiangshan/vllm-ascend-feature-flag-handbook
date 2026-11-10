@@ -5,6 +5,7 @@ title: eplb_config
 # `eplb_config`
 
 > EPLB（Expert Parallelism Load Balancer，专家并行负载均衡）的完整配置入口。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 | 属性 | 值 |
 |---|---|

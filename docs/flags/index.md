@@ -6,6 +6,8 @@ title: 特性开关总览
 
 > **特性开关（Feature Flags）是 vLLM-Ascend 插件自己的配置键**，定义在 `vllm_ascend/ascend_config.py` 的 `AscendConfig` 中，仅由 Ascend 平台插件消费——GPU/ROCm 等其他后端没有这些概念。
 >
+> 📚 **想按问题系统性学习？** 先去[特性专题导览](../feature-topics.md)：9 个专题带原理讲解与"何时开启"速览；本页是逐键速查表。
+>
 > **使用方式**：不作为顶层命令行参数，而是装进 `--additional-config` 的 JSON 里：
 >
 > ```bash

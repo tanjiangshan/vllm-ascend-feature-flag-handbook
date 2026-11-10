@@ -5,6 +5,7 @@ title: xlite_graph_config
 # `xlite_graph_config`
 
 > Xlite 图模式配置。
+> 📚 所属专题：[4. 图与编译](../feature-topics.md#t-graph)
 
 | 属性 | 值 |
 |---|---|

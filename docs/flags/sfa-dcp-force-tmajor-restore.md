@@ -5,6 +5,7 @@ title: sfa_dcp_force_tmajor_restore
 # `sfa_dcp_force_tmajor_restore`
 
 > SFA 注意力在 DCP（Decode Context Parallel）下强制 T-major 布局恢复。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

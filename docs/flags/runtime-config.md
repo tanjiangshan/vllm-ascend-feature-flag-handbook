@@ -5,6 +5,7 @@ title: runtime_config / runtime_config_path / runtime_config_hot_reload
 # Runtime Guard 配置三件套
 
 > 运行时守护（Runtime Guard）的启动配置入口。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 配置键 | 类型 | 默认值 | 说明 |
 |---|---|---|---|

@@ -5,6 +5,7 @@ title: refresh
 # `refresh`
 
 > 刷新全局 Ascend 配置内容。
+> 📚 所属专题：[9. 训练与 RL](../feature-topics.md#t-rl)
 
 | 属性 | 值 |
 |---|---|

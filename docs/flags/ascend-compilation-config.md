@@ -5,6 +5,7 @@ title: ascend_compilation_config
 # `ascend_compilation_config`
 
 > Ascend 图编译配置。typed 为 `AscendCompilationConfig`（pydantic dataclass，`extra="forbid"`），控制 npugraph_ex 后端、static/super kernel 与编译期融合 pass。
+> 📚 所属专题：[4. 图与编译](../feature-topics.md#t-graph)
 
 | 属性 | 值 |
 |---|---|

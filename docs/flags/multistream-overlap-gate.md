@@ -5,6 +5,7 @@ title: multistream_overlap_gate
 # `multistream_overlap_gate`
 
 > 门控多流重叠。**已在 v0.30.0 移除**。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

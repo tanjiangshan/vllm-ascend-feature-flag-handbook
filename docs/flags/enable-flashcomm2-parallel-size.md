@@ -5,6 +5,7 @@ title: enable_flashcomm2_parallel_size
 # `enable_flashcomm2_parallel_size`
 
 > FlashComm2 并行规模。**已在 v0.30.0 移除**。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

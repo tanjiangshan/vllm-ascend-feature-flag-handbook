@@ -5,6 +5,7 @@ title: mc2_comm_alg
 # `mc2_comm_alg`
 
 > dispatch/combine 算子的通信算法选择（v0.30.0 新增），用于取代已弃用的 [`enable_mc2_hierarchy_comm`](enable-mc2-hierarchy-comm.md)。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

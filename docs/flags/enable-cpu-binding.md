@@ -5,6 +5,7 @@ title: enable_cpu_binding
 # `enable_cpu_binding`
 
 > ARM 服务器上的昇腾原生 CPU 绑定。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

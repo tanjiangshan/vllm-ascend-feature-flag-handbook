@@ -13,6 +13,7 @@ nav:
   - 首页: index.md
   - 快速上手: quick-start.md
   - 配置入口总览: config-entry-points.md
+  - 特性专题导览: feature-topics.md
   - 特性开关总览: flags/index.md
   - 引擎参数: engine-args/index.md
   - 版本支持矩阵: version-matrix.md

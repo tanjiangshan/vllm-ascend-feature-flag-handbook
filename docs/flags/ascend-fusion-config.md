@@ -5,6 +5,7 @@ title: ascend_fusion_config
 # `ascend_fusion_config`
 
 > Ascend 融合算子配置，控制是否使用 GmmSwigluQuant 融合算子。
+> 📚 所属专题：[4. 图与编译](../feature-topics.md#t-graph)
 
 | 属性 | 值 |
 |---|---|

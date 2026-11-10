@@ -5,6 +5,7 @@ title: enable_balance_scheduling
 # `enable_balance_scheduling`
 
 > 均衡调度：在多实例/多节点场景下平衡请求分布。
+> 📚 所属专题：[2. 负载均衡与调度](../feature-topics.md#t-scheduling)
 
 | 属性 | 值 |
 |---|---|

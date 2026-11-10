@@ -5,6 +5,7 @@ title: ascend_log_path
 # `ascend_log_path`
 
 > vLLM-Ascend 日志输出路径。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

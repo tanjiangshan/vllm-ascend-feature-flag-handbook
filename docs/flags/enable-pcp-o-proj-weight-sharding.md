@@ -5,6 +5,7 @@ title: enable_pcp_o_proj_weight_sharding
 # `enable_pcp_o_proj_weight_sharding`
 
 > PCP 组内 O 投影权重分片（v0.30.0 新增）。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

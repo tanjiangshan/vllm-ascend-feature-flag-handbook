@@ -5,6 +5,7 @@ title: pa_shape_list
 # `pa_shape_list`
 
 > page attention 算子的自定义 shape 列表。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|
@@ -14,9 +15,10 @@ title: pa_shape_list
 
 ## 说明
 
-向 page attention 算子注册自定义的 shape 组合，用于算子预编译/亲和性优化。一般在官方默认 shape 覆盖不足、且通过 profiling 发现 attention 算子频繁走 fallback 路径时使用。
+向 page attention 算子注册自定义 shape 列表。官方配置文档原文仅一行："The custom shape list of page attention ops."；源码中仅见定义与默认值序列化，未见独立读取点。
 
-留空则使用内置默认 shape 集合，**大多数部署无需设置**。
+- 留空（默认 `[]`）使用内置 shape 集合，**大多数部署无需设置**。
+- 列表元素的具体格式未见官方文档说明；确需配置时建议先在测试环境验证。
 
 <!-- DEPLOY_START -->
 ## 部署形态

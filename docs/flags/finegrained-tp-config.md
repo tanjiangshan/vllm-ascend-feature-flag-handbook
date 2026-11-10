@@ -5,6 +5,7 @@ title: finegrained_tp_config
 # `finegrained_tp_config`
 
 > 细粒度张量并行（Fine-Grained Tensor Parallelism）配置。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

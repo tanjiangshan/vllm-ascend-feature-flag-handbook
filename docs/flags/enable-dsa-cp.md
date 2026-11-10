@@ -5,6 +5,7 @@ title: enable_dsa_cp
 # `enable_dsa_cp`
 
 > DSA 注意力的上下文并行开关。⚠️ 已在 main 分支移除，由 PCP 取代。
+> 📚 所属专题：[5. PD 分离与并行](../feature-topics.md#t-pd)
 
 | 属性 | 值 |
 |---|---|

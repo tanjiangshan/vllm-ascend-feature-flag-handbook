@@ -5,6 +5,7 @@ title: weight_prefetch_config
 # `weight_prefetch_config`
 
 > 权重预取配置。**已在 v0.30.0 移除**。
+> 📚 所属专题：[3. KV Cache 量化与内存格式](../feature-topics.md#t-kvfmt)
 
 | 属性 | 值 |
 |---|---|

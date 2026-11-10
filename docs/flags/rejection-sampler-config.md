@@ -5,6 +5,7 @@ title: rejection_sampler_config
 # `rejection_sampler_config`
 
 > 拒绝采样器配置（RL 采样场景）。
+> 📚 所属专题：[9. 训练与 RL](../feature-topics.md#t-rl)
 
 | 属性 | 值 |
 |---|---|

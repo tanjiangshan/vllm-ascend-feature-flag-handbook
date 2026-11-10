@@ -5,6 +5,7 @@ title: msmonitor_use_daemon
 # `msmonitor_use_daemon`
 
 > msmonitor 的守护进程模式开关。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

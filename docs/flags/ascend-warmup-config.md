@@ -5,6 +5,7 @@ title: ascend_warmup_config
 # `ascend_warmup_config`
 
 > 启动预热配置：与权重加载重叠执行。
+> 📚 所属专题：[4. 图与编译](../feature-topics.md#t-graph)
 
 | 属性 | 值 |
 |---|---|

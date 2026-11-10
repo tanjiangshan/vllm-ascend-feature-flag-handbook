@@ -5,6 +5,7 @@ title: dump_config
 # `dump_config`
 
 > 内联 msprobe dump 配置。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|

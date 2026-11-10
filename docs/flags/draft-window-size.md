@@ -5,6 +5,7 @@ title: draft_window_size
 # `draft_window_size`
 
 > 投机解码的草稿 KV 滑窗：仅将草稿模型注意力限制在最近 N 个 token，目标模型仍用全上下文，输出质量不变。
+> 📚 所属专题：[7. 投机解码](../feature-topics.md#t-spec)
 
 | 属性 | 值 |
 |---|---|

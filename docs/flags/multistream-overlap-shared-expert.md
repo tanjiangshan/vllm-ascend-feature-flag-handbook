@@ -5,6 +5,7 @@ title: multistream_overlap_shared_expert
 # `multistream_overlap_shared_expert`
 
 > 共享专家计算与主流程的多流重叠。
+> 📚 所属专题：[1. MoE 通信与计算重叠](../feature-topics.md#t-moe)
 
 | 属性 | 值 |
 |---|---|

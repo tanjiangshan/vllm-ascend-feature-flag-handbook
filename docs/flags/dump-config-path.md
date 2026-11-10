@@ -5,6 +5,7 @@ title: dump_config_path
 # `dump_config_path`
 
 > msprobe dump 配置文件路径。
+> 📚 所属专题：[8. 稳定性与监控：Runtime Guard](../feature-topics.md#t-guard)
 
 | 属性 | 值 |
 |---|---|
