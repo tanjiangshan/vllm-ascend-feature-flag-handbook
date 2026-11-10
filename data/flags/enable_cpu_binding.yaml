@@ -17,3 +17,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "官方 PD 分离教程 P/D 两侧普遍开启（Qwen3.8-Flash-Next、MiniMax-M3、GLM5.2 等配方）。"
+    en: "Enabled on both P and D sides across official PD-disaggregation tutorials (Qwen3.8-Flash-Next, MiniMax-M3, GLM5.2, etc.)."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"

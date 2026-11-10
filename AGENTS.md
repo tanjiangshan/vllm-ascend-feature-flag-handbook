@@ -39,7 +39,7 @@ CI 会依次跑：生成脚本 → 溯源审计 → `git diff --exit-code`（检
 
 必填字段：`key`、`name`（简短中文名/英文短名，便于检索）、`type`（bool/int/float/str/dict/list）、`default`、`status`（active/deprecated/removed/planned）、`version_support`（恰好包含 `v0.23.0`/`v0.30.0`/`main` 三个布尔键）、`desc.zh` + `desc.en`。
 
-常用可选字段：`legacy_env`、`hardware`（A1–A5 列表）、`models`、`requires`、`conflicts`、`values`、`version_note`（中英双语）、`source`。
+常用可选字段：`legacy_env`、`hardware`（A1–A5 列表）、`models`、`requires`、`conflicts`、`values`、`version_note`（中英双语）、`source`、`deployment`（部署形态：`pd` ∈ P/D/both/mixed/n-a/unknown、`colocated` ∈ ok/careful/n-a/unknown、`note` 中英必填、非 unknown 时 `source` 必填；详情页「部署形态」节由 `scripts/generate_tables.py` 依据本字段自动生成）。
 
 `version_support` 的核验方式：比对对应 tag 的 `vllm_ascend/envs.py` 与 `vllm_ascend/ascend_config.py`，源码拆分无法确认的以官方配置文档交叉验证。**禁止未经源码核验填写版本信息**；核验不了就提 issue 求助。
 

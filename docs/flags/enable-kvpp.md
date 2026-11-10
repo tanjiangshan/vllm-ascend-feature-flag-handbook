@@ -37,6 +37,21 @@ vllm serve deepseek-ai/DeepSeek-V3 \
 - **连接器受限**：PD 时 `kv_connector` 必须是 `MultiConnector`（且 `connectors` 列表非空），且不得为 `MooncakeConnectorV2` 的 `kv_consumer` 角色。
 - 派生校验未通过会直接 `raise`，配置错误不会静默跳过。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ P 节点 |
+
+KVPP 官方指南：「Enable KVPP only on the prefill node」；PD 分离经 MooncakeConnectorV2（实验性），D-only 节点由源码校验强制禁用。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kvpp.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [`enable_pcp_embedding_lmhead_weight_sharding`](enable-pcp-embedding-lmhead-weight-sharding.md) — PCP 相关的层分摊域

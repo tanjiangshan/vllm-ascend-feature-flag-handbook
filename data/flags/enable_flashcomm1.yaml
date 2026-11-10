@@ -19,3 +19,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "GLM5 优化表与教程模板标注适用「A3 prefill nodes / co-located nodes」；实际 PD 配方中 P/D 两侧均出现（GLM5.2/GLM5.3 D 侧亦开启），按模型配方配置。"
+    en: "GLM5 tuning table and tutorial template mark it for \"A3 prefill nodes / co-located nodes\"; in PD recipes it appears on both sides (GLM5.2/GLM5.3 enable it on D too). Follow the model recipe."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"

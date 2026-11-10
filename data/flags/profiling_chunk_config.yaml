@@ -20,3 +20,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: P
+  colocated: ok
+  note:
+    zh: "要求 pipeline-parallel-size>1；GLM5.2 配方在 P 节点（kv_producer）开启；不能与 dyntra_lb_config / enable_balance_scheduling 同开，可与 ShortRequestFirst 组合。"
+    en: "Requires pipeline-parallel-size>1; enabled on the P node (kv_producer) in the GLM5.2 recipe; incompatible with dyntra_lb_config / enable_balance_scheduling, combinable with ShortRequestFirst."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"

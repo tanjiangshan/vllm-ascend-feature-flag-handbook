@@ -25,3 +25,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: mixed
+  colocated: ok
+  note:
+    zh: "设计文档注明「supports PD-mixed mode only」；GLM5 优化表：适用 A3 单节点/共置/非 PD 场景，「not recommended when Prefill-Decode is separated」。"
+    en: "Design doc: \"supports PD-mixed mode only\"; GLM5 tuning table: A3 single-node / co-located / non-PD scenarios, \"not recommended when Prefill-Decode is separated\"."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"

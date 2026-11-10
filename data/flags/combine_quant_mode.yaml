@@ -23,3 +23,10 @@ version_support:
 version_note:
   zh: v0.30.0 新增
   en: New in v0.30.0
+deployment:
+  pd: D
+  colocated: unknown
+  note:
+    zh: "DeepSeek-V4-Pro/Flash 教程原文：combine_quant_mode: 4「forces the MoE MC2 combine stage on Decode nodes to use FP8 … communication quantization」；官方配方中该键配在 D 节点。"
+    en: "DeepSeek-V4-Pro/Flash tutorials: combine_quant_mode: 4 \"forces the MoE MC2 combine stage on Decode nodes to use FP8 (MXFP float8_e4m3) communication quantization\"; configured on the D node in official recipes."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"

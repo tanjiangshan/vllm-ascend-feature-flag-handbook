@@ -15,6 +15,18 @@ Besides the 10+ flags being migrated (see [migration table](migration.md)), the 
 | `EXPERT_MAP_RECORD` | bool | unset | EPLB record mode: records the expert map and saves it to `expert_map_record_path` |
 | `HCCL_SO_PATH` | path | unset (`libhccl.so`) | HCCL library path used by the pyhccl communicator backend. Only needed when explicitly using the pyhccl backend |
 
+## Deployment form
+
+> Colocated = PD on the same instance or multiple instances sharing NPUs; PD-disaggregated = P/D nodes split via KV transfer. None of the three runtime env vars has **documented deployment-form restrictions** — set them uniformly per node; "no official guidance" ≠ cannot enable.
+
+| Env var | Colocated | PD-disaggregated |
+|---|---|---|
+| `VLLM_ASCEND_ENABLE_BATCH_MEMCPY` | no official guidance | no official guidance |
+| `DYNAMIC_EPLB` | no official guidance | no official guidance |
+| `EXPERT_MAP_RECORD` | no official guidance | no official guidance |
+
+For per-flag deployment conclusions (with official sources), see the "部署形态" section of each [feature flag page](flags/index.md).
+
 ## Build-time environment variables
 
 These affect **source builds** only, not runtime behavior. Full list: [official build docs](https://docs.vllm.ai/projects/ascend/en/latest/installation/ascend.html).

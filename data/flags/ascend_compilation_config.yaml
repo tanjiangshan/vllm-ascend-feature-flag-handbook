@@ -20,3 +20,10 @@ version_support:
 version_note:
   zh: enable_super_kernel / fuse_muls_add 自 v0.30.0 起；fuse_allreduce_rms 仅 v0.23.0 有
   en: enable_super_kernel / fuse_muls_add since v0.30.0; fuse_allreduce_rms exists only on v0.23.0
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "官方 PD 教程两侧都配但配方不同：P 侧常以 --enforce-eager 跑 eager（如 Qwen3.5-397B 显式 enable_npugraph_ex: false），D 侧典型开 enable_npugraph_ex——DeepSeek-V4-Flash 原文「enables the extended NPU graph mode on Decode … Prefill runs in eager mode」；static/super kernel 在 Qwen3.8-Flash-Next 等配方中仅 D 侧开启。"
+    en: "Official PD tutorials configure both sides differently: Prefill often runs eager (--enforce-eager; Qwen3.5-397B sets enable_npugraph_ex: false) while Decode enables enable_npugraph_ex (DeepSeek-V4-Flash: \"enables the extended NPU graph mode on Decode ... Prefill runs in eager mode\"); static/super kernel appear only on the D side in recipes like Qwen3.8-Flash-Next."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"

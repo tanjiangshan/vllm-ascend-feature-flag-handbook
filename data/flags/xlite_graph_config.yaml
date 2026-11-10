@@ -17,3 +17,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "官方 graph_mode 指南：默认（full_mode=false）token 预算按 decode 步 sizing，prefill 与大批次回退 ACLGraph——偏 D 侧重 decode；full_mode=true 时预算按 max_num_batched_tokens，prefill/decode 都走 xlite（建议 --enforce-eager）。"
+    en: "Official graph_mode guide: by default (full_mode=false) the token budget is sized for decode steps with prefill/large batches falling back to ACLGraph — decode-leaning; full_mode=true sizes by max_num_batched_tokens so prefill and decode both run on xlite (--enforce-eager recommended)."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/graph_mode.html"

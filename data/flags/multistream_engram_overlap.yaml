@@ -18,3 +18,10 @@ version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
+deployment:
+  pd: unknown
+  colocated: unknown
+  note:
+    zh: "仅见 DeepSeek-V4.1-Flash P 配方显式置 false，未见部署形态语义说明。"
+    en: "Only seen as an explicit false in the DeepSeek-V4.1-Flash P recipe; no deployment-form semantics documented."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"

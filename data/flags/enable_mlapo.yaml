@@ -18,3 +18,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: D
+  colocated: ok
+  note:
+    zh: "Kimi-K2.6 与 GLM5 教程原文：「in PD scenarios enable MLAPO only on decode nodes」；混部高吞吐场景可用（GLM5 表「A3 co-located high-throughput / PD decode nodes」）；注意消耗更多 NPU 显存。"
+    en: "Kimi-K2.6 and GLM5 tutorials: \"in PD scenarios enable MLAPO only on decode nodes\"; usable for co-located high-throughput (GLM5 table); consumes more NPU memory."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"

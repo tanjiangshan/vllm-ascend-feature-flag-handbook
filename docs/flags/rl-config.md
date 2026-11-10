@@ -44,6 +44,21 @@ vllm serve Qwen/Qwen3-8B \
   --additional-config='{"rl_config": {"enabled": true, "sleep_mode_extra_cleanup": true}}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ◻️ 未见官方说明 |
+| PD 分离 | ◻️ 未见官方说明 |
+
+未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。
+
+
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [weight_nz_mode](weight-nz-mode.md) — RL 模式强制其为 0

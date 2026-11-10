@@ -34,6 +34,21 @@ vllm serve Qwen/Qwen3-8B --additional-config='{"enable_fused_mc2": 1}'
 - **负载上限**：融合路径中每个 rank 的 token 容量由 [`mega_moe_max_tokens`](mega-moe-max-tokens.md)（默认 65536）控制，超过可能出现精度下降，需按实际 expert 负载分布调整。
 - **量化组合**：与 [`combine_quant_mode`](combine-quant-mode.md) 搭配可设置融合算子的通信量化模式。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+GLM5 优化表标注「A3 prefill nodes」；DeepSeek-V4-Flash 指出 P 侧置 0 时以 multistream_overlap_shared_expert 替代；GLM5.2 等配方 D 侧用 enable_fused_mc2: 2（MegaMoE）。两侧均可配，取值随模型路径。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [`mega_moe_max_tokens`](mega-moe-max-tokens.md) — 融合路径 token 容量上限

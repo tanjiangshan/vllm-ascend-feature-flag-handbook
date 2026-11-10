@@ -18,3 +18,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "Kimi-K2.6：TP=1 或 enable_shared_expert_dp 时启用额外流重叠 shared-expert 计算；Kimi-K3 配方按侧区分（P false / D true）；GLM5 表列为 A3 通用优化。"
+    en: "Kimi-K2.6: extra stream overlaps shared-expert computation when TP=1 or enable_shared_expert_dp; Kimi-K3 sets it per side (P false / D true); GLM5 table lists it as a general A3 optimization."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"

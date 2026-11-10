@@ -35,6 +35,21 @@ vllm serve Qwen/Qwen3-8B \
   --additional-config='{"enable_mlapo": true, "mlapo_keep_prefill_weights": true}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | — 不适用 |
+| PD 分离 | ✅ D 节点 |
+
+官方配置文档：在 kv_consumer（decode-only D）节点上保留 MLAPO prefill 权重——D 节点的本地 prefill 路径（recompute/fallback/preempt）在权重释放后会崩溃（issue #11882）；以显存换稳定。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_mlapo](enable-mlapo.md) — MLAPO 总开关

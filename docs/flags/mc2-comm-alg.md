@@ -37,6 +37,21 @@ vllm serve Qwen/Qwen3-8B --additional-config='{"mc2_comm_alg": "hierarchy"}'
 
 源码中设置 `mc2_comm_alg = "hierarchy"` 会自动等效旧的 hierarchy 行为；两者同时设置时以 `mc2_comm_alg` 为准。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ◻️ 未见官方说明 |
+| PD 分离 | ◻️ 未见官方说明 |
+
+未见混部/PD 分离说明；已知芯片约束："hierarchy" 仅 A2/A3，"fullmesh_v2" 当前仅 A3。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_mc2_hierarchy_comm](enable-mc2-hierarchy-comm.md) — 已弃用的旧开关

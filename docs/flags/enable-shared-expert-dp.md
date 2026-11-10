@@ -27,6 +27,21 @@ title: enable_shared_expert_dp
 vllm serve Qwen/Qwen3-8B --additional-config='{"enable_shared_expert_dp": true}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+官方 PD 配方 P/D 两侧均出现；DeepSeek-V4-Pro 说明其作用为把 shared experts 放到 DP ranks。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [multistream_overlap_shared_expert](multistream-overlap-shared-expert.md) — 共享专家多流重叠

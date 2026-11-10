@@ -25,6 +25,15 @@
     "version_note": {
       "zh": "enable_super_kernel / fuse_muls_add 自 v0.30.0 起；fuse_allreduce_rms 仅 v0.23.0 有",
       "en": "enable_super_kernel / fuse_muls_add since v0.30.0; fuse_allreduce_rms exists only on v0.23.0"
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 教程两侧都配但配方不同：P 侧常以 --enforce-eager 跑 eager（如 Qwen3.5-397B 显式 enable_npugraph_ex: false），D 侧典型开 enable_npugraph_ex——DeepSeek-V4-Flash 原文「enables the extended NPU graph mode on Decode … Prefill runs in eager mode」；static/super kernel 在 Qwen3.8-Flash-Next 等配方中仅 D 侧开启。",
+        "en": "Official PD tutorials configure both sides differently: Prefill often runs eager (--enforce-eager; Qwen3.5-397B sets enable_npugraph_ex: false) while Decode enables enable_npugraph_ex (DeepSeek-V4-Flash: \"enables the extended NPU graph mode on Decode ... Prefill runs in eager mode\"); static/super kernel appear only on the D side in recipes like Qwen3.8-Flash-Next."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html"
     }
   },
   {
@@ -49,6 +58,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -73,6 +90,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -101,6 +126,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -129,6 +162,15 @@
     "version_note": {
       "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.batch_job_sched_config",
       "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.batch_job_sched_config"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知约束：与 ShortRequestFirst 不可组合（batch-job-aware 调度下不安装 ShortRequestFirst 等待队列）。",
+        "en": "No colocated/PD guidance found; known constraint: cannot be combined with ShortRequestFirst."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html"
     }
   },
   {
@@ -158,6 +200,14 @@
       "v0.23.0": true,
       "v0.30.0": false,
       "main": false
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -190,6 +240,15 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "DeepSeek-V4-Pro/Flash 教程原文：combine_quant_mode: 4「forces the MoE MC2 combine stage on Decode nodes to use FP8 … communication quantization」；官方配方中该键配在 D 节点。",
+        "en": "DeepSeek-V4-Pro/Flash tutorials: combine_quant_mode: 4 \"forces the MoE MC2 combine stage on Decode nodes to use FP8 (MXFP float8_e4m3) communication quantization\"; configured on the D node in official recipes."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
     }
   },
   {
@@ -216,6 +275,14 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -240,6 +307,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -264,6 +339,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -298,6 +381,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -326,6 +417,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -354,6 +453,15 @@
     "version_note": {
       "zh": "v0.30.0 起顶层键不再解析（extra=forbid 会报未知键错误），必须写 scheduler_config.dyntra_lb_config 嵌套形式",
       "en": "top-level key no longer parsed since v0.30.0 (extra=forbid raises an unknown-key error); must use the nested form scheduler_config.dyntra_lb_config"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方 DyntraLB 指南：仅在 PD 分离 D 节点（kv_role=\"kv_consumer\"）开启，且要求 DP>1、DP ranks 同节点；「Do not add dyntra_lb_config with enabled=true to Prefill nodes」；不能与 enable_balance_scheduling / profiling_chunk_config 同开（启动拒绝）。",
+        "en": "Official DyntraLB guide: PD-disaggregated Decode nodes only (kv_role=\"kv_consumer\"), DP>1, DP ranks on one node; \"Do not add dyntra_lb_config with enabled=true to Prefill nodes\"; incompatible with enable_balance_scheduling / profiling_chunk_config (startup rejection)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html"
     }
   },
   {
@@ -389,6 +497,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "mixed",
+      "colocated": "ok",
+      "note": {
+        "zh": "设计文档注明「supports PD-mixed mode only」；GLM5 优化表：适用 A3 单节点/共置/非 PD 场景，「not recommended when Prefill-Decode is separated」。",
+        "en": "Design doc: \"supports PD-mixed mode only\"; GLM5 tuning table: A3 single-node / co-located / non-PD scenarios, \"not recommended when Prefill-Decode is separated\"."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
     }
   },
   {
@@ -418,6 +535,14 @@
     "version_note": {
       "zh": "v0.18 及更早通过环境变量支持；后被 enable_dsa_cp 取代",
       "en": "Env var only up to v0.18; superseded by enable_dsa_cp"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -442,6 +567,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 分离教程 P/D 两侧普遍开启（Qwen3.8-Flash-Next、MiniMax-M3、GLM5.2 等配方）。",
+        "en": "Enabled on both P and D sides across official PD-disaggregation tutorials (Qwen3.8-Flash-Next, MiniMax-M3, GLM5.2, etc.)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"
     }
   },
   {
@@ -475,6 +609,15 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": false
+    },
+    "deployment": {
+      "pd": "n/a",
+      "colocated": "n/a",
+      "note": {
+        "zh": "v0.30.0 专属开关，main 已移除（启动报错提示改用 PCP），无部署形态意义。",
+        "en": "v0.30.0-only flag, removed on main (startup error points to PCP); no deployment-form semantics."
+      },
+      "source": "vllm_ascend/ascend_config.py @ main"
     }
   },
   {
@@ -502,6 +645,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "GLM5 优化表与教程模板标注适用「A3 prefill nodes / co-located nodes」；实际 PD 配方中 P/D 两侧均出现（GLM5.2/GLM5.3 D 侧亦开启），按模型配方配置。",
+        "en": "GLM5 tuning table and tutorial template mark it for \"A3 prefill nodes / co-located nodes\"; in PD recipes it appears on both sides (GLM5.2/GLM5.3 enable it on D too). Follow the model recipe."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
     }
   },
   {
@@ -531,6 +683,14 @@
     "version_note": {
       "zh": "v0.23.0 为配置键 + 环境变量回退；v0.30.0 已移除",
       "en": "Config key + env fallback in v0.23.0; removed in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -563,6 +723,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -599,6 +767,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "GLM5 优化表标注「A3 prefill nodes」；DeepSeek-V4-Flash 指出 P 侧置 0 时以 multistream_overlap_shared_expert 替代；GLM5.2 等配方 D 侧用 enable_fused_mc2: 2（MegaMoE）。两侧均可配，取值随模型路径。",
+        "en": "GLM5 tuning table: \"A3 prefill nodes\"; DeepSeek-V4-Flash disables it on Prefill in favor of multistream_overlap_shared_expert; GLM5.2 sets 2 (MegaMoE) on the D side. Both sides configurable; value follows the model path."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"
     }
   },
   {
@@ -626,6 +803,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -652,6 +837,15 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "KVPP 官方指南：「Enable KVPP only on the prefill node」；PD 分离经 MooncakeConnectorV2（实验性），D-only 节点由源码校验强制禁用。",
+        "en": "Official KVPP guide: \"Enable KVPP only on the prefill node\"; P/D via MooncakeConnectorV2 (experimental); hard-disabled on decode-only nodes by source validation."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kvpp.html"
     }
   },
   {
@@ -681,6 +875,14 @@
     "version_note": {
       "zh": "v0.23.0 仅环境变量；v0.30.0 已移除",
       "en": "Env var only in v0.23.0; removed in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -712,6 +914,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知约束：以 ROCE 做 dispatch/combine 跨节点通信，将被 mc2_comm_alg=\"hierarchy\" 取代。",
+        "en": "No colocated/PD guidance; known: RoCE inter-node dispatch/combine communication, to be replaced by mc2_comm_alg=\"hierarchy\"."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -737,6 +948,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "ok",
+      "note": {
+        "zh": "Kimi-K2.6 与 GLM5 教程原文：「in PD scenarios enable MLAPO only on decode nodes」；混部高吞吐场景可用（GLM5 表「A3 co-located high-throughput / PD decode nodes」）；注意消耗更多 NPU 显存。",
+        "en": "Kimi-K2.6 and GLM5 tutorials: \"in PD scenarios enable MLAPO only on decode nodes\"; usable for co-located high-throughput (GLM5 table); consumes more NPU memory."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
     }
   },
   {
@@ -765,6 +985,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -793,6 +1021,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -819,6 +1055,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "语义即「为 prefill batch 预留 mc2_token_capacity」；Qwen3.8-Flash-Next 配方 P 节点开启、D 节点不配。官方注明是临时开关，MC2 算子补全后移除。",
+        "en": "Semantics: reserve mc2_token_capacity for prefill batches; Qwen3.8-Flash-Next enables it on P only. Officially a temporary switch, to be removed once MC2 operators are complete."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"
     }
   },
   {
@@ -845,6 +1090,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 配方 P/D 两侧均出现；DeepSeek-V4-Pro 说明其作用为把 shared experts 放到 DP ranks。",
+        "en": "Appears on both sides in official PD recipes; DeepSeek-V4-Pro: places shared experts on DP ranks."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"
     }
   },
   {
@@ -880,6 +1134,15 @@
     "version_note": {
       "zh": "v0.30.0 起由 --attention_config.indexer_kv_dtype fp8/int8 派生",
       "en": "derived from --attention_config.indexer_kv_dtype fp8/int8 since v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "GLM5.2 PD 配方中配在 D 节点（kv_consumer）；GLM5 优化表按吞吐场景区分：高吞吐/PD 场景开启、低延迟场景关闭。v0.30.0 起由 --attention_config.indexer_kv_dtype 派生。",
+        "en": "Set on the D node (kv_consumer) in the GLM5.2 PD recipe; GLM5 table: on for high-throughput/PD, off for low-latency. Derived from --attention_config.indexer_kv_dtype since v0.30.0."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
     }
   },
   {
@@ -913,6 +1176,15 @@
     "version_note": {
       "zh": "v0.30.0 起由 --kv-cache-dtype fp8/int8 派生",
       "en": "derived from --kv-cache-dtype fp8/int8 since v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "GLM5.2 PD 配方中配在 D 节点；GLM5 优化表：面向长上下文 prefill 的 A3 (w8a8c8) 场景，参考配置中高吞吐与 PD 场景开启、低延迟场景关闭。v0.30.0 起由 --kv-cache-dtype 派生。",
+        "en": "Set on the D node in the GLM5.2 PD recipe; GLM5 table: A3 (w8a8c8) long-context prefill, on for high-throughput/PD, off for low-latency. Derived from --kv-cache-dtype since v0.30.0."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
     }
   },
   {
@@ -938,6 +1210,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -967,6 +1247,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -991,6 +1279,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "careful",
+      "note": {
+        "zh": "官方 Fine-grained TP 指南：oproj/mlp_tensor_parallel_size>1 仅在 PD 分离 D 节点（kv_consumer）通过启动校验，且要求 recompute_scheduler_enable + PreemptOffloadConnector 组合；生产推荐拓扑即 PD 分离 D 节点。lmhead/embedding 子键限制较宽。",
+        "en": "Official Fine-grained TP guide: oproj/mlp_tensor_parallel_size>1 only passes startup validation on PD-disaggregated D nodes (kv_consumer), requiring recompute_scheduler_enable + PreemptOffloadConnector; the recommended production topology is exactly that. lmhead/embedding knobs are less restricted."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/Fine_grained_TP.html"
     }
   },
   {
@@ -1021,6 +1318,14 @@
       "v0.23.0": true,
       "v0.30.0": false,
       "main": false
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1050,6 +1355,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1091,6 +1404,15 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；已知芯片约束：\"hierarchy\" 仅 A2/A3，\"fullmesh_v2\" 当前仅 A3。",
+        "en": "No colocated/PD guidance; chip constraints: \"hierarchy\" A2/A3 only, \"fullmesh_v2\" A3 only for now."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -1119,6 +1441,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见混部/PD 分离说明；为 fused MC2/MegaMoe 路径的每 rank token 容量参考值，超出可能精度劣化。",
+        "en": "No colocated/PD guidance; per-rank token capacity reference for the fused MC2/MegaMoe path, exceeding it may degrade precision."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -1143,6 +1474,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1173,6 +1512,15 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方配置文档：在 kv_consumer（decode-only D）节点上保留 MLAPO prefill 权重——D 节点的本地 prefill 路径（recompute/fallback/preempt）在权重释放后会崩溃（issue #11882）；以显存换稳定。",
+        "en": "Official config doc: keep MLAPO prefill weights on NPU for kv_consumer (decode-only D) nodes — D-node local-prefill paths (recompute/fallback/preempt) crash when freed (issue #11882); trades memory for stability."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -1198,6 +1546,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1224,6 +1580,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1250,6 +1614,15 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "仅见 DeepSeek-V4.1-Flash P 配方显式置 false，未见部署形态语义说明。",
+        "en": "Only seen as an explicit false in the DeepSeek-V4.1-Flash P recipe; no deployment-form semantics documented."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4.1-Flash.html"
     }
   },
   {
@@ -1280,6 +1653,14 @@
     "version_note": {
       "zh": "v0.30.0 起已移除",
       "en": "Removed since v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1306,6 +1687,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "Kimi-K2.6：TP=1 或 enable_shared_expert_dp 时启用额外流重叠 shared-expert 计算；Kimi-K3 配方按侧区分（P false / D true）；GLM5 表列为 A3 通用优化。",
+        "en": "Kimi-K2.6: extra stream overlaps shared-expert computation when TP=1 or enable_shared_expert_dp; Kimi-K3 sets it per side (P false / D true); GLM5 table lists it as a general A3 optimization."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html"
     }
   },
   {
@@ -1330,6 +1720,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1358,6 +1756,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "要求 pipeline-parallel-size>1；GLM5.2 配方在 P 节点（kv_producer）开启；不能与 dyntra_lb_config / enable_balance_scheduling 同开，可与 ShortRequestFirst 组合。",
+        "en": "Requires pipeline-parallel-size>1; enabled on the P node (kv_producer) in the GLM5.2 recipe; incompatible with dyntra_lb_config / enable_balance_scheduling, combinable with ShortRequestFirst."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
     }
   },
   {
@@ -1386,6 +1793,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "n/a",
+      "note": {
+        "zh": "官方配置文档：仅在 PD 分离 D 节点（kv_consumer）有效——「Do not enable on P nodes or in PD-mixed mode … startup will fail」；GLM5 表注明 P 节点置 false；与 dyntra_lb_config 同开时组成 combined scheduler。",
+        "en": "Official config doc: valid only on PD-disaggregated D nodes — \"Do not enable on P nodes or in PD-mixed mode ... startup will fail\"; GLM5 table sets it false on P; combined with dyntra_lb_config it forms the combined scheduler."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -1410,6 +1826,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1434,6 +1858,14 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1462,6 +1894,14 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1490,6 +1930,14 @@
     "version_note": {
       "zh": "main 分支新增，下一版本发布",
       "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1518,6 +1966,14 @@
     "version_note": {
       "zh": "main 分支新增，下一版本发布",
       "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1546,6 +2002,14 @@
     "version_note": {
       "zh": "main 分支新增，下一版本发布",
       "en": "New on main; ships in the next release"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1574,6 +2038,14 @@
     "version_note": {
       "zh": "Runtime Guard 特性的一部分，main 分支新增",
       "en": "Part of Runtime Guard; new on main"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1602,6 +2074,14 @@
     "version_note": {
       "zh": "Runtime Guard 特性的一部分，main 分支新增",
       "en": "Part of Runtime Guard; new on main"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1630,6 +2110,15 @@
     "version_note": {
       "zh": "v0.30.0 新增",
       "en": "New in v0.30.0"
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "聚合键，放置由子键决定：recompute_scheduler_enable 仅 D、short_request_first_config 仅 P/混部、dyntra_lb_config 仅 D、enable_balance_scheduling 仅混部、profiling_chunk_config 见 P 侧实证。详见各子键详情页。",
+        "en": "Aggregate key; placement follows sub-keys: recompute_scheduler_enable D-only, short_request_first_config P/mixed-only, dyntra_lb_config D-only, enable_balance_scheduling mixed-only, profiling_chunk_config evidenced on P. See sub-key pages."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"
     }
   },
   {
@@ -1656,6 +2145,14 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1684,6 +2181,15 @@
     "version_note": {
       "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.short_request_first_config",
       "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.short_request_first_config"
+    },
+    "deployment": {
+      "pd": "P",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 ShortRequestFirst 指南：支持普通部署、PD 分离 P 节点与 PD 混部；「not supported … on PD-disaggregated D nodes」；不依赖 recompute_scheduler_enable。",
+        "en": "Official ShortRequestFirst guide: ordinary deployments, PD-disaggregated P nodes and PD-mixed; \"not supported on PD-disaggregated D nodes\"; does not require recompute_scheduler_enable."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html"
     }
   },
   {
@@ -1710,6 +2216,15 @@
       "v0.23.0": false,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "D",
+      "colocated": "unknown",
+      "note": {
+        "zh": "官方分层/稀疏 KV 卸载指南：「Do not set sparse_kv_offload_config on Prefill」；D 节点用独立 host pool，配置与 P 侧不同；与 PreemptOffloadConnector 互斥（含 MultiConnector 包装）。",
+        "en": "Official layerwise/sparse KV offloading guide: \"Do not set sparse_kv_offload_config on Prefill\"; Decode uses a separate host pool with different config; mutually exclusive with PreemptOffloadConnector (incl. inside MultiConnector)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading.html"
     }
   },
   {
@@ -1740,6 +2255,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 PD 配方 P/D 两侧均配置（Qwen3.5-397B-A17B、MiniMax-M3 等）；取值由权重格式决定（0 关 / 1 仅量化权重 / 2 含 BF16/FP16）。",
+        "en": "Configured on both sides in official PD recipes (Qwen3.5-397B-A17B, MiniMax-M3, etc.); value follows weight format (0 off / 1 quantized only / 2 incl. BF16/FP16)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html"
     }
   },
   {
@@ -1768,6 +2292,14 @@
     "version_note": {
       "zh": "v0.30.0 起已移除",
       "en": "Removed since v0.30.0"
+    },
+    "deployment": {
+      "pd": "unknown",
+      "colocated": "unknown",
+      "note": {
+        "zh": "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。",
+        "en": "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."
+      }
     }
   },
   {
@@ -1792,6 +2324,15 @@
       "v0.23.0": true,
       "v0.30.0": true,
       "main": true
+    },
+    "deployment": {
+      "pd": "both",
+      "colocated": "ok",
+      "note": {
+        "zh": "官方 graph_mode 指南：默认（full_mode=false）token 预算按 decode 步 sizing，prefill 与大批次回退 ACLGraph——偏 D 侧重 decode；full_mode=true 时预算按 max_num_batched_tokens，prefill/decode 都走 xlite（建议 --enforce-eager）。",
+        "en": "Official graph_mode guide: by default (full_mode=false) the token budget is sized for decode steps with prefill/large batches falling back to ACLGraph — decode-leaning; full_mode=true sizes by max_num_batched_tokens so prefill and decode both run on xlite (--enforce-eager recommended)."
+      },
+      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/graph_mode.html"
     }
   }
 ]

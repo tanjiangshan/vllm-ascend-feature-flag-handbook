@@ -26,3 +26,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "GLM5 优化表标注「A3 prefill nodes」；DeepSeek-V4-Flash 指出 P 侧置 0 时以 multistream_overlap_shared_expert 替代；GLM5.2 等配方 D 侧用 enable_fused_mc2: 2（MegaMoE）。两侧均可配，取值随模型路径。"
+    en: "GLM5 tuning table: \"A3 prefill nodes\"; DeepSeek-V4-Flash disables it on Prefill in favor of multistream_overlap_shared_expert; GLM5.2 sets 2 (MegaMoE) on the D side. Both sides configurable; value follows the model path."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html"

@@ -21,3 +21,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: D
+  colocated: n/a
+  note:
+    zh: "官方配置文档：仅在 PD 分离 D 节点（kv_consumer）有效——「Do not enable on P nodes or in PD-mixed mode … startup will fail」；GLM5 表注明 P 节点置 false；与 dyntra_lb_config 同开时组成 combined scheduler。"
+    en: "Official config doc: valid only on PD-disaggregated D nodes — \"Do not enable on P nodes or in PD-mixed mode ... startup will fail\"; GLM5 table sets it false on P; combined with dyntra_lb_config it forms the combined scheduler."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"

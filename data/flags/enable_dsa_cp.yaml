@@ -21,3 +21,10 @@ version_support:
   v0.23.0: false
   v0.30.0: true
   main: false
+deployment:
+  pd: n/a
+  colocated: n/a
+  note:
+    zh: "v0.30.0 专属开关，main 已移除（启动报错提示改用 PCP），无部署形态意义。"
+    en: "v0.30.0-only flag, removed on main (startup error points to PCP); no deployment-form semantics."
+  source: "vllm_ascend/ascend_config.py @ main"

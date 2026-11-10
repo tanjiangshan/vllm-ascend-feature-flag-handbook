@@ -20,3 +20,10 @@ version_support:
 version_note:
   zh: v0.30.0 起顶层键不再解析（extra=forbid 会报未知键错误），必须写 scheduler_config.dyntra_lb_config 嵌套形式
   en: top-level key no longer parsed since v0.30.0 (extra=forbid raises an unknown-key error); must use the nested form scheduler_config.dyntra_lb_config
+deployment:
+  pd: D
+  colocated: n/a
+  note:
+    zh: "官方 DyntraLB 指南：仅在 PD 分离 D 节点（kv_role=\"kv_consumer\"）开启，且要求 DP>1、DP ranks 同节点；「Do not add dyntra_lb_config with enabled=true to Prefill nodes」；不能与 enable_balance_scheduling / profiling_chunk_config 同开（启动拒绝）。"
+    en: "Official DyntraLB guide: PD-disaggregated Decode nodes only (kv_role=\"kv_consumer\"), DP>1, DP ranks on one node; \"Do not add dyntra_lb_config with enabled=true to Prefill nodes\"; incompatible with enable_balance_scheduling / profiling_chunk_config (startup rejection)."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html"

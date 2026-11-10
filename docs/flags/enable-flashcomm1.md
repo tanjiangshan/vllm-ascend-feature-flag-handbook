@@ -32,6 +32,21 @@ vllm serve Qwen/Qwen3-8B --additional-config='{"enable_flashcomm1": true}'
 |---|---|
 | `export VLLM_ASCEND_ENABLE_FLASHCOMM1=1` | `{"enable_flashcomm1": true}` |
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+GLM5 优化表与教程模板标注适用「A3 prefill nodes / co-located nodes」；实际 PD 配方中 P/D 两侧均出现（GLM5.2/GLM5.3 D 侧亦开启），按模型配方配置。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_fused_mc2](enable-fused-mc2.md) — MoE 融合路径（常与通信优化配合调优）

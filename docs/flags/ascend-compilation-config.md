@@ -58,6 +58,21 @@ vllm serve Qwen/Qwen3-8B \
   --additional-config='{"ascend_compilation_config": {"enable_static_kernel": true, "enable_super_kernel": false}}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+官方 PD 教程两侧都配但配方不同：P 侧常以 --enforce-eager 跑 eager（如 Qwen3.5-397B 显式 enable_npugraph_ex: false），D 侧典型开 enable_npugraph_ex——DeepSeek-V4-Flash 原文「enables the extended NPU graph mode on Decode … Prefill runs in eager mode」；static/super kernel 在 Qwen3.8-Flash-Next 等配方中仅 D 侧开启。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [`ascend_fusion_config`](ascend-fusion-config.md) — 融合算子开关（GMMSwiGLUQuant 等，与编译 pass 不同层）

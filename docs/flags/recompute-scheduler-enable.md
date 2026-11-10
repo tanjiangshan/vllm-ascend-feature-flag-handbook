@@ -37,6 +37,21 @@ vllm serve Qwen/Qwen3-8B \
 
 顶层键过渡期仍兼容，与 `scheduler_config` 同时提供时以后者为准。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | — 不适用 |
+| PD 分离 | ✅ D 节点 |
+
+官方配置文档：仅在 PD 分离 D 节点（kv_consumer）有效——「Do not enable on P nodes or in PD-mixed mode … startup will fail」；GLM5 表注明 P 节点置 false；与 dyntra_lb_config 同开时组成 combined scheduler。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [scheduler_config](scheduler-config.md) — 规范层级

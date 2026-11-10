@@ -18,3 +18,10 @@ version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
+deployment:
+  pd: P
+  colocated: ok
+  note:
+    zh: "KVPP 官方指南：「Enable KVPP only on the prefill node」；PD 分离经 MooncakeConnectorV2（实验性），D-only 节点由源码校验强制禁用。"
+    en: "Official KVPP guide: \"Enable KVPP only on the prefill node\"; P/D via MooncakeConnectorV2 (experimental); hard-disabled on decode-only nodes by source validation."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kvpp.html"

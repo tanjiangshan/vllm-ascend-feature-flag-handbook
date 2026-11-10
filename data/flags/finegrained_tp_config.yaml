@@ -17,3 +17,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: D
+  colocated: careful
+  note:
+    zh: "官方 Fine-grained TP 指南：oproj/mlp_tensor_parallel_size>1 仅在 PD 分离 D 节点（kv_consumer）通过启动校验，且要求 recompute_scheduler_enable + PreemptOffloadConnector 组合；生产推荐拓扑即 PD 分离 D 节点。lmhead/embedding 子键限制较宽。"
+    en: "Official Fine-grained TP guide: oproj/mlp_tensor_parallel_size>1 only passes startup validation on PD-disaggregated D nodes (kv_consumer), requiring recompute_scheduler_enable + PreemptOffloadConnector; the recommended production topology is exactly that. lmhead/embedding knobs are less restricted."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/Fine_grained_TP.html"

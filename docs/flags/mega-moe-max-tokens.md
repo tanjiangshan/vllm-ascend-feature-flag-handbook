@@ -38,6 +38,21 @@ vllm serve Qwen/Qwen3-8B \
   --additional-config='{"enable_fused_mc2": 2, "mega_moe_max_tokens": 32768}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ◻️ 未见官方说明 |
+| PD 分离 | ◻️ 未见官方说明 |
+
+未见混部/PD 分离说明；为 fused MC2/MegaMoe 路径的每 rank token 容量参考值，超出可能精度劣化。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_fused_mc2](enable-fused-mc2.md) — 融合路径总开关

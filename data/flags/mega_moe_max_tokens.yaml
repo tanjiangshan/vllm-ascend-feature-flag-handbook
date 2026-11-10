@@ -20,3 +20,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: unknown
+  colocated: unknown
+  note:
+    zh: "未见混部/PD 分离说明；为 fused MC2/MegaMoe 路径的每 rank token 容量参考值，超出可能精度劣化。"
+    en: "No colocated/PD guidance; per-rank token capacity reference for the fused MC2/MegaMoe path, exceeding it may degrade precision."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"

@@ -28,3 +28,18 @@ FCFS 同步/异步、PD-prefill（P 节点）或 PD-mixed 节点上的 prefill �
 vllm serve Qwen/Qwen3-8B \
   --additional-config='{"scheduler_config": {"short_request_first_config": {}}}'
 ```
+
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ P 节点 |
+
+官方 ShortRequestFirst 指南：支持普通部署、PD 分离 P 节点与 PD 混部；「not supported … on PD-disaggregated D nodes」；不依赖 recompute_scheduler_enable。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html)
+<!-- DEPLOY_END -->

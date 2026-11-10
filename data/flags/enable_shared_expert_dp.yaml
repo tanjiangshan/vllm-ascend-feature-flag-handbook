@@ -19,3 +19,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "官方 PD 配方 P/D 两侧均出现；DeepSeek-V4-Pro 说明其作用为把 shared experts 放到 DP ranks。"
+    en: "Appears on both sides in official PD recipes; DeepSeek-V4-Pro: places shared experts on DP ranks."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html"

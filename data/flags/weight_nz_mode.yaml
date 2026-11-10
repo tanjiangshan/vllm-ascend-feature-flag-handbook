@@ -22,3 +22,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "官方 PD 配方 P/D 两侧均配置（Qwen3.5-397B-A17B、MiniMax-M3 等）；取值由权重格式决定（0 关 / 1 仅量化权重 / 2 含 BF16/FP16）。"
+    en: "Configured on both sides in official PD recipes (Qwen3.5-397B-A17B, MiniMax-M3, etc.); value follows weight format (0 off / 1 quantized only / 2 incl. BF16/FP16)."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.5-397B-A17B.html"

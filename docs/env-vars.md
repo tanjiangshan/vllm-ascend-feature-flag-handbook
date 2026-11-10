@@ -15,6 +15,18 @@ title: 环境变量
 | `EXPERT_MAP_RECORD` | bool | 未设置 | EPLB 录制模式开关：录制专家映射并保存至 `expert_map_record_path` |
 | `HCCL_SO_PATH` | 路径 | 未设置（`libhccl.so`） | pyhccl 通信后端使用的 HCCL 库路径。仅在使用 pyhccl 后端时需要显式指定 |
 
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。三个运行时环境变量均**未见官方文档给出部署形态限制**，按节点统一设置即可；「未见官方说明」≠ 不能开。
+
+| 环境变量 | 混部（colocated） | PD 分离 |
+|---|---|---|
+| `VLLM_ASCEND_ENABLE_BATCH_MEMCPY` | ◻️ 未见官方说明 | ◻️ 未见官方说明 |
+| `DYNAMIC_EPLB` | ◻️ 未见官方说明 | ◻️ 未见官方说明 |
+| `EXPERT_MAP_RECORD` | ◻️ 未见官方说明 | ◻️ 未见官方说明 |
+
+如需逐开关的部署形态结论（含官方出处），见各[特性开关详情页](flags/index.md)的「部署形态」节。
+
 ## 构建期环境变量
 
 以下变量影响**源码编译**，不影响运行时行为，完整列表见[官方构建文档](https://docs.vllm.ai/projects/ascend/en/latest/installation/ascend.html)：

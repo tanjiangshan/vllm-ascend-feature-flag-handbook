@@ -26,6 +26,21 @@ title: multistream_overlap_shared_expert
 vllm serve Qwen/Qwen3-8B --additional-config='{"multistream_overlap_shared_expert": true}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+Kimi-K2.6：TP=1 或 enable_shared_expert_dp 时启用额外流重叠 shared-expert 计算；Kimi-K3 配方按侧区分（P false / D true）；GLM5 表列为 A3 通用优化。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Kimi-K2.6.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_shared_expert_dp](enable-shared-expert-dp.md) — 共享专家数据并行（正交，可组合）

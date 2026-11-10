@@ -21,3 +21,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: unknown
+  colocated: unknown
+  note:
+    zh: "未见混部/PD 分离说明；已知约束：以 ROCE 做 dispatch/combine 跨节点通信，将被 mc2_comm_alg=\"hierarchy\" 取代。"
+    en: "No colocated/PD guidance; known: RoCE inter-node dispatch/combine communication, to be replaced by mc2_comm_alg=\"hierarchy\"."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"

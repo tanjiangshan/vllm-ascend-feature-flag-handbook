@@ -19,3 +19,10 @@ version_support:
   v0.23.0: true
   v0.30.0: true
   main: true
+deployment:
+  pd: P
+  colocated: ok
+  note:
+    zh: "语义即「为 prefill batch 预留 mc2_token_capacity」；Qwen3.8-Flash-Next 配方 P 节点开启、D 节点不配。官方注明是临时开关，MC2 算子补全后移除。"
+    en: "Semantics: reserve mc2_token_capacity for prefill batches; Qwen3.8-Flash-Next enables it on P only. Officially a temporary switch, to be removed once MC2 operators are complete."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html"

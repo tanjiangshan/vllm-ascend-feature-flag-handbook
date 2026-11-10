@@ -22,3 +22,10 @@ version_support:
 version_note:
   zh: v0.30.0 新增
   en: New in v0.30.0
+deployment:
+  pd: D
+  colocated: n/a
+  note:
+    zh: "官方配置文档：在 kv_consumer（decode-only D）节点上保留 MLAPO prefill 权重——D 节点的本地 prefill 路径（recompute/fallback/preempt）在权重释放后会崩溃（issue #11882）；以显存换稳定。"
+    en: "Official config doc: keep MLAPO prefill weights on NPU for kv_consumer (decode-only D) nodes — D-node local-prefill paths (recompute/fallback/preempt) crash when freed (issue #11882); trades memory for stability."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"

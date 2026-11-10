@@ -38,6 +38,21 @@ vllm serve <model> \
 - `dram_size_per_dp_GB` 必须为正，否则 `sparse_kv_offload_config.dram_size_per_dp_GB must be positive`。
 - 需搭配 `SfaRemoteD2HConnector` / `AscendStoreConnector` 等 KV 传输连接器使用。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ◻️ 未见官方说明 |
+| PD 分离 | ✅ D 节点 |
+
+官方分层/稀疏 KV 卸载指南：「Do not set sparse_kv_offload_config on Prefill」；D 节点用独立 host pool，配置与 P 侧不同；与 PreemptOffloadConnector 互斥（含 MultiConnector 包装）。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [`enable_kvpp`](enable-kvpp.md) — KVPP 显存扩容（HBM 侧按层分摊）

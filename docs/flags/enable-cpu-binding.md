@@ -22,3 +22,18 @@ title: enable_cpu_binding
 ```bash
 vllm serve Qwen/Qwen3-8B --additional-config='{"enable_cpu_binding": false}'
 ```
+
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+官方 PD 分离教程 P/D 两侧普遍开启（Qwen3.8-Flash-Next、MiniMax-M3、GLM5.2 等配方）。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html)
+<!-- DEPLOY_END -->

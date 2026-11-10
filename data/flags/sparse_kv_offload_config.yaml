@@ -18,3 +18,10 @@ version_support:
   v0.23.0: false
   v0.30.0: true
   main: true
+deployment:
+  pd: D
+  colocated: unknown
+  note:
+    zh: "官方分层/稀疏 KV 卸载指南：「Do not set sparse_kv_offload_config on Prefill」；D 节点用独立 host pool，配置与 P 侧不同；与 PreemptOffloadConnector 互斥（含 MultiConnector 包装）。"
+    en: "Official layerwise/sparse KV offloading guide: \"Do not set sparse_kv_offload_config on Prefill\"; Decode uses a separate host pool with different config; mutually exclusive with PreemptOffloadConnector (incl. inside MultiConnector)."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/layerwise_and_sparse_kv_cache_offloading.html"

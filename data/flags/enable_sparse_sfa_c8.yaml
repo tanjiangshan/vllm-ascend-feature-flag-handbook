@@ -23,3 +23,10 @@ version_support:
 version_note:
   zh: v0.30.0 起由 --kv-cache-dtype fp8/int8 派生
   en: derived from --kv-cache-dtype fp8/int8 since v0.30.0
+deployment:
+  pd: D
+  colocated: unknown
+  note:
+    zh: "GLM5.2 PD 配方中配在 D 节点；GLM5 优化表：面向长上下文 prefill 的 A3 (w8a8c8) 场景，参考配置中高吞吐与 PD 场景开启、低延迟场景关闭。v0.30.0 起由 --kv-cache-dtype 派生。"
+    en: "Set on the D node in the GLM5.2 PD recipe; GLM5 table: A3 (w8a8c8) long-context prefill, on for high-throughput/PD, off for low-latency. Derived from --kv-cache-dtype since v0.30.0."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"

@@ -32,6 +32,21 @@ vllm serve Qwen/Qwen3-8B \
   --additional-config='{"enable_prefill_mc2": true}'
 ```
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ P 节点 |
+
+语义即「为 prefill batch 预留 mc2_token_capacity」；Qwen3.8-Flash-Next 配方 P 节点开启、D 节点不配。官方注明是临时开关，MC2 算子补全后移除。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/Qwen3.8-Flash-Next.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_fused_mc2](enable-fused-mc2.md) — 融合 MC2 路径总开关

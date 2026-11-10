@@ -41,6 +41,21 @@ vllm serve Qwen/Qwen3-8B \
 
 详见[迁移对照表](../migration.md)。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 仅 PD 混部 |
+
+设计文档注明「supports PD-mixed mode only」；GLM5 优化表：适用 A3 单节点/共置/非 PD 场景，「not recommended when Prefill-Decode is separated」。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [`recompute_scheduler_enable`](recompute-scheduler-enable.md) — 同位于 `scheduler_config` 下的重计算调度

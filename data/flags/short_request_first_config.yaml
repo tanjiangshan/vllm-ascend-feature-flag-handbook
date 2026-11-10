@@ -20,3 +20,10 @@ version_support:
 version_note:
   zh: v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.short_request_first_config
   en: top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.short_request_first_config
+deployment:
+  pd: P
+  colocated: ok
+  note:
+    zh: "官方 ShortRequestFirst 指南：支持普通部署、PD 分离 P 节点与 PD 混部；「not supported … on PD-disaggregated D nodes」；不依赖 recompute_scheduler_enable。"
+    en: "Official ShortRequestFirst guide: ordinary deployments, PD-disaggregated P nodes and PD-mixed; \"not supported on PD-disaggregated D nodes\"; does not require recompute_scheduler_enable."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html"

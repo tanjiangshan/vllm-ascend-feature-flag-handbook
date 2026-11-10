@@ -134,6 +134,21 @@ def validate(name: str, entry: dict) -> list[str]:
     if not isinstance(short, dict) or "zh" not in short or "en" not in short:
         errors.append(f"{name}: 'name' must be a dict with both 'zh' and 'en' keys")
 
+    dep = entry.get("deployment")
+    if dep is not None:
+        if not isinstance(dep, dict):
+            errors.append(f"{name}: 'deployment' must be a dict")
+        else:
+            if dep.get("pd") not in {"P", "D", "both", "mixed", "n/a", "unknown"}:
+                errors.append(f"{name}: deployment.pd must be one of P/D/both/mixed/n-a/unknown, got {dep.get('pd')!r}")
+            if dep.get("colocated") not in {"ok", "careful", "n/a", "unknown"}:
+                errors.append(f"{name}: deployment.colocated must be one of ok/careful/n-a/unknown, got {dep.get('colocated')!r}")
+            note = dep.get("note", {})
+            if not isinstance(note, dict) or not note.get("zh") or not note.get("en"):
+                errors.append(f"{name}: deployment.note must carry non-empty 'zh' and 'en'")
+            if (dep.get("pd") != "unknown" or dep.get("colocated") != "unknown") and not dep.get("source"):
+                errors.append(f"{name}: deployment.source required when pd/colocated is not 'unknown'")
+
     return errors
 
 
@@ -299,6 +314,68 @@ title: {f['key']}
         print(f"Created {created} stub page(s) under docs/flags/")
 
 
+def update_deployment_sections(flags: list[dict]) -> None:
+    """Render the 部署形态 section into every flag detail page.
+
+    Pages carry <!-- DEPLOY_START --> / <!-- DEPLOY_END --> markers; pages
+    without markers get them inserted before the 相关开关 section (or at
+    EOF), then the content between markers is regenerated from YAML.
+    """
+    pd_label = {
+        "P": "✅ P 节点",
+        "D": "✅ D 节点",
+        "both": "✅ 双端",
+        "mixed": "✅ 仅 PD 混部",
+        "n/a": "— 不适用",
+        "unknown": "◻️ 未见官方说明",
+    }
+    co_label = {
+        "ok": "✅ 可开",
+        "careful": "⚠️ 需注意",
+        "n/a": "— 不适用",
+        "unknown": "◻️ 未见官方说明",
+    }
+    start, end = "<!-- DEPLOY_START -->", "<!-- DEPLOY_END -->"
+    updated = 0
+    for f in flags:
+        dep = f.get("deployment")
+        if not dep:
+            continue
+        slug = f["key"].replace("_", "-")
+        path = FLAGS_DIR / f"{slug}.md"
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if start not in text:
+            anchor = "\n## 相关"
+            idx = text.find(anchor)
+            insert_at = idx if idx != -1 else len(text)
+            if insert_at == len(text) and not text.endswith("\n"):
+                text += "\n"
+            text = text[:insert_at] + f"\n{start}\n{end}\n" + text[insert_at:]
+        src = dep.get("source", "")
+        src_md = f"[出处]({src})" if src.startswith("http") else (f"出处：`{src}`" if src else "")
+        body = (
+            f"{start}\n## 部署形态\n\n"
+            "> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。"
+            "「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。\n\n"
+            "| 维度 | 结论 |\n|---|---|\n"
+            f"| 混部（colocated） | {co_label[dep['colocated']]} |\n"
+            f"| PD 分离 | {pd_label[dep['pd']]} |\n\n"
+            f"{dep['note']['zh']}\n\n"
+            f"{src_md}\n"
+            f"{end}"
+        )
+        pre = text.split(start)[0]
+        post = text.split(end, 1)[1]
+        new_text = pre + body + post
+        if new_text != path.read_text(encoding="utf-8"):
+            path.write_text(new_text, encoding="utf-8")
+            updated += 1
+    if updated:
+        print(f"Updated 部署形态 section in {updated} flag page(s)")
+
+
 def export_json(flags: list[dict]) -> None:
     clean = [{k: v for k, v in f.items() if not k.startswith("_")} for f in flags]
     JSON_OUT.write_text(
@@ -446,6 +523,7 @@ def main() -> None:
     update_index(flags)
     update_version_matrix(flags)
     ensure_stubs(flags)
+    update_deployment_sections(flags)
     export_json(flags)
     engine_args = load_engine_args()
     update_engine_args_index(engine_args)

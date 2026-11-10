@@ -20,3 +20,9 @@ version_support:
 version_note:
   zh: Runtime Guard 特性的一部分，main 分支新增
   en: Part of Runtime Guard; new on main
+deployment:
+  pd: unknown
+  colocated: unknown
+  note:
+    zh: "未见官方文档对本开关在混部（colocated）或 PD 分离部署下的专门说明；实践上可按全节点统一配置处理，欢迎补充实测结论。"
+    en: "No official guidance found for colocated or PD-disaggregated deployment; configure uniformly across nodes in practice. Field reports welcome."

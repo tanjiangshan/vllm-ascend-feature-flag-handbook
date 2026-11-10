@@ -27,6 +27,21 @@ vllm serve Qwen/Qwen3-8B \
 !!! note "有效值范围"
     有效取值范围以算子文档为准，不同 CANN 版本支持情况可能不同。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ◻️ 未见官方说明 |
+| PD 分离 | ✅ D 节点 |
+
+DeepSeek-V4-Pro/Flash 教程原文：combine_quant_mode: 4「forces the MoE MC2 combine stage on Decode nodes to use FP8 … communication quantization」；官方配方中该键配在 D 节点。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_fused_mc2](enable-fused-mc2.md) — 融合 MC2 总开关

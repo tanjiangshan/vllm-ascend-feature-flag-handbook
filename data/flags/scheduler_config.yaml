@@ -21,3 +21,10 @@ version_support:
 version_note:
   zh: v0.30.0 新增
   en: New in v0.30.0
+deployment:
+  pd: both
+  colocated: ok
+  note:
+    zh: "聚合键，放置由子键决定：recompute_scheduler_enable 仅 D、short_request_first_config 仅 P/混部、dyntra_lb_config 仅 D、enable_balance_scheduling 仅混部、profiling_chunk_config 见 P 侧实证。详见各子键详情页。"
+    en: "Aggregate key; placement follows sub-keys: recompute_scheduler_enable D-only, short_request_first_config P/mixed-only, dyntra_lb_config D-only, enable_balance_scheduling mixed-only, profiling_chunk_config evidenced on P. See sub-key pages."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html"

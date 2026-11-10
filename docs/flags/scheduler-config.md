@@ -42,6 +42,21 @@ PR #9064 迁移期，以下**顶层键仍兼容但已弃用**，未来版本移�
 !!! note "优先级"
     过渡期若同一字段顶层键与 `scheduler_config` 都提供，**以 `scheduler_config` 内的值为准**。
 
+<!-- DEPLOY_START -->
+## 部署形态
+
+> 混部 = PD 共置（colocated）或同机多实例共享 NPU；PD 分离 = P/D 节点经 KV 传输分离部署。「未见官方说明」≠ 不能开，仅表示官方文档未给出专门约束。
+
+| 维度 | 结论 |
+|---|---|
+| 混部（colocated） | ✅ 可开 |
+| PD 分离 | ✅ 双端 |
+
+聚合键，放置由子键决定：recompute_scheduler_enable 仅 D、short_request_first_config 仅 P/混部、dyntra_lb_config 仅 D、enable_balance_scheduling 仅混部、profiling_chunk_config 见 P 侧实证。详见各子键详情页。
+
+[出处](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/configuration/additional_config.html)
+<!-- DEPLOY_END -->
+
 ## 相关开关
 
 - [enable_balance_scheduling](enable-balance-scheduling.md) — 顶层旧键（deprecated）

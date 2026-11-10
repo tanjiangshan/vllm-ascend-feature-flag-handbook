@@ -24,3 +24,10 @@ version_support:
 version_note:
   zh: v0.30.0 起由 --attention_config.indexer_kv_dtype fp8/int8 派生
   en: derived from --attention_config.indexer_kv_dtype fp8/int8 since v0.30.0
+deployment:
+  pd: D
+  colocated: unknown
+  note:
+    zh: "GLM5.2 PD 配方中配在 D 节点（kv_consumer）；GLM5 优化表按吞吐场景区分：高吞吐/PD 场景开启、低延迟场景关闭。v0.30.0 起由 --attention_config.indexer_kv_dtype 派生。"
+    en: "Set on the D node (kv_consumer) in the GLM5.2 PD recipe; GLM5 table: on for high-throughput/PD, off for low-latency. Derived from --attention_config.indexer_kv_dtype since v0.30.0."
+  source: "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.2.html"
