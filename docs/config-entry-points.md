@@ -25,6 +25,7 @@ title: Ascend 配置入口总览
 
 - 手册收录 78 个：**在 vLLM-Ascend 官方教程命令行中实证出现** + vLLM 源码 CLI 定义存在。
 - 注意：部分参数的取值会被 Ascend 插件二次消费，派生出 #2 的开关（见 [kv-cache-dtype](engine-args/kv-cache-dtype.md) 页）——所以引擎参数页与特性开关页互有交叉链接。
+- 典型例子：`--compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'`——PD 分离 D 节点只给 decode 录图的官方主流配方，深入见 [compilation-config 详情页](engine-args/compilation-config.md)。
 
 ## 2. `--additional-config` JSON（AscendConfig 特性开关）
 

@@ -45,6 +45,19 @@ vllm serve Qwen/Qwen3-8B \
 !!! note "动态 EPLB 的特殊要求"
     `eplb_config.dynamic_eplb: true` 之外，还必须设置环境变量 `DYNAMIC_EPLB=true` 作为安全防护，否则启动断言会失败。详见 [`dynamic_eplb`](flags/dynamic-eplb.md)。
 
+## 常用引擎参数：录图模式
+
+手册主角是 `--additional-config`，但部署时最常一起配的还有 vLLM 引擎参数 `--compilation-config` 的录图模式。PD 分离的 D 节点典型配方：
+
+```bash
+vllm serve <model> \
+  --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
+```
+
+- 语义：仅 decode batch 录整图，prefill / 混合批不录——D 节点保 TPOT；官方 PD 教程的主流配方。
+- 不传时上游默认 `FULL_AND_PIECEWISE`：decode 录整图，prefill 与混合批走 PIECEWISE 分段图。
+- 深入：[`--compilation-config` 详情页](engine-args/compilation-config.md)（取值、默认值推导、自动捕获尺寸、官方配方索引）。
+
 ## 常见错误
 
 | 错误 | 原因 | 修正 |
@@ -57,5 +70,6 @@ vllm serve Qwen/Qwen3-8B \
 ## 下一步
 
 - [特性开关总览](flags/index.md)：全量速查表
+- [引擎参数总览](engine-args/index.md)：vLLM 顶层引擎参数（含 `--compilation-config`）
 - [迁移对照表](migration.md)：环境变量 → 配置键对照
 - [环境变量](env-vars.md)：仍生效的独立环境变量

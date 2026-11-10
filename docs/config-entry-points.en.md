@@ -25,6 +25,7 @@ The six entries are not disjoint: one arg can be both #1 and #3 (a patch widened
 
 - The handbook covers 78: each **evidenced in official vLLM-Ascend tutorial command lines** and defined in the vLLM source CLI.
 - Note: some arg values are re-consumed by the Ascend plugin to derive #2 flags (see the [kv-cache-dtype](engine-args/kv-cache-dtype.md) page) — hence the cross-links between the two overviews.
+- Canonical example: `--compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'` — the mainstream official recipe for graphing decode only on PD-disaggregated D nodes. Deep dive: [compilation-config detail page](engine-args/compilation-config.md).
 
 ## 2. `--additional-config` JSON (AscendConfig feature flags)
 

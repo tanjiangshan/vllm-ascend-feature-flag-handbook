@@ -45,6 +45,19 @@ vllm serve Qwen/Qwen3-8B \
 !!! note "Dynamic EPLB requirement"
     Besides `eplb_config.dynamic_eplb: true`, the env var `DYNAMIC_EPLB=true` must also be set as a safety guard, or startup fails an assertion. See [`dynamic_eplb`](flags/dynamic-eplb.md).
 
+## Common engine args: graph capture mode
+
+`--additional-config` is the star of this handbook, but in real deployments it is most often paired with the vLLM engine arg `--compilation-config` for graph capture mode. The canonical recipe for a PD-disaggregated decode node:
+
+```bash
+vllm serve <model> \
+  --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
+```
+
+- Semantics: full graphs for decode batches only; prefill and mixed batches run ungraphed — protects TPOT on the D node. This is the mainstream recipe in official PD tutorials.
+- Upstream default when unset: `FULL_AND_PIECEWISE` — full graphs for decode, piecewise graphs for prefill and mixed batches.
+- Deep dive: [`--compilation-config` detail page](engine-args/compilation-config.md) (values, default resolution, auto capture sizes, official recipe index).
+
 ## Common pitfalls
 
 | Error | Cause | Fix |
@@ -57,5 +70,6 @@ vllm serve Qwen/Qwen3-8B \
 ## Next steps
 
 - [Feature flags overview](flags/index.md): the full quick-reference table
+- [Engine args overview](engine-args/index.md): top-level vLLM engine args (incl. `--compilation-config`)
 - [Migration table](migration.md): env var → config key mapping
 - [Environment variables](env-vars.md): standalone env vars that remain active
