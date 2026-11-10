@@ -149,6 +149,17 @@ title: Engine args overview
 | `--weight-transfer-config` | `WeightTransferConfig` | `None` | Weight transfer config (JSON). For rollout→train weight sync in RL. | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html) |
 <!-- EA_TABLE_END -->
 
+## Topic: KV pooling (Ascend Store)
+
+**KV pooling** (KV Cache Pool / Ascend Store) is cross-node KV-cache pooling storage: the KV cache is written to an external backend (mooncake / memcache / yuanrong) and shared across vLLM instances under PD disaggregation, so identical prefixes skip redundant prefill. It is **not an `--additional-config` flag** — which is why it is absent from the feature-flags overview. The entry point is the [`--kv-transfer-config`](kv-transfer-config.md) `AscendStoreConnector` on this page:
+
+| What you want to configure | Where |
+|---|---|
+| Connector fields (`backend` / `use_layerwise` / `lookup_rpc_port`) | [kv-transfer-config detail page](kv-transfer-config.md), "KV 池化" section: per-field breakdown + full example |
+| Pooling + P2P transport combined (`MultiConnector`) | Same as above |
+| Layerwise-transfer debug logging | Flag [`kv_pool_range_debug`](../flags/kv-pool-range-debug.md) |
+| Concepts, architecture, deployment details | Official [KV Cache Pool (Ascend Store)](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html) · [Mooncake layerwise pooling](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html) |
+
 ## Recommended combos (from official tutorials)
 
 | Scenario | Typical args |

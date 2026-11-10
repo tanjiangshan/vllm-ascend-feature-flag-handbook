@@ -149,6 +149,17 @@ title: 引擎参数总览
 | `--weight-transfer-config` | `WeightTransferConfig` | `None` | 权重传输配置（JSON）。RL 训练中 rollout→train 权重同步用。 | [docs×2](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/rl.html) |
 <!-- EA_TABLE_END -->
 
+## 专题：KV 池化（Ascend Store）
+
+**KV 池化**（KV Cache Pool / Ascend Store）是跨节点 KV 缓存池化存储：KV cache 写入外部后端（mooncake / memcache / yuanrong），PD 分离架构下多个 vLLM 实例共享复用，相同前缀免重复 prefill。它**不是 `--additional-config` 开关**——所以不在特性开关总览里——配置入口是本页 [`--kv-transfer-config`](kv-transfer-config.md) 的 `AscendStoreConnector`：
+
+| 要配的东西 | 去向 |
+|---|---|
+| connector 字段（`backend` / `use_layerwise` / `lookup_rpc_port`） | [kv-transfer-config 详情页](kv-transfer-config.md) 的「KV 池化」专节：逐字段拆解 + 完整示例 |
+| 池化 + P2P 传输组合（`MultiConnector`） | 同上 |
+| 池化逐层传输调试日志 | 特性开关 [`kv_pool_range_debug`](../flags/kv-pool-range-debug.md) |
+| 概念、架构与部署细节 | 官方 [KV Cache Pool (Ascend Store)](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/kv_cache_pool_ascend_store.html) · [Mooncake 分层池化](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/mooncake_layerwise_adaptation_and_optimization.html) |
+
 ## 部署建议
 
 | 场景 | 关键参数组合（来自官方教程） |
