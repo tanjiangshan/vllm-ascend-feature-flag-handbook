@@ -64,7 +64,7 @@ max_num_batched_tokens ≥ max_num_seqs    （不满足直接拒绝启动）
 | **TTFT 敏感** | 设为略大于典型 prompt 长度，让单条 prefill 一步完成 |
 | **TPOT 敏感** | 适当调小，避免大块 prefill 挤占 decode 步；配合 chunked prefill 平滑混部 |
 | **吞吐优先** | 调大（注意 `≥ max_num_seqs` 约束）；`performance_mode=throughput` 可让默认值翻倍 |
-| **CPP 动态分块** | 先固定分块在 **[8192, 16384, 24576, 32768]** 中扫最优；再开动态分块，最优值通常是固定值的 **2–4 倍**（[官方 CPP 指南](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)） |
+| **CPP 动态分块** | 先固定分块在 **[8192, 16384, 24576, 32768]** 中扫最优；再开动态分块，最优值通常是固定值的 **2–4 倍**（[官方 CPP 指南](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)） |
 
 ## Ascend 语境与官方用法
 

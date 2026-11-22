@@ -41,7 +41,7 @@ EP's pain is **routing imbalance**: hot experts queue while cold ones idle. This
 | [`batch_job_sched_config`](flags/batch-job-sched-config.md) | Batch-job-aware scheduling | Batch workloads; cannot combine with ShortRequestFirst |
 | ~~old top-level keys~~ | Merged into scheduler_config since v0.30.0 | Old keys still work in transition but warn |
 
-Official guides: [DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [Dynamic chunked pipeline](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
+Official guides: [DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [Dynamic chunked pipeline (v0.30.0 only; removed on main)](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
 
 ## 3. KV Cache Quantization & Memory Formats { #t-kvfmt }
 
@@ -83,7 +83,7 @@ PD disaggregation splits prefill (compute-bound) from decode (bandwidth/memory-b
 | [`enable_mlapo`](flags/enable-mlapo.md) | MLAPO layer-wise adaptive parallelism | **Decode nodes only in PD** (official); consumes more memory |
 | [`mlapo_keep_prefill_weights`](flags/mlapo-keep-prefill-weights.md) | Keep prefill weights on D nodes instead of freeing | D-node local-prefill paths need it (issue #11882); memory for stability |
 | [`enable_cpu_binding`](flags/enable-cpu-binding.md) | Ascend CPU binding on ARM servers | Widely enabled on both sides in official PD recipes |
-| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | Dynamic chunked pipeline parallelism | Requires PP>1; GLM5.2 evidences P node; incompatible with DyntraLB/balanced scheduling |
+| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | Dynamic chunked pipeline parallelism | Requires PP>1; GLM5.2 evidences P node; incompatible with DyntraLB/balanced scheduling. **v0.30.0 only — removed on main** |
 | ~~enable_context_parallel~~ / ~~enable_dsa_cp~~ | Removed | Superseded by PCP (enabling dsa_cp on main errors with a PCP hint) |
 
 ## 6. KV Reuse & Pooling { #t-kvp }

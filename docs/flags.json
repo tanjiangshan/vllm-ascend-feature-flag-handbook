@@ -1755,13 +1755,13 @@
     },
     "source": "vllm_ascend/config.py",
     "version_note": {
-      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config",
-      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config"
+      "zh": "v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config。main 分支已整体移除该特性（ascend_config.py 无 profiling_chunk 读取点，官方功能页已从 main 文档删除）。",
+      "en": "top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config. The feature was removed entirely on main (no profiling_chunk read point in ascend_config.py; the official feature page was dropped from main docs)."
     },
     "version_support": {
       "v0.23.0": true,
       "v0.30.0": true,
-      "main": true
+      "main": false
     },
     "deployment": {
       "pd": "P",
@@ -1770,7 +1770,7 @@
         "zh": "要求 pipeline-parallel-size>1；GLM5.2 配方在 P 节点（kv_producer）开启；不能与 dyntra_lb_config / enable_balance_scheduling 同开，可与 ShortRequestFirst 组合。",
         "en": "Requires pipeline-parallel-size>1; enabled on the P node (kv_producer) in the GLM5.2 recipe; incompatible with dyntra_lb_config / enable_balance_scheduling, combinable with ShortRequestFirst."
       },
-      "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
+      "source": "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
     }
   },
   {
@@ -2104,8 +2104,8 @@
     "requires": [],
     "conflicts": [],
     "desc": {
-      "zh": "调度器扩展配置的规范层级，包含均衡调度、重计算调度、DyntraLB、ShortRequestFirst、动态分块流水线并行等。过渡期旧顶层键仍兼容但已弃用。",
-      "en": "Canonical nesting for scheduler extensions: balance scheduling, recompute scheduling, DyntraLB, ShortRequestFirst, dynamic chunked pipeline parallel, etc. Legacy top-level keys still parse but are deprecated."
+      "zh": "调度器扩展配置的规范层级，包含均衡调度、重计算调度、DyntraLB、ShortRequestFirst 等子键（动态分块流水线并行仅 v0.30.0 有，main 已移除）。过渡期旧顶层键仍兼容但已弃用。",
+      "en": "Canonical nesting for scheduler extensions: balance scheduling, recompute scheduling, DyntraLB, ShortRequestFirst, etc. (dynamic chunked pipeline parallel exists only in v0.30.0; removed on main). Legacy top-level keys still parse but are deprecated."
     },
     "source": "vllm_ascend/config.py",
     "version_support": {

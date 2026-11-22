@@ -64,7 +64,7 @@ None → model_config.is_chunked_prefill_supported（支持则默认开）
 ## Ascend 语境与官方用法
 
 - vLLM main 默认行为：支持的模型自动开。官方教程在**大模型长上下文**场景显式传 `--enable-chunked-prefill`（如 Qwen3.5-397B 系），配合大 `max_num_batched_tokens`（16384+）控制块大小。
-- Ascend 的 **CPP（动态分块流水线并行）**建立在分块之上：分块大小即 `max_num_batched_tokens`，调优空间 [8192, 16384, 24576, 32768]（[官方 CPP 指南](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)）。
+- Ascend 的 **CPP（动态分块流水线并行）**建立在分块之上：分块大小即 `max_num_batched_tokens`，调优空间 [8192, 16384, 24576, 32768]（[官方 CPP 指南](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)）。
 
 ## 用法
 

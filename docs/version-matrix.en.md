@@ -72,7 +72,7 @@ Legend: :white_check_mark: = supported; — = not present (never introduced, or 
 | [`multistream_overlap_gate`](flags/multistream-overlap-gate.md) | :white_check_mark: | — | — | Removed since v0.30.0 |
 | [`multistream_overlap_shared_expert`](flags/multistream-overlap-shared-expert.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`pa_shape_list`](flags/pa-shape-list.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
-| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config |
+| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | :white_check_mark: | :white_check_mark: | — | top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.profiling_chunk_config. The feature was removed entirely on main (no profiling_chunk read point in ascend_config.py; the official feature page was dropped from main docs). |
 | [`recompute_scheduler_enable`](flags/recompute-scheduler-enable.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | top-level key deprecated since v0.30.0 (still works with a warning); canonical form scheduler_config.recompute_scheduler_enable |
 | [`refresh`](flags/refresh.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`rejection_sampler_config`](flags/rejection-sampler-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |

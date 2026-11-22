@@ -72,7 +72,7 @@ title: 版本支持矩阵
 | [`multistream_overlap_gate`](flags/multistream-overlap-gate.md) | :white_check_mark: | — | — | v0.30.0 起已移除 |
 | [`multistream_overlap_shared_expert`](flags/multistream-overlap-shared-expert.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`pa_shape_list`](flags/pa-shape-list.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
-| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config |
+| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | :white_check_mark: | :white_check_mark: | — | v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.profiling_chunk_config。main 分支已整体移除该特性（ascend_config.py 无 profiling_chunk 读取点，官方功能页已从 main 文档删除）。 |
 | [`recompute_scheduler_enable`](flags/recompute-scheduler-enable.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | v0.30.0 起顶层键废弃（仍可用，发 deprecation 警告），规范写法 scheduler_config.recompute_scheduler_enable |
 | [`refresh`](flags/refresh.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | [`rejection_sampler_config`](flags/rejection-sampler-config.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |

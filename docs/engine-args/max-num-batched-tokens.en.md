@@ -64,7 +64,7 @@ The logic is plain: every sequence needs at least 1 token per step, so the count
 | **TTFT-sensitive** | Set slightly above the typical prompt length so a single prefill finishes in one step |
 | **TPOT-sensitive** | Shrink it so large prefills don't crowd out decode steps; pair with chunked prefill for smooth mixing |
 | **Throughput first** | Raise it (mind the `≥ max_num_seqs` constraint); `performance_mode=throughput` doubles the default |
-| **CPP dynamic chunking** | Sweep the fixed-chunk optimum in **[8192, 16384, 24576, 32768]** first; with dynamic chunking on, the optimum is typically **2–4×** the fixed-chunk value ([official CPP guide](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)) |
+| **CPP dynamic chunking** | Sweep the fixed-chunk optimum in **[8192, 16384, 24576, 32768]** first; with dynamic chunking on, the optimum is typically **2–4×** the fixed-chunk value ([official CPP guide](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)) |
 
 ## Ascend context & official usage
 

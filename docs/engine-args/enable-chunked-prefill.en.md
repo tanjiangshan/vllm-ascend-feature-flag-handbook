@@ -64,7 +64,7 @@ This is why long-context deployments almost always enable it: **the prerequisite
 ## Ascend context & official usage
 
 - Default on vLLM main: auto-on for supporting models. Official tutorials pass `--enable-chunked-prefill` explicitly for large-model long-context (Qwen3.5-397B family), paired with large `max_num_batched_tokens` (16384+) for chunk sizing.
-- Ascend's **CPP (dynamic chunked pipeline parallelism)** builds on chunking: the chunk size equals `max_num_batched_tokens`; tuning space [8192, 16384, 24576, 32768] ([official CPP guide](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)).
+- Ascend's **CPP (dynamic chunked pipeline parallelism)** builds on chunking: the chunk size equals `max_num_batched_tokens`; tuning space [8192, 16384, 24576, 32768] ([official CPP guide](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)).
 
 ## Usage
 

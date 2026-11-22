@@ -41,7 +41,7 @@ MoE 模型每层有两次集合通信：dispatch 把 token 按路由发到各专
 | [`batch_job_sched_config`](flags/batch-job-sched-config.md) | batch 作业感知调度 | 批作业场景；不可与 ShortRequestFirst 组合 |
 | ~~batch_job_sched_config 等旧顶层键~~ | v0.30.0 起收编 scheduler_config | 过渡期旧键仍可用但发弃用警告 |
 
-官方功能页：[DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [动态分块流水线](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
+官方功能页：[DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [动态分块流水线（v0.30.0，main 已移除）](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
 
 ## 3. KV Cache 量化与内存格式 { #t-kvfmt }
 
@@ -83,7 +83,7 @@ PD 分离把 prefill（算得慢、吃算力）与 decode（跑得快、吃带�
 | [`enable_mlapo`](flags/enable-mlapo.md) | MLAPO 逐层自适应并行优化 | **PD 场景仅 D 节点**（官方明示）；耗更多显存 |
 | [`mlapo_keep_prefill_weights`](flags/mlapo-keep-prefill-weights.md) | D 节点保留 prefill 权重不释放 | D 节点本地 prefill 路径需要（issue #11882），以显存换稳定 |
 | [`enable_cpu_binding`](flags/enable-cpu-binding.md) | ARM 服务器昇腾 CPU 绑定 | 官方 PD 配方 P/D 两侧普遍开启 |
-| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | 动态分块流水线并行 | 需 PP>1；GLM5.2 实证 P 节点；与 DyntraLB/均衡调度互斥 |
+| [`profiling_chunk_config`](flags/profiling-chunk-config.md) | 动态分块流水线并行 | 需 PP>1；GLM5.2 实证 P 节点；与 DyntraLB/均衡调度互斥。**仅 v0.30.0，main 已移除** |
 | ~~enable_context_parallel~~ / ~~enable_dsa_cp~~ | 已移除 | PCP 取代（main 上开 dsa_cp 会报错提示） |
 
 ## 6. KV 复用与池化 { #t-kvp }

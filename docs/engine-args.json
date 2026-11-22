@@ -1365,9 +1365,9 @@
     "doc_count": 4,
     "examples": [
       {
-        "value": "{\"rope_theta\":",
-        "source": "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html",
-        "note": "from user_guide/feature_guide/dynamic_chunk_pipeline_parallel.md"
+        "value": "{\"architectures\":",
+        "source": "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html",
+        "note": "from tutorials/models/MiniMax-M3.1-Flash.md"
       },
       {
         "value": "{\"use_index_cache\":",
@@ -1377,7 +1377,7 @@
     ],
     "sources": [
       "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/GLM5.html",
-      "https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html",
+      "https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/MiniMax-M3.1-Flash.html",
       "https://docs.vllm.ai/projects/ascend/en/v0.30.0/tutorials/models/GLM5.html",
       "https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html"
     ]
