@@ -1,0 +1,5 @@
+/* 正文容器宽度：Material 默认 61rem（本站根字号 22px ≈ 1342px），
+   宽屏下大表格被挤压。放宽到 1600px；max-width 语义保证窄屏/移动端不受影响。 */
+.md-grid {
+  max-width: 1600px;
+}
