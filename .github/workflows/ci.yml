@@ -30,3 +30,6 @@ jobs:
 
       - name: Build site (strict)
         run: mkdocs build --strict
+
+      - name: Verify search index (zh/en discoverability)
+        run: python scripts/check_search_index.py

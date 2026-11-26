@@ -45,8 +45,16 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/search-sanitize.js
+
 plugins:
-  - search
+  # The zh locale ships `pipeline: stemmer`, but search queries are issued as
+  # prefix wildcards (`scheduling*`), which bypass the pipeline — the index
+  # stores `schedul`, so any stemmed English word would miss. Empty pipeline
+  # keeps index and query tokens identical; jieba still segments Chinese.
+  - search:
+      pipeline: []
   - i18n:
       docs_structure: suffix
       languages:

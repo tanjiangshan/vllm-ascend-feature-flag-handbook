@@ -14,11 +14,13 @@ data/flags/                # 单一事实来源：64 个开关的 YAML
 data/engine-args.yaml      # 78 个 vLLM 引擎参数（官方文档实证 + vLLM 源码默认值）
 scripts/generate_tables.py # 校验数据 → 生成总览表/版本矩阵/JSON 导出
 scripts/audit_engine_args.py # 溯源审计：参数∈vLLM CLI、示例值∈官方文档
+scripts/check_search_index.py # 构建后校验搜索索引：pipeline 为空、jieba 分词生效、zh+en 均在
 docs/                      # MkDocs 文档源（中文 *.md / 英文 *.en.md 成对）
 docs/flags/                # 每个开关一个详情页（全部手写）
-docs/engine-args/          # 引擎参数总览 + 20 个重点参数详情页（中英成对）
+docs/engine-args/          # 引擎参数总览 + 21 个重点参数详情页（中英成对）
 docs/flags.json            # 机器可读导出（自动生成，勿手改）
 docs/engine-args.json      # 引擎参数机器可读导出（自动生成）
+docs/javascripts/          # 站点脚本（搜索框前导 `--` 清理）
 mkdocs.yml                 # MkDocs Material + mkdocs-static-i18n（zh 默认，en 次语言）
 .github/workflows/         # ci.yml（生成+审计+strict 构建）+ deploy.yml（main 分支发布 Pages）
 ```
@@ -30,10 +32,13 @@ pip install -r requirements.txt
 python scripts/generate_tables.py   # 校验 + 生成；任何数据错误都会以非零码退出
 python scripts/audit_engine_args.py # 溯源审计（需联网抓取 vLLM/vllm-ascend 官方文件）
 mkdocs build --strict               # 全站构建，warning 即失败
+python scripts/check_search_index.py # 构建后校验搜索可发现性（中英文分词/pipeline）
 mkdocs serve                        # 本地预览
 ```
 
-CI 会依次跑：生成脚本 → 溯源审计 → `git diff --exit-code`（检查生成物是否随提交更新）→ `mkdocs build --strict`。
+CI 会依次跑：生成脚本 → 溯源审计 → `git diff --exit-code`（检查生成物是否随提交更新）→ `mkdocs build --strict` → 搜索索引校验。
+
+**搜索依赖**：中文分词靠可选的 `jieba`（在 `requirements.txt` 中固定）；`mkdocs.yml` 的 `search.pipeline` 必须保持为空——Material 的查询是前缀通配（`scheduling*`），通配不过 pipeline，若索引侧做了 stemmer（zh 语言包默认如此）会把 `scheduling` 存成 `schedul`，导致该词静默搜不到。`scripts/check_search_index.py` 会在 CI 中拦截这两类回归。
 
 ## YAML 数据约定（data/flags/*.yaml）
 

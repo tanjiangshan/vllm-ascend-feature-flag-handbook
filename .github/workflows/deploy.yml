@@ -24,5 +24,10 @@ jobs:
       - name: Generate tables & validate flag database
         run: python scripts/generate_tables.py
 
+      - name: Build site (strict) & verify search index
+        run: |
+          mkdocs build --strict
+          python scripts/check_search_index.py
+
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force --clean
