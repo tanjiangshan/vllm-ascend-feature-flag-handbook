@@ -43,6 +43,8 @@ EP's pain is **routing imbalance**: hot experts queue while cold ones idle. This
 
 Official guides: [DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [Dynamic chunked pipeline (v0.30.0 only; removed on main)](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
 
+Related engine arg: [`--async-scheduling`](engine-args/async-scheduling.md) (overlaps CPU scheduling with GPU execution; auto-enabled by default)
+
 ## 3. KV Cache Quantization & Memory Formats { #t-kvfmt }
 
 KV cache is the #1 memory consumer in long-context serving. This family governs **layout** (NZ / T-major / per-block transpose), **quantization** (C8 sparse layouts, int8/mxfp8 — the latter via CLI value-domain patches), and **offloading** (sparse KV to DRAM) — cutting KV memory with no (or minimal) precision loss.

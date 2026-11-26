@@ -43,6 +43,8 @@ MoE 模型每层有两次集合通信：dispatch 把 token 按路由发到各专
 
 官方功能页：[DyntraLB](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/dyntra_lb.html) · [ShortRequestFirst](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/short_request_first.html) · [动态分块流水线（v0.30.0，main 已移除）](https://docs.vllm.ai/projects/ascend/en/v0.30.0/user_guide/feature_guide/dynamic_chunk_pipeline_parallel.html)
 
+相关引擎参数：[`--async-scheduling`](engine-args/async-scheduling.md)（重叠 CPU 调度与 GPU 执行，默认自动开启）
+
 ## 3. KV Cache 量化与内存格式 { #t-kvfmt }
 
 KV cache 是长上下文服务的第一显存消费者。这组开关管**布局**（NZ / T-major / 按块转置）、**量化**（C8 稀疏布局、int8/mxfp8——后者走 CLI 值域补丁）、**卸载**（稀疏 KV 下沉 DRAM），目标都是在不损精度（或少损）的前提下把 KV 显存砍下来。

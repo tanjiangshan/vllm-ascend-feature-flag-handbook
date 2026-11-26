@@ -59,7 +59,7 @@ title: Engine args overview
 
 | Argument | Type | Default | Description | Official docs |
 |---|---|---|---|---|
-| `--async-scheduling` | `bool` | `None` | Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput. | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
+| [`--async-scheduling`](async-scheduling.md) | `bool` | `None` | Async scheduling. Default None (auto-on unless a pooling model, an executor without support, or ROCm DeepEP HT DBO); when on, AsyncScheduler overlaps CPU scheduling with GPU execution, avoiding utilization gaps for better latency and throughput. Disable with --no-async-scheduling. | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | Disable hybrid KV cache manager. Auto-detected by default; rarely set manually. | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | Chunked prefill. Enabled by default on vLLM main (SchedulerConfig default True), chunked by remaining max_num_batched_tokens; auto-disabled for encoder-decoder models. | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | Fraction of device memory for the executor (0–1). Default None → resolves to 1.0 with extensible KV cache, else 0.92 (vLLM main source); tutorials set 0.80–0.90 explicitly. | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |

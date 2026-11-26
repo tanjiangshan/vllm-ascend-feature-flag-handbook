@@ -59,7 +59,7 @@ title: 引擎参数总览
 
 | 参数 | 类型 | 默认值 | 说明 | 官方文档出处 |
 |---|---|---|---|---|
-| `--async-scheduling` | `bool` | `None` | 异步调度。默认 None（自动）；部分官方教程显式开启以提升吞吐。 | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
+| [`--async-scheduling`](async-scheduling.md) | `bool` | `None` | 异步调度。默认 None（自动开启，pooling 模型 / executor 不支持 / ROCm DeepEP HT DBO 时自动关闭）；开启后由 AsyncScheduler 重叠 CPU 调度与 GPU 执行，减少 GPU 空泡，改善时延与吞吐。--no-async-scheduling 关闭。 | [docs×16](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | `--disable-hybrid-kv-cache-manager` | `bool` | `"("` | 禁用混合 KV cache 管理器。vLLM 默认按模型自动判断，一般不手动设。 | [docs×5](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Flash.html) |
 | [`--enable-chunked-prefill`](enable-chunked-prefill.md) | `bool` | `None` | 分块 prefill。vLLM main 默认开启（SchedulerConfig 默认 True），按 max_num_batched_tokens 剩余额度切分；encoder-decoder 模型自动禁用。 | [docs×13](https://docs.vllm.ai/projects/ascend/en/latest/tutorials/models/DeepSeek-V4-Pro.html) |
 | [`--gpu-memory-utilization`](gpu-memory-utilization.md) | `float` | `None` | 模型执行器显存占比（0–1）。默认 None → 可扩展 KV cache 时解析为 1.0，否则 0.92（vLLM main 源码）；官方教程多显式设 0.80–0.90。 | [docs×46](https://docs.vllm.ai/projects/ascend/en/latest/user_guide/feature_guide/speculative_decoding.html) |

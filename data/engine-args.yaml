@@ -1263,10 +1263,10 @@ args:
   category: scheduling
   type: bool
   default: null
-  detail_page: false
+  detail_page: true
   desc:
-    zh: 异步调度。默认 None（自动）；部分官方教程显式开启以提升吞吐。
-    en: Async scheduling. Default None (auto); some official tutorials enable it explicitly for throughput.
+    zh: 异步调度。默认 None（自动开启，pooling 模型 / executor 不支持 / ROCm DeepEP HT DBO 时自动关闭）；开启后由 AsyncScheduler 重叠 CPU 调度与 GPU 执行，减少 GPU 空泡，改善时延与吞吐。--no-async-scheduling 关闭。
+    en: Async scheduling. Default None (auto-on unless a pooling model, an executor without support, or ROCm DeepEP HT DBO); when on, AsyncScheduler overlaps CPU scheduling with GPU execution, avoiding utilization gaps for better latency and throughput. Disable with --no-async-scheduling.
   doc_count: 16
   examples: []
   sources:
